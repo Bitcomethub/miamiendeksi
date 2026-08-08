@@ -1,0 +1,5709 @@
+{
+  "period": "2026-08",
+  "builtAt": "2026-08-08T10:14:58.493Z",
+  "fetchedAt": "2026-08-08",
+  "geography": "Miami-Fort Lauderdale-Pompano Beach metro alanı (Miami-Dade, Broward, Palm Beach ilçeleri)",
+  "metrics": [
+    {
+      "id": "zhvi-all",
+      "label": "Tipik konut değeri",
+      "short": "ZHVI (tüm konutlar)",
+      "unit": "usd",
+      "value": 476597.6561849468,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": -0.01,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -2.23,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "ZHVI — All Homes, Smoothed & Seasonally Adjusted",
+      "note": "Zillow Home Value Index: piyasanın orta %33–67 dilimindeki tipik konut değeri. Satış medyanı DEĞİLDİR — satılan konutların bileşiminden etkilenmez.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zhvi-condo",
+      "label": "Tipik daire (kondo) değeri",
+      "short": "ZHVI (kondo)",
+      "unit": "usd",
+      "value": 269082.5185327931,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": -0.18,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -6.18,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "ZHVI — Condo/Co-op, Smoothed & Seasonally Adjusted",
+      "note": "Yalnızca daire/kondo stoku. Türkiye’den yatırım çoğunlukla bu segmentte olduğu için ayrı izleniyor.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_condo_tier_0.33_0.67_sm_sa_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zori",
+      "label": "Tipik aylık kira",
+      "short": "ZORI",
+      "unit": "usd",
+      "value": 2694.607550419161,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": 0.05,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": 1.15,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "ZORI — Observed Rent Index (tüm konut tipleri)",
+      "note": "Zillow Observed Rent Index: ilan edilen kiraların kalite-denkleştirilmiş ortalaması.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/zori/Metro_zori_uc_sfrcondomfr_sm_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zillow-inventory",
+      "label": "Satıştaki konut stoku",
+      "short": "Stok",
+      "unit": "count",
+      "value": 51021,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": -3.07,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -13.2,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "For-Sale Inventory (smoothed)",
+      "note": "Ay içinde satışta olan toplam konut sayısı.",
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/invt_fs/Metro_invt_fs_uc_sfrcondo_sm_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zillow-new-listings",
+      "label": "Yeni ilan sayısı",
+      "short": "Yeni ilan",
+      "unit": "count",
+      "value": 8984,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": -3.48,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -9.52,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "New Listings (smoothed)",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/new_listings/Metro_new_listings_uc_sfrcondo_sm_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zillow-days-pending",
+      "label": "Satışa geçme süresi",
+      "short": "Gün (medyan)",
+      "unit": "days",
+      "value": 52,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": 0,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -8.77,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "Median Days to Pending",
+      "note": "İlan yayına girdikten sonra sözleşmeye bağlanana kadar geçen medyan gün.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/med_doz_pending/Metro_med_doz_pending_uc_sfrcondo_sm_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zillow-price-cut",
+      "label": "Fiyat indirimi yapan ilan oranı",
+      "short": "İndirim oranı",
+      "unit": "pct",
+      "value": 19.67908157138048,
+      "asOf": "2026-06-30",
+      "mom": {
+        "value": -0.7,
+        "kind": "pp"
+      },
+      "momAsOf": "2026-05-31",
+      "yoy": {
+        "value": -3.74,
+        "kind": "pp"
+      },
+      "yoyAsOf": "2025-06-30",
+      "publisher": "zillow",
+      "dataset": "Share of Listings With a Price Cut",
+      "note": "Ay içinde fiyatını düşüren ilanların, toplam ilanlara oranı. Satıcı tarafındaki baskının en hızlı göstergesi.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/perc_listings_price_cut/Metro_perc_listings_price_cut_uc_sfrcondo_sm_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "zillow-median-sale",
+      "label": "Medyan satış fiyatı",
+      "short": "Medyan satış",
+      "unit": "usd",
+      "value": 482854,
+      "asOf": "2026-05-31",
+      "mom": {
+        "value": 0.45,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-04-30",
+      "yoy": {
+        "value": 1.14,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-05-31",
+      "publisher": "zillow",
+      "dataset": "Median Sale Price (smoothed, seasonally adjusted)",
+      "note": "Gerçekleşen satışların medyanı. ZHVI’den farklı olarak satılan konutların bileşiminden ETKİLENİR.",
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://files.zillowstatic.com/research/public_csvs/median_sale_price/Metro_median_sale_price_uc_sfrcondo_sm_sa_month.csv",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "mortgage-30y",
+      "label": "ABD 30 yıl sabit mortgage faizi",
+      "short": "Mortgage 30Y",
+      "unit": "pct",
+      "value": 6.69,
+      "asOf": "2026-08-06",
+      "mom": {
+        "value": 0.2,
+        "kind": "pp"
+      },
+      "momAsOf": "2026-07-09",
+      "yoy": {
+        "value": 0.06,
+        "kind": "pp"
+      },
+      "yoyAsOf": "2025-08-07",
+      "publisher": "fred",
+      "dataset": "Freddie Mac Primary Mortgage Market Survey (haftalık)",
+      "note": "Ülke geneli ortalama; Miami’ye özgü değildir. Alıcı bütçesini belirleyen tek en büyük dış değişken olduğu için izleniyor.",
+      "featured": true,
+      "national": true,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "active-listings",
+      "label": "Aktif ilan sayısı",
+      "short": "Aktif ilan",
+      "unit": "count",
+      "value": 41524,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": -3.38,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -16.92,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — Housing Inventory: Active Listing Count (CBSA 33100)",
+      "note": "Realtor.com sayımı. Zillow stok rakamıyla aynı şeyi ölçer ama farklı yöntem kullanır; iki kaynağın ayrışması bilgi taşır.",
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ACTLISCOU33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "median-list-price",
+      "label": "Medyan liste fiyatı",
+      "short": "Liste fiyatı",
+      "unit": "usd",
+      "value": 495000,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": -0.8,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -2.93,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — Median Listing Price (CBSA 33100)",
+      "note": "Satıcıların İSTEDİĞİ fiyatın medyanı; gerçekleşen satış fiyatı değildir.",
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MEDLISPRI33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "list-price-sqft",
+      "label": "Liste fiyatı (ft² başına)",
+      "short": "$/ft²",
+      "unit": "usd",
+      "value": 356,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": -0.28,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -0.84,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — Median Listing Price per Square Feet (CBSA 33100)",
+      "note": "Konut büyüklüğü değişiminden arındırılmış fiyat göstergesi. 1 ft² ≈ 0,0929 m².",
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MEDLISPRIPERSQUFEE33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "days-on-market",
+      "label": "Piyasada kalma süresi",
+      "short": "Piyasada gün",
+      "unit": "days",
+      "value": 85,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": 3.66,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -3.41,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — Median Days on Market (CBSA 33100)",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MEDDAYONMAR33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "new-listing-count",
+      "label": "Aya giren yeni ilan (Realtor.com)",
+      "short": "Yeni ilan (R)",
+      "unit": "count",
+      "value": 8974,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": -8.48,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -2.88,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — New Listing Count (CBSA 33100)",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NEWLISCOU33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "price-reduced-count",
+      "label": "Fiyatı düşürülen ilan sayısı",
+      "short": "İndirimli ilan",
+      "unit": "count",
+      "value": 8810,
+      "asOf": "2026-07-01",
+      "mom": {
+        "value": -8.7,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-06-01",
+      "yoy": {
+        "value": -27.3,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-07-01",
+      "publisher": "fred",
+      "dataset": "Realtor.com — Price Reduced Count (CBSA 33100)",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PRIREDCOU33100",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "redfin-condo-sale",
+      "label": "Kondo medyan satış fiyatı",
+      "short": "Kondo satış",
+      "unit": "usd",
+      "value": 397500,
+      "asOf": "2026-05-01",
+      "mom": {
+        "value": -5.36,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-04-01",
+      "yoy": {
+        "value": -1.85,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-05-01",
+      "publisher": "redfin",
+      "dataset": "Redfin Metro Market Tracker — Condo/Co-op",
+      "note": "Kapanmış (tapu devri olmuş) kondo satışlarının medyanı.",
+      "featured": true,
+      "national": false,
+      "sourceUrl": "https://redfin-public-data.s3-us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "redfin-condo-sold",
+      "label": "Satılan kondo sayısı",
+      "short": "Kondo satış adedi",
+      "unit": "count",
+      "value": 765,
+      "asOf": "2026-05-01",
+      "mom": {
+        "value": -13.27,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-04-01",
+      "yoy": {
+        "value": -8.16,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-05-01",
+      "publisher": "redfin",
+      "dataset": "Redfin Metro Market Tracker — Condo/Co-op",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://redfin-public-data.s3-us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "redfin-all-sale",
+      "label": "Tüm konutlarda medyan satış fiyatı",
+      "short": "Tüm konut satış",
+      "unit": "usd",
+      "value": 570000,
+      "asOf": "2026-05-01",
+      "mom": {
+        "value": 0,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-04-01",
+      "yoy": {
+        "value": 0.35,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-05-01",
+      "publisher": "redfin",
+      "dataset": "Redfin Metro Market Tracker — All Residential",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://redfin-public-data.s3-us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "redfin-inventory",
+      "label": "Redfin stok sayımı",
+      "short": "Stok (Redfin)",
+      "unit": "count",
+      "value": 15373,
+      "asOf": "2026-05-01",
+      "mom": {
+        "value": -4.42,
+        "kind": "pct"
+      },
+      "momAsOf": "2026-04-01",
+      "yoy": {
+        "value": -20.36,
+        "kind": "pct"
+      },
+      "yoyAsOf": "2025-05-01",
+      "publisher": "redfin",
+      "dataset": "Redfin Metro Market Tracker — All Residential",
+      "note": null,
+      "featured": false,
+      "national": false,
+      "sourceUrl": "https://redfin-public-data.s3-us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
+      "fetchedAt": "2026-08-08"
+    }
+  ],
+  "derived": [
+    {
+      "id": "gross-yield",
+      "label": "Brüt kira getirisi (gösterge)",
+      "short": "Brüt getiri",
+      "unit": "pct",
+      "value": 6.78,
+      "asOf": "2026-06-30",
+      "mom": null,
+      "yoy": null,
+      "derived": true,
+      "formula": "(ZORI × 12) ÷ ZHVI (tüm konutlar)",
+      "inputs": [
+        "zori",
+        "zhvi-all"
+      ],
+      "note": "Kaba bir göstergedir. Aidat, emlak vergisi, sigorta, boşluk ve yönetim gideri DÜŞÜLMEMİŞTİR — net getiri bunun belirgin biçimde altındadır. İki farklı endeksin oranı olduğu için tek bir dairenin getirisi değil, piyasa ortalamasının kabaca nerede durduğudur.",
+      "fetchedAt": "2026-08-08"
+    },
+    {
+      "id": "price-to-rent",
+      "label": "Fiyat / yıllık kira çarpanı",
+      "short": "F/K çarpanı",
+      "unit": "index",
+      "value": 14.74,
+      "asOf": "2026-06-30",
+      "mom": null,
+      "yoy": null,
+      "derived": true,
+      "formula": "ZHVI (tüm konutlar) ÷ (ZORI × 12)",
+      "inputs": [
+        "zhvi-all",
+        "zori"
+      ],
+      "note": "Tipik konutun kaç yıllık brüt kiraya denk geldiği. Yüksek değer, kiralamanın satın almaya göre görece ucuz olduğunu gösterir.",
+      "fetchedAt": "2026-08-08"
+    }
+  ],
+  "series": [
+    {
+      "id": "zhvi-all",
+      "label": "Tipik konut değeri",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 355777.892
+        },
+        {
+          "date": "2021-07-31",
+          "value": 362083.2904
+        },
+        {
+          "date": "2021-08-31",
+          "value": 367587.9021
+        },
+        {
+          "date": "2021-09-30",
+          "value": 372082.2373
+        },
+        {
+          "date": "2021-10-31",
+          "value": 376401.7036
+        },
+        {
+          "date": "2021-11-30",
+          "value": 381473.5099
+        },
+        {
+          "date": "2021-12-31",
+          "value": 387283.5971
+        },
+        {
+          "date": "2022-01-31",
+          "value": 395072.4848
+        },
+        {
+          "date": "2022-02-28",
+          "value": 404216.0265
+        },
+        {
+          "date": "2022-03-31",
+          "value": 415056.7606
+        },
+        {
+          "date": "2022-04-30",
+          "value": 426264.7398
+        },
+        {
+          "date": "2022-05-31",
+          "value": 436908.2596
+        },
+        {
+          "date": "2022-06-30",
+          "value": 446478.6771
+        },
+        {
+          "date": "2022-07-31",
+          "value": 453509.94
+        },
+        {
+          "date": "2022-08-31",
+          "value": 457826.4622
+        },
+        {
+          "date": "2022-09-30",
+          "value": 459472.5943
+        },
+        {
+          "date": "2022-10-31",
+          "value": 460380.8418
+        },
+        {
+          "date": "2022-11-30",
+          "value": 461294.9084
+        },
+        {
+          "date": "2022-12-31",
+          "value": 462488.3759
+        },
+        {
+          "date": "2023-01-31",
+          "value": 463052.0649
+        },
+        {
+          "date": "2023-02-28",
+          "value": 463309.8047
+        },
+        {
+          "date": "2023-03-31",
+          "value": 463914.9761
+        },
+        {
+          "date": "2023-04-30",
+          "value": 465518.4733
+        },
+        {
+          "date": "2023-05-31",
+          "value": 468143.3796
+        },
+        {
+          "date": "2023-06-30",
+          "value": 471805.8679
+        },
+        {
+          "date": "2023-07-31",
+          "value": 475594.8158
+        },
+        {
+          "date": "2023-08-31",
+          "value": 479385.7587
+        },
+        {
+          "date": "2023-09-30",
+          "value": 482402.034
+        },
+        {
+          "date": "2023-10-31",
+          "value": 485341.3732
+        },
+        {
+          "date": "2023-11-30",
+          "value": 488320.3764
+        },
+        {
+          "date": "2023-12-31",
+          "value": 491078.3067
+        },
+        {
+          "date": "2024-01-31",
+          "value": 493529.3315
+        },
+        {
+          "date": "2024-02-29",
+          "value": 495518.6874
+        },
+        {
+          "date": "2024-03-31",
+          "value": 497726.963
+        },
+        {
+          "date": "2024-04-30",
+          "value": 499763.026
+        },
+        {
+          "date": "2024-05-31",
+          "value": 501499.3364
+        },
+        {
+          "date": "2024-06-30",
+          "value": 502080.6967
+        },
+        {
+          "date": "2024-07-31",
+          "value": 502276.9199
+        },
+        {
+          "date": "2024-08-31",
+          "value": 502297.3134
+        },
+        {
+          "date": "2024-09-30",
+          "value": 502354.7691
+        },
+        {
+          "date": "2024-10-31",
+          "value": 501899.4627
+        },
+        {
+          "date": "2024-11-30",
+          "value": 500910.5353
+        },
+        {
+          "date": "2024-12-31",
+          "value": 500047.316
+        },
+        {
+          "date": "2025-01-31",
+          "value": 499418.121
+        },
+        {
+          "date": "2025-02-28",
+          "value": 498657.4728
+        },
+        {
+          "date": "2025-03-31",
+          "value": 496658.9715
+        },
+        {
+          "date": "2025-04-30",
+          "value": 493991.6905
+        },
+        {
+          "date": "2025-05-31",
+          "value": 490716.3693
+        },
+        {
+          "date": "2025-06-30",
+          "value": 487461.2495
+        },
+        {
+          "date": "2025-07-31",
+          "value": 483839.3066
+        },
+        {
+          "date": "2025-08-31",
+          "value": 480844.3601
+        },
+        {
+          "date": "2025-09-30",
+          "value": 478822.8972
+        },
+        {
+          "date": "2025-10-31",
+          "value": 477866.8193
+        },
+        {
+          "date": "2025-11-30",
+          "value": 477144.9973
+        },
+        {
+          "date": "2025-12-31",
+          "value": 476677.2173
+        },
+        {
+          "date": "2026-01-31",
+          "value": 476522.7977
+        },
+        {
+          "date": "2026-02-28",
+          "value": 476768.7258
+        },
+        {
+          "date": "2026-03-31",
+          "value": 477067.6585
+        },
+        {
+          "date": "2026-04-30",
+          "value": 476864.6283
+        },
+        {
+          "date": "2026-05-31",
+          "value": 476632.1634
+        },
+        {
+          "date": "2026-06-30",
+          "value": 476597.6562
+        }
+      ]
+    },
+    {
+      "id": "zhvi-condo",
+      "label": "Tipik daire (kondo) değeri",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 217053.5562
+        },
+        {
+          "date": "2021-07-31",
+          "value": 220877.7121
+        },
+        {
+          "date": "2021-08-31",
+          "value": 224562.1183
+        },
+        {
+          "date": "2021-09-30",
+          "value": 227648.1263
+        },
+        {
+          "date": "2021-10-31",
+          "value": 230739.8849
+        },
+        {
+          "date": "2021-11-30",
+          "value": 234370.7564
+        },
+        {
+          "date": "2021-12-31",
+          "value": 238504.3293
+        },
+        {
+          "date": "2022-01-31",
+          "value": 243544.9217
+        },
+        {
+          "date": "2022-02-28",
+          "value": 249086.2058
+        },
+        {
+          "date": "2022-03-31",
+          "value": 255307.5082
+        },
+        {
+          "date": "2022-04-30",
+          "value": 262417.0708
+        },
+        {
+          "date": "2022-05-31",
+          "value": 269678.1172
+        },
+        {
+          "date": "2022-06-30",
+          "value": 277189.6468
+        },
+        {
+          "date": "2022-07-31",
+          "value": 283154.7498
+        },
+        {
+          "date": "2022-08-31",
+          "value": 287471.2978
+        },
+        {
+          "date": "2022-09-30",
+          "value": 290150.8391
+        },
+        {
+          "date": "2022-10-31",
+          "value": 292263.2482
+        },
+        {
+          "date": "2022-11-30",
+          "value": 294466.8216
+        },
+        {
+          "date": "2022-12-31",
+          "value": 296423.8728
+        },
+        {
+          "date": "2023-01-31",
+          "value": 297579.8419
+        },
+        {
+          "date": "2023-02-28",
+          "value": 298307.4462
+        },
+        {
+          "date": "2023-03-31",
+          "value": 299072.2163
+        },
+        {
+          "date": "2023-04-30",
+          "value": 300558.0176
+        },
+        {
+          "date": "2023-05-31",
+          "value": 302403.7499
+        },
+        {
+          "date": "2023-06-30",
+          "value": 304632.8975
+        },
+        {
+          "date": "2023-07-31",
+          "value": 306587.7928
+        },
+        {
+          "date": "2023-08-31",
+          "value": 308536.8294
+        },
+        {
+          "date": "2023-09-30",
+          "value": 309830.5554
+        },
+        {
+          "date": "2023-10-31",
+          "value": 310864.8951
+        },
+        {
+          "date": "2023-11-30",
+          "value": 311747.1725
+        },
+        {
+          "date": "2023-12-31",
+          "value": 311999.9153
+        },
+        {
+          "date": "2024-01-31",
+          "value": 312273.1087
+        },
+        {
+          "date": "2024-02-29",
+          "value": 312034.3904
+        },
+        {
+          "date": "2024-03-31",
+          "value": 312156.0131
+        },
+        {
+          "date": "2024-04-30",
+          "value": 312027.1108
+        },
+        {
+          "date": "2024-05-31",
+          "value": 311724.5479
+        },
+        {
+          "date": "2024-06-30",
+          "value": 310696.2468
+        },
+        {
+          "date": "2024-07-31",
+          "value": 309388.2
+        },
+        {
+          "date": "2024-08-31",
+          "value": 307847.7744
+        },
+        {
+          "date": "2024-09-30",
+          "value": 306274.5291
+        },
+        {
+          "date": "2024-10-31",
+          "value": 304581.731
+        },
+        {
+          "date": "2024-11-30",
+          "value": 302659.7291
+        },
+        {
+          "date": "2024-12-31",
+          "value": 301236.5406
+        },
+        {
+          "date": "2025-01-31",
+          "value": 299803.3764
+        },
+        {
+          "date": "2025-02-28",
+          "value": 298313.5014
+        },
+        {
+          "date": "2025-03-31",
+          "value": 295776.6874
+        },
+        {
+          "date": "2025-04-30",
+          "value": 292975.5642
+        },
+        {
+          "date": "2025-05-31",
+          "value": 289878.0524
+        },
+        {
+          "date": "2025-06-30",
+          "value": 286821.8906
+        },
+        {
+          "date": "2025-07-31",
+          "value": 283489.4041
+        },
+        {
+          "date": "2025-08-31",
+          "value": 280640.8375
+        },
+        {
+          "date": "2025-09-30",
+          "value": 278367.38
+        },
+        {
+          "date": "2025-10-31",
+          "value": 276625.3981
+        },
+        {
+          "date": "2025-11-30",
+          "value": 275104.867
+        },
+        {
+          "date": "2025-12-31",
+          "value": 273738.547
+        },
+        {
+          "date": "2026-01-31",
+          "value": 272810.3421
+        },
+        {
+          "date": "2026-02-28",
+          "value": 271925.0672
+        },
+        {
+          "date": "2026-03-31",
+          "value": 271266.3139
+        },
+        {
+          "date": "2026-04-30",
+          "value": 270303.4527
+        },
+        {
+          "date": "2026-05-31",
+          "value": 269573.5556
+        },
+        {
+          "date": "2026-06-30",
+          "value": 269082.5185
+        }
+      ]
+    },
+    {
+      "id": "zori",
+      "label": "Tipik aylık kira",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 1987.0528
+        },
+        {
+          "date": "2021-07-31",
+          "value": 2051.7933
+        },
+        {
+          "date": "2021-08-31",
+          "value": 2115.2939
+        },
+        {
+          "date": "2021-09-30",
+          "value": 2173.4534
+        },
+        {
+          "date": "2021-10-31",
+          "value": 2214.6086
+        },
+        {
+          "date": "2021-11-30",
+          "value": 2259.1236
+        },
+        {
+          "date": "2021-12-31",
+          "value": 2304.3394
+        },
+        {
+          "date": "2022-01-31",
+          "value": 2345.5405
+        },
+        {
+          "date": "2022-02-28",
+          "value": 2378.8091
+        },
+        {
+          "date": "2022-03-31",
+          "value": 2414.1494
+        },
+        {
+          "date": "2022-04-30",
+          "value": 2455.531
+        },
+        {
+          "date": "2022-05-31",
+          "value": 2495.2481
+        },
+        {
+          "date": "2022-06-30",
+          "value": 2522.6311
+        },
+        {
+          "date": "2022-07-31",
+          "value": 2542.5879
+        },
+        {
+          "date": "2022-08-31",
+          "value": 2550.1519
+        },
+        {
+          "date": "2022-09-30",
+          "value": 2558.1987
+        },
+        {
+          "date": "2022-10-31",
+          "value": 2561.2553
+        },
+        {
+          "date": "2022-11-30",
+          "value": 2567.7033
+        },
+        {
+          "date": "2022-12-31",
+          "value": 2570.162
+        },
+        {
+          "date": "2023-01-31",
+          "value": 2570.6892
+        },
+        {
+          "date": "2023-02-28",
+          "value": 2572.4306
+        },
+        {
+          "date": "2023-03-31",
+          "value": 2578.0528
+        },
+        {
+          "date": "2023-04-30",
+          "value": 2583.2563
+        },
+        {
+          "date": "2023-05-31",
+          "value": 2588.9746
+        },
+        {
+          "date": "2023-06-30",
+          "value": 2591.6255
+        },
+        {
+          "date": "2023-07-31",
+          "value": 2595.6815
+        },
+        {
+          "date": "2023-08-31",
+          "value": 2600.1525
+        },
+        {
+          "date": "2023-09-30",
+          "value": 2604.2419
+        },
+        {
+          "date": "2023-10-31",
+          "value": 2611.1206
+        },
+        {
+          "date": "2023-11-30",
+          "value": 2612.4361
+        },
+        {
+          "date": "2023-12-31",
+          "value": 2608.0312
+        },
+        {
+          "date": "2024-01-31",
+          "value": 2606.5451
+        },
+        {
+          "date": "2024-02-29",
+          "value": 2612.1469
+        },
+        {
+          "date": "2024-03-31",
+          "value": 2622.4282
+        },
+        {
+          "date": "2024-04-30",
+          "value": 2629.3636
+        },
+        {
+          "date": "2024-05-31",
+          "value": 2632.2078
+        },
+        {
+          "date": "2024-06-30",
+          "value": 2635.2287
+        },
+        {
+          "date": "2024-07-31",
+          "value": 2640.6279
+        },
+        {
+          "date": "2024-08-31",
+          "value": 2645.9309
+        },
+        {
+          "date": "2024-09-30",
+          "value": 2651.7122
+        },
+        {
+          "date": "2024-10-31",
+          "value": 2652.8137
+        },
+        {
+          "date": "2024-11-30",
+          "value": 2651.9594
+        },
+        {
+          "date": "2024-12-31",
+          "value": 2650.929
+        },
+        {
+          "date": "2025-01-31",
+          "value": 2652.9266
+        },
+        {
+          "date": "2025-02-28",
+          "value": 2656.6064
+        },
+        {
+          "date": "2025-03-31",
+          "value": 2661.2013
+        },
+        {
+          "date": "2025-04-30",
+          "value": 2663.1486
+        },
+        {
+          "date": "2025-05-31",
+          "value": 2663.9123
+        },
+        {
+          "date": "2025-06-30",
+          "value": 2663.9382
+        },
+        {
+          "date": "2025-07-31",
+          "value": 2664.7243
+        },
+        {
+          "date": "2025-08-31",
+          "value": 2666.9235
+        },
+        {
+          "date": "2025-09-30",
+          "value": 2668.2189
+        },
+        {
+          "date": "2025-10-31",
+          "value": 2669.4099
+        },
+        {
+          "date": "2025-11-30",
+          "value": 2669.525
+        },
+        {
+          "date": "2025-12-31",
+          "value": 2667.5679
+        },
+        {
+          "date": "2026-01-31",
+          "value": 2666.3678
+        },
+        {
+          "date": "2026-02-28",
+          "value": 2670.4385
+        },
+        {
+          "date": "2026-03-31",
+          "value": 2679.1048
+        },
+        {
+          "date": "2026-04-30",
+          "value": 2688.0355
+        },
+        {
+          "date": "2026-05-31",
+          "value": 2693.1823
+        },
+        {
+          "date": "2026-06-30",
+          "value": 2694.6076
+        }
+      ]
+    },
+    {
+      "id": "zillow-inventory",
+      "label": "Satıştaki konut stoku",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 35873
+        },
+        {
+          "date": "2021-07-31",
+          "value": 34596
+        },
+        {
+          "date": "2021-08-31",
+          "value": 33789
+        },
+        {
+          "date": "2021-09-30",
+          "value": 33003
+        },
+        {
+          "date": "2021-10-31",
+          "value": 32325
+        },
+        {
+          "date": "2021-11-30",
+          "value": 30955
+        },
+        {
+          "date": "2021-12-31",
+          "value": 29085
+        },
+        {
+          "date": "2022-01-31",
+          "value": 27483
+        },
+        {
+          "date": "2022-02-28",
+          "value": 25998
+        },
+        {
+          "date": "2022-03-31",
+          "value": 25760
+        },
+        {
+          "date": "2022-04-30",
+          "value": 25059
+        },
+        {
+          "date": "2022-05-31",
+          "value": 25474
+        },
+        {
+          "date": "2022-06-30",
+          "value": 26465
+        },
+        {
+          "date": "2022-07-31",
+          "value": 28557
+        },
+        {
+          "date": "2022-08-31",
+          "value": 30756
+        },
+        {
+          "date": "2022-09-30",
+          "value": 31767
+        },
+        {
+          "date": "2022-10-31",
+          "value": 32323
+        },
+        {
+          "date": "2022-11-30",
+          "value": 32290
+        },
+        {
+          "date": "2022-12-31",
+          "value": 32528
+        },
+        {
+          "date": "2023-01-31",
+          "value": 33272
+        },
+        {
+          "date": "2023-02-28",
+          "value": 33759
+        },
+        {
+          "date": "2023-03-31",
+          "value": 34451
+        },
+        {
+          "date": "2023-04-30",
+          "value": 33640
+        },
+        {
+          "date": "2023-05-31",
+          "value": 32929
+        },
+        {
+          "date": "2023-06-30",
+          "value": 31869
+        },
+        {
+          "date": "2023-07-31",
+          "value": 31348
+        },
+        {
+          "date": "2023-08-31",
+          "value": 31145
+        },
+        {
+          "date": "2023-09-30",
+          "value": 31393
+        },
+        {
+          "date": "2023-10-31",
+          "value": 32742
+        },
+        {
+          "date": "2023-11-30",
+          "value": 34280
+        },
+        {
+          "date": "2023-12-31",
+          "value": 35866
+        },
+        {
+          "date": "2024-01-31",
+          "value": 38150
+        },
+        {
+          "date": "2024-02-29",
+          "value": 41038
+        },
+        {
+          "date": "2024-03-31",
+          "value": 44020
+        },
+        {
+          "date": "2024-04-30",
+          "value": 45685
+        },
+        {
+          "date": "2024-05-31",
+          "value": 46372
+        },
+        {
+          "date": "2024-06-30",
+          "value": 46841
+        },
+        {
+          "date": "2024-07-31",
+          "value": 46947
+        },
+        {
+          "date": "2024-08-31",
+          "value": 47125
+        },
+        {
+          "date": "2024-09-30",
+          "value": 47444
+        },
+        {
+          "date": "2024-10-31",
+          "value": 48109
+        },
+        {
+          "date": "2024-11-30",
+          "value": 49138
+        },
+        {
+          "date": "2024-12-31",
+          "value": 50086
+        },
+        {
+          "date": "2025-01-31",
+          "value": 52176
+        },
+        {
+          "date": "2025-02-28",
+          "value": 54398
+        },
+        {
+          "date": "2025-03-31",
+          "value": 57256
+        },
+        {
+          "date": "2025-04-30",
+          "value": 58675
+        },
+        {
+          "date": "2025-05-31",
+          "value": 59317
+        },
+        {
+          "date": "2025-06-30",
+          "value": 58780
+        },
+        {
+          "date": "2025-07-31",
+          "value": 57795
+        },
+        {
+          "date": "2025-08-31",
+          "value": 56417
+        },
+        {
+          "date": "2025-09-30",
+          "value": 55077
+        },
+        {
+          "date": "2025-10-31",
+          "value": 54283
+        },
+        {
+          "date": "2025-11-30",
+          "value": 53787
+        },
+        {
+          "date": "2025-12-31",
+          "value": 53115
+        },
+        {
+          "date": "2026-01-31",
+          "value": 53101
+        },
+        {
+          "date": "2026-02-28",
+          "value": 53395
+        },
+        {
+          "date": "2026-03-31",
+          "value": 54312
+        },
+        {
+          "date": "2026-04-30",
+          "value": 53812
+        },
+        {
+          "date": "2026-05-31",
+          "value": 52638
+        },
+        {
+          "date": "2026-06-30",
+          "value": 51021
+        }
+      ]
+    },
+    {
+      "id": "zillow-new-listings",
+      "label": "Yeni ilan sayısı",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 12440
+        },
+        {
+          "date": "2021-07-31",
+          "value": 12333
+        },
+        {
+          "date": "2021-08-31",
+          "value": 11779
+        },
+        {
+          "date": "2021-09-30",
+          "value": 11176
+        },
+        {
+          "date": "2021-10-31",
+          "value": 10752
+        },
+        {
+          "date": "2021-11-30",
+          "value": 10259
+        },
+        {
+          "date": "2021-12-31",
+          "value": 9496
+        },
+        {
+          "date": "2022-01-31",
+          "value": 9199
+        },
+        {
+          "date": "2022-02-28",
+          "value": 9362
+        },
+        {
+          "date": "2022-03-31",
+          "value": 10513
+        },
+        {
+          "date": "2022-04-30",
+          "value": 10882
+        },
+        {
+          "date": "2022-05-31",
+          "value": 11381
+        },
+        {
+          "date": "2022-06-30",
+          "value": 11555
+        },
+        {
+          "date": "2022-07-31",
+          "value": 11527
+        },
+        {
+          "date": "2022-08-31",
+          "value": 11183
+        },
+        {
+          "date": "2022-09-30",
+          "value": 10088
+        },
+        {
+          "date": "2022-10-31",
+          "value": 9437
+        },
+        {
+          "date": "2022-11-30",
+          "value": 8594
+        },
+        {
+          "date": "2022-12-31",
+          "value": 7897
+        },
+        {
+          "date": "2023-01-31",
+          "value": 8013
+        },
+        {
+          "date": "2023-02-28",
+          "value": 8237
+        },
+        {
+          "date": "2023-03-31",
+          "value": 9193
+        },
+        {
+          "date": "2023-04-30",
+          "value": 8926
+        },
+        {
+          "date": "2023-05-31",
+          "value": 9108
+        },
+        {
+          "date": "2023-06-30",
+          "value": 8781
+        },
+        {
+          "date": "2023-07-31",
+          "value": 8734
+        },
+        {
+          "date": "2023-08-31",
+          "value": 8700
+        },
+        {
+          "date": "2023-09-30",
+          "value": 8842
+        },
+        {
+          "date": "2023-10-31",
+          "value": 9446
+        },
+        {
+          "date": "2023-11-30",
+          "value": 9345
+        },
+        {
+          "date": "2023-12-31",
+          "value": 8804
+        },
+        {
+          "date": "2024-01-31",
+          "value": 9252
+        },
+        {
+          "date": "2024-02-29",
+          "value": 10254
+        },
+        {
+          "date": "2024-03-31",
+          "value": 11372
+        },
+        {
+          "date": "2024-04-30",
+          "value": 11241
+        },
+        {
+          "date": "2024-05-31",
+          "value": 10761
+        },
+        {
+          "date": "2024-06-30",
+          "value": 10358
+        },
+        {
+          "date": "2024-07-31",
+          "value": 9826
+        },
+        {
+          "date": "2024-08-31",
+          "value": 9563
+        },
+        {
+          "date": "2024-09-30",
+          "value": 9506
+        },
+        {
+          "date": "2024-10-31",
+          "value": 9459
+        },
+        {
+          "date": "2024-11-30",
+          "value": 9380
+        },
+        {
+          "date": "2024-12-31",
+          "value": 8878
+        },
+        {
+          "date": "2025-01-31",
+          "value": 9853
+        },
+        {
+          "date": "2025-02-28",
+          "value": 10366
+        },
+        {
+          "date": "2025-03-31",
+          "value": 11662
+        },
+        {
+          "date": "2025-04-30",
+          "value": 11191
+        },
+        {
+          "date": "2025-05-31",
+          "value": 10881
+        },
+        {
+          "date": "2025-06-30",
+          "value": 9929
+        },
+        {
+          "date": "2025-07-31",
+          "value": 9277
+        },
+        {
+          "date": "2025-08-31",
+          "value": 8752
+        },
+        {
+          "date": "2025-09-30",
+          "value": 8660
+        },
+        {
+          "date": "2025-10-31",
+          "value": 8943
+        },
+        {
+          "date": "2025-11-30",
+          "value": 8872
+        },
+        {
+          "date": "2025-12-31",
+          "value": 8315
+        },
+        {
+          "date": "2026-01-31",
+          "value": 8599
+        },
+        {
+          "date": "2026-02-28",
+          "value": 8995
+        },
+        {
+          "date": "2026-03-31",
+          "value": 9926
+        },
+        {
+          "date": "2026-04-30",
+          "value": 9527
+        },
+        {
+          "date": "2026-05-31",
+          "value": 9308
+        },
+        {
+          "date": "2026-06-30",
+          "value": 8984
+        }
+      ]
+    },
+    {
+      "id": "zillow-days-pending",
+      "label": "Satışa geçme süresi",
+      "unit": "days",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 14
+        },
+        {
+          "date": "2021-07-31",
+          "value": 14
+        },
+        {
+          "date": "2021-08-31",
+          "value": 14
+        },
+        {
+          "date": "2021-09-30",
+          "value": 15
+        },
+        {
+          "date": "2021-10-31",
+          "value": 15
+        },
+        {
+          "date": "2021-11-30",
+          "value": 15
+        },
+        {
+          "date": "2021-12-31",
+          "value": 15
+        },
+        {
+          "date": "2022-01-31",
+          "value": 15
+        },
+        {
+          "date": "2022-02-28",
+          "value": 14
+        },
+        {
+          "date": "2022-03-31",
+          "value": 12
+        },
+        {
+          "date": "2022-04-30",
+          "value": 10
+        },
+        {
+          "date": "2022-05-31",
+          "value": 10
+        },
+        {
+          "date": "2022-06-30",
+          "value": 11
+        },
+        {
+          "date": "2022-07-31",
+          "value": 13
+        },
+        {
+          "date": "2022-08-31",
+          "value": 16
+        },
+        {
+          "date": "2022-09-30",
+          "value": 19
+        },
+        {
+          "date": "2022-10-31",
+          "value": 23
+        },
+        {
+          "date": "2022-11-30",
+          "value": 25
+        },
+        {
+          "date": "2022-12-31",
+          "value": 29
+        },
+        {
+          "date": "2023-01-31",
+          "value": 32
+        },
+        {
+          "date": "2023-02-28",
+          "value": 33
+        },
+        {
+          "date": "2023-03-31",
+          "value": 32
+        },
+        {
+          "date": "2023-04-30",
+          "value": 28
+        },
+        {
+          "date": "2023-05-31",
+          "value": 25
+        },
+        {
+          "date": "2023-06-30",
+          "value": 22
+        },
+        {
+          "date": "2023-07-31",
+          "value": 21
+        },
+        {
+          "date": "2023-08-31",
+          "value": 21
+        },
+        {
+          "date": "2023-09-30",
+          "value": 21
+        },
+        {
+          "date": "2023-10-31",
+          "value": 22
+        },
+        {
+          "date": "2023-11-30",
+          "value": 25
+        },
+        {
+          "date": "2023-12-31",
+          "value": 30
+        },
+        {
+          "date": "2024-01-31",
+          "value": 36
+        },
+        {
+          "date": "2024-02-29",
+          "value": 38
+        },
+        {
+          "date": "2024-03-31",
+          "value": 37
+        },
+        {
+          "date": "2024-04-30",
+          "value": 35
+        },
+        {
+          "date": "2024-05-31",
+          "value": 37
+        },
+        {
+          "date": "2024-06-30",
+          "value": 39
+        },
+        {
+          "date": "2024-07-31",
+          "value": 40
+        },
+        {
+          "date": "2024-08-31",
+          "value": 42
+        },
+        {
+          "date": "2024-09-30",
+          "value": 43
+        },
+        {
+          "date": "2024-10-31",
+          "value": 46
+        },
+        {
+          "date": "2024-11-30",
+          "value": 48
+        },
+        {
+          "date": "2024-12-31",
+          "value": 53
+        },
+        {
+          "date": "2025-01-31",
+          "value": 58
+        },
+        {
+          "date": "2025-02-28",
+          "value": 60
+        },
+        {
+          "date": "2025-03-31",
+          "value": 58
+        },
+        {
+          "date": "2025-04-30",
+          "value": 54
+        },
+        {
+          "date": "2025-05-31",
+          "value": 53
+        },
+        {
+          "date": "2025-06-30",
+          "value": 57
+        },
+        {
+          "date": "2025-07-31",
+          "value": 60
+        },
+        {
+          "date": "2025-08-31",
+          "value": 63
+        },
+        {
+          "date": "2025-09-30",
+          "value": 65
+        },
+        {
+          "date": "2025-10-31",
+          "value": 66
+        },
+        {
+          "date": "2025-11-30",
+          "value": 65
+        },
+        {
+          "date": "2025-12-31",
+          "value": 64
+        },
+        {
+          "date": "2026-01-31",
+          "value": 65
+        },
+        {
+          "date": "2026-02-28",
+          "value": 65
+        },
+        {
+          "date": "2026-03-31",
+          "value": 61
+        },
+        {
+          "date": "2026-04-30",
+          "value": 56
+        },
+        {
+          "date": "2026-05-31",
+          "value": 52
+        },
+        {
+          "date": "2026-06-30",
+          "value": 52
+        }
+      ]
+    },
+    {
+      "id": "zillow-price-cut",
+      "label": "Fiyat indirimi yapan ilan oranı",
+      "unit": "pct",
+      "points": [
+        {
+          "date": "2021-06-30",
+          "value": 9.4415
+        },
+        {
+          "date": "2021-07-31",
+          "value": 10.4242
+        },
+        {
+          "date": "2021-08-31",
+          "value": 11.4337
+        },
+        {
+          "date": "2021-09-30",
+          "value": 12.1335
+        },
+        {
+          "date": "2021-10-31",
+          "value": 11.9876
+        },
+        {
+          "date": "2021-11-30",
+          "value": 11.4562
+        },
+        {
+          "date": "2021-12-31",
+          "value": 10.2984
+        },
+        {
+          "date": "2022-01-31",
+          "value": 9.572
+        },
+        {
+          "date": "2022-02-28",
+          "value": 8.691
+        },
+        {
+          "date": "2022-03-31",
+          "value": 8.7713
+        },
+        {
+          "date": "2022-04-30",
+          "value": 9.0421
+        },
+        {
+          "date": "2022-05-31",
+          "value": 11.125
+        },
+        {
+          "date": "2022-06-30",
+          "value": 14.4757
+        },
+        {
+          "date": "2022-07-31",
+          "value": 18.0525
+        },
+        {
+          "date": "2022-08-31",
+          "value": 20.237
+        },
+        {
+          "date": "2022-09-30",
+          "value": 20.8433
+        },
+        {
+          "date": "2022-10-31",
+          "value": 21.5596
+        },
+        {
+          "date": "2022-11-30",
+          "value": 21.787
+        },
+        {
+          "date": "2022-12-31",
+          "value": 20.3808
+        },
+        {
+          "date": "2023-01-31",
+          "value": 19.9274
+        },
+        {
+          "date": "2023-02-28",
+          "value": 19.1557
+        },
+        {
+          "date": "2023-03-31",
+          "value": 20.2594
+        },
+        {
+          "date": "2023-04-30",
+          "value": 18.8742
+        },
+        {
+          "date": "2023-05-31",
+          "value": 18.6455
+        },
+        {
+          "date": "2023-06-30",
+          "value": 18.0059
+        },
+        {
+          "date": "2023-07-31",
+          "value": 17.8857
+        },
+        {
+          "date": "2023-08-31",
+          "value": 17.7742
+        },
+        {
+          "date": "2023-09-30",
+          "value": 18.1569
+        },
+        {
+          "date": "2023-10-31",
+          "value": 19.834
+        },
+        {
+          "date": "2023-11-30",
+          "value": 21.0661
+        },
+        {
+          "date": "2023-12-31",
+          "value": 20.1423
+        },
+        {
+          "date": "2024-01-31",
+          "value": 20.794
+        },
+        {
+          "date": "2024-02-29",
+          "value": 21.4853
+        },
+        {
+          "date": "2024-03-31",
+          "value": 24.051
+        },
+        {
+          "date": "2024-04-30",
+          "value": 24.2153
+        },
+        {
+          "date": "2024-05-31",
+          "value": 24.4718
+        },
+        {
+          "date": "2024-06-30",
+          "value": 23.985
+        },
+        {
+          "date": "2024-07-31",
+          "value": 23.4843
+        },
+        {
+          "date": "2024-08-31",
+          "value": 22.6285
+        },
+        {
+          "date": "2024-09-30",
+          "value": 22.3348
+        },
+        {
+          "date": "2024-10-31",
+          "value": 21.708
+        },
+        {
+          "date": "2024-11-30",
+          "value": 21.2573
+        },
+        {
+          "date": "2024-12-31",
+          "value": 19.9769
+        },
+        {
+          "date": "2025-01-31",
+          "value": 21.2295
+        },
+        {
+          "date": "2025-02-28",
+          "value": 22.3784
+        },
+        {
+          "date": "2025-03-31",
+          "value": 25.0289
+        },
+        {
+          "date": "2025-04-30",
+          "value": 24.7509
+        },
+        {
+          "date": "2025-05-31",
+          "value": 24.5586
+        },
+        {
+          "date": "2025-06-30",
+          "value": 23.4238
+        },
+        {
+          "date": "2025-07-31",
+          "value": 22.549
+        },
+        {
+          "date": "2025-08-31",
+          "value": 21.4618
+        },
+        {
+          "date": "2025-09-30",
+          "value": 20.6505
+        },
+        {
+          "date": "2025-10-31",
+          "value": 20.6278
+        },
+        {
+          "date": "2025-11-30",
+          "value": 19.692
+        },
+        {
+          "date": "2025-12-31",
+          "value": 18.3501
+        },
+        {
+          "date": "2026-01-31",
+          "value": 18.5346
+        },
+        {
+          "date": "2026-02-28",
+          "value": 19.3682
+        },
+        {
+          "date": "2026-03-31",
+          "value": 21.0806
+        },
+        {
+          "date": "2026-04-30",
+          "value": 20.5957
+        },
+        {
+          "date": "2026-05-31",
+          "value": 20.379
+        },
+        {
+          "date": "2026-06-30",
+          "value": 19.6791
+        }
+      ]
+    },
+    {
+      "id": "zillow-median-sale",
+      "label": "Medyan satış fiyatı",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-05-31",
+          "value": 336338
+        },
+        {
+          "date": "2021-06-30",
+          "value": 340220
+        },
+        {
+          "date": "2021-07-31",
+          "value": 343404
+        },
+        {
+          "date": "2021-08-31",
+          "value": 346806
+        },
+        {
+          "date": "2021-09-30",
+          "value": 348797
+        },
+        {
+          "date": "2021-10-31",
+          "value": 350908
+        },
+        {
+          "date": "2021-11-30",
+          "value": 355909
+        },
+        {
+          "date": "2021-12-31",
+          "value": 362500
+        },
+        {
+          "date": "2022-01-31",
+          "value": 369436
+        },
+        {
+          "date": "2022-02-28",
+          "value": 377415
+        },
+        {
+          "date": "2022-03-31",
+          "value": 384553
+        },
+        {
+          "date": "2022-04-30",
+          "value": 390543
+        },
+        {
+          "date": "2022-05-31",
+          "value": 395567
+        },
+        {
+          "date": "2022-06-30",
+          "value": 399137
+        },
+        {
+          "date": "2022-07-31",
+          "value": 399637
+        },
+        {
+          "date": "2022-08-31",
+          "value": 397855
+        },
+        {
+          "date": "2022-09-30",
+          "value": 398172
+        },
+        {
+          "date": "2022-10-31",
+          "value": 401698
+        },
+        {
+          "date": "2022-11-30",
+          "value": 403587
+        },
+        {
+          "date": "2022-12-31",
+          "value": 400949
+        },
+        {
+          "date": "2023-01-31",
+          "value": 402049
+        },
+        {
+          "date": "2023-02-28",
+          "value": 404923
+        },
+        {
+          "date": "2023-03-31",
+          "value": 413373
+        },
+        {
+          "date": "2023-04-30",
+          "value": 418691
+        },
+        {
+          "date": "2023-05-31",
+          "value": 423680
+        },
+        {
+          "date": "2023-06-30",
+          "value": 426604
+        },
+        {
+          "date": "2023-07-31",
+          "value": 428199
+        },
+        {
+          "date": "2023-08-31",
+          "value": 429775
+        },
+        {
+          "date": "2023-09-30",
+          "value": 433644
+        },
+        {
+          "date": "2023-10-31",
+          "value": 437221
+        },
+        {
+          "date": "2023-11-30",
+          "value": 438048
+        },
+        {
+          "date": "2023-12-31",
+          "value": 436660
+        },
+        {
+          "date": "2024-01-31",
+          "value": 438015
+        },
+        {
+          "date": "2024-02-29",
+          "value": 446342
+        },
+        {
+          "date": "2024-03-31",
+          "value": 458592
+        },
+        {
+          "date": "2024-04-30",
+          "value": 465297
+        },
+        {
+          "date": "2024-05-31",
+          "value": 466489
+        },
+        {
+          "date": "2024-06-30",
+          "value": 466583
+        },
+        {
+          "date": "2024-07-31",
+          "value": 465337
+        },
+        {
+          "date": "2024-08-31",
+          "value": 462321
+        },
+        {
+          "date": "2024-09-30",
+          "value": 458289
+        },
+        {
+          "date": "2024-10-31",
+          "value": 459923
+        },
+        {
+          "date": "2024-11-30",
+          "value": 465165
+        },
+        {
+          "date": "2024-12-31",
+          "value": 471806
+        },
+        {
+          "date": "2025-01-31",
+          "value": 476400
+        },
+        {
+          "date": "2025-02-28",
+          "value": 482672
+        },
+        {
+          "date": "2025-03-31",
+          "value": 480049
+        },
+        {
+          "date": "2025-04-30",
+          "value": 479224
+        },
+        {
+          "date": "2025-05-31",
+          "value": 477430
+        },
+        {
+          "date": "2025-06-30",
+          "value": 477740
+        },
+        {
+          "date": "2025-07-31",
+          "value": 473193
+        },
+        {
+          "date": "2025-08-31",
+          "value": 467647
+        },
+        {
+          "date": "2025-09-30",
+          "value": 465669
+        },
+        {
+          "date": "2025-10-31",
+          "value": 469312
+        },
+        {
+          "date": "2025-11-30",
+          "value": 472193
+        },
+        {
+          "date": "2025-12-31",
+          "value": 474939
+        },
+        {
+          "date": "2026-01-31",
+          "value": 478115
+        },
+        {
+          "date": "2026-02-28",
+          "value": 479884
+        },
+        {
+          "date": "2026-03-31",
+          "value": 481615
+        },
+        {
+          "date": "2026-04-30",
+          "value": 480710
+        },
+        {
+          "date": "2026-05-31",
+          "value": 482854
+        }
+      ]
+    },
+    {
+      "id": "mortgage-30y",
+      "label": "ABD 30 yıl sabit mortgage faizi",
+      "unit": "pct",
+      "points": [
+        {
+          "date": "2023-07-20",
+          "value": 6.78
+        },
+        {
+          "date": "2023-07-27",
+          "value": 6.81
+        },
+        {
+          "date": "2023-08-03",
+          "value": 6.9
+        },
+        {
+          "date": "2023-08-10",
+          "value": 6.96
+        },
+        {
+          "date": "2023-08-17",
+          "value": 7.09
+        },
+        {
+          "date": "2023-08-24",
+          "value": 7.23
+        },
+        {
+          "date": "2023-08-31",
+          "value": 7.18
+        },
+        {
+          "date": "2023-09-07",
+          "value": 7.12
+        },
+        {
+          "date": "2023-09-14",
+          "value": 7.18
+        },
+        {
+          "date": "2023-09-21",
+          "value": 7.19
+        },
+        {
+          "date": "2023-09-28",
+          "value": 7.31
+        },
+        {
+          "date": "2023-10-05",
+          "value": 7.49
+        },
+        {
+          "date": "2023-10-12",
+          "value": 7.57
+        },
+        {
+          "date": "2023-10-19",
+          "value": 7.63
+        },
+        {
+          "date": "2023-10-26",
+          "value": 7.79
+        },
+        {
+          "date": "2023-11-02",
+          "value": 7.76
+        },
+        {
+          "date": "2023-11-09",
+          "value": 7.5
+        },
+        {
+          "date": "2023-11-16",
+          "value": 7.44
+        },
+        {
+          "date": "2023-11-22",
+          "value": 7.29
+        },
+        {
+          "date": "2023-11-30",
+          "value": 7.22
+        },
+        {
+          "date": "2023-12-07",
+          "value": 7.03
+        },
+        {
+          "date": "2023-12-14",
+          "value": 6.95
+        },
+        {
+          "date": "2023-12-21",
+          "value": 6.67
+        },
+        {
+          "date": "2023-12-28",
+          "value": 6.61
+        },
+        {
+          "date": "2024-01-04",
+          "value": 6.62
+        },
+        {
+          "date": "2024-01-11",
+          "value": 6.66
+        },
+        {
+          "date": "2024-01-18",
+          "value": 6.6
+        },
+        {
+          "date": "2024-01-25",
+          "value": 6.69
+        },
+        {
+          "date": "2024-02-01",
+          "value": 6.63
+        },
+        {
+          "date": "2024-02-08",
+          "value": 6.64
+        },
+        {
+          "date": "2024-02-15",
+          "value": 6.77
+        },
+        {
+          "date": "2024-02-22",
+          "value": 6.9
+        },
+        {
+          "date": "2024-02-29",
+          "value": 6.94
+        },
+        {
+          "date": "2024-03-07",
+          "value": 6.88
+        },
+        {
+          "date": "2024-03-14",
+          "value": 6.74
+        },
+        {
+          "date": "2024-03-21",
+          "value": 6.87
+        },
+        {
+          "date": "2024-03-28",
+          "value": 6.79
+        },
+        {
+          "date": "2024-04-04",
+          "value": 6.82
+        },
+        {
+          "date": "2024-04-11",
+          "value": 6.88
+        },
+        {
+          "date": "2024-04-18",
+          "value": 7.1
+        },
+        {
+          "date": "2024-04-25",
+          "value": 7.17
+        },
+        {
+          "date": "2024-05-02",
+          "value": 7.22
+        },
+        {
+          "date": "2024-05-09",
+          "value": 7.09
+        },
+        {
+          "date": "2024-05-16",
+          "value": 7.02
+        },
+        {
+          "date": "2024-05-23",
+          "value": 6.94
+        },
+        {
+          "date": "2024-05-30",
+          "value": 7.03
+        },
+        {
+          "date": "2024-06-06",
+          "value": 6.99
+        },
+        {
+          "date": "2024-06-13",
+          "value": 6.95
+        },
+        {
+          "date": "2024-06-20",
+          "value": 6.87
+        },
+        {
+          "date": "2024-06-27",
+          "value": 6.86
+        },
+        {
+          "date": "2024-07-03",
+          "value": 6.95
+        },
+        {
+          "date": "2024-07-11",
+          "value": 6.89
+        },
+        {
+          "date": "2024-07-18",
+          "value": 6.77
+        },
+        {
+          "date": "2024-07-25",
+          "value": 6.78
+        },
+        {
+          "date": "2024-08-01",
+          "value": 6.73
+        },
+        {
+          "date": "2024-08-08",
+          "value": 6.47
+        },
+        {
+          "date": "2024-08-15",
+          "value": 6.49
+        },
+        {
+          "date": "2024-08-22",
+          "value": 6.46
+        },
+        {
+          "date": "2024-08-29",
+          "value": 6.35
+        },
+        {
+          "date": "2024-09-05",
+          "value": 6.35
+        },
+        {
+          "date": "2024-09-12",
+          "value": 6.2
+        },
+        {
+          "date": "2024-09-19",
+          "value": 6.09
+        },
+        {
+          "date": "2024-09-26",
+          "value": 6.08
+        },
+        {
+          "date": "2024-10-03",
+          "value": 6.12
+        },
+        {
+          "date": "2024-10-10",
+          "value": 6.32
+        },
+        {
+          "date": "2024-10-17",
+          "value": 6.44
+        },
+        {
+          "date": "2024-10-24",
+          "value": 6.54
+        },
+        {
+          "date": "2024-10-31",
+          "value": 6.72
+        },
+        {
+          "date": "2024-11-07",
+          "value": 6.79
+        },
+        {
+          "date": "2024-11-14",
+          "value": 6.78
+        },
+        {
+          "date": "2024-11-21",
+          "value": 6.84
+        },
+        {
+          "date": "2024-11-27",
+          "value": 6.81
+        },
+        {
+          "date": "2024-12-05",
+          "value": 6.69
+        },
+        {
+          "date": "2024-12-12",
+          "value": 6.6
+        },
+        {
+          "date": "2024-12-19",
+          "value": 6.72
+        },
+        {
+          "date": "2024-12-26",
+          "value": 6.85
+        },
+        {
+          "date": "2025-01-02",
+          "value": 6.91
+        },
+        {
+          "date": "2025-01-09",
+          "value": 6.93
+        },
+        {
+          "date": "2025-01-16",
+          "value": 7.04
+        },
+        {
+          "date": "2025-01-23",
+          "value": 6.96
+        },
+        {
+          "date": "2025-01-30",
+          "value": 6.95
+        },
+        {
+          "date": "2025-02-06",
+          "value": 6.89
+        },
+        {
+          "date": "2025-02-13",
+          "value": 6.87
+        },
+        {
+          "date": "2025-02-20",
+          "value": 6.85
+        },
+        {
+          "date": "2025-02-27",
+          "value": 6.76
+        },
+        {
+          "date": "2025-03-06",
+          "value": 6.63
+        },
+        {
+          "date": "2025-03-13",
+          "value": 6.65
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.67
+        },
+        {
+          "date": "2025-03-27",
+          "value": 6.65
+        },
+        {
+          "date": "2025-04-03",
+          "value": 6.64
+        },
+        {
+          "date": "2025-04-10",
+          "value": 6.62
+        },
+        {
+          "date": "2025-04-17",
+          "value": 6.83
+        },
+        {
+          "date": "2025-04-24",
+          "value": 6.81
+        },
+        {
+          "date": "2025-05-01",
+          "value": 6.76
+        },
+        {
+          "date": "2025-05-08",
+          "value": 6.76
+        },
+        {
+          "date": "2025-05-15",
+          "value": 6.81
+        },
+        {
+          "date": "2025-05-22",
+          "value": 6.86
+        },
+        {
+          "date": "2025-05-29",
+          "value": 6.89
+        },
+        {
+          "date": "2025-06-05",
+          "value": 6.85
+        },
+        {
+          "date": "2025-06-12",
+          "value": 6.84
+        },
+        {
+          "date": "2025-06-18",
+          "value": 6.81
+        },
+        {
+          "date": "2025-06-26",
+          "value": 6.77
+        },
+        {
+          "date": "2025-07-03",
+          "value": 6.67
+        },
+        {
+          "date": "2025-07-10",
+          "value": 6.72
+        },
+        {
+          "date": "2025-07-17",
+          "value": 6.75
+        },
+        {
+          "date": "2025-07-24",
+          "value": 6.74
+        },
+        {
+          "date": "2025-07-31",
+          "value": 6.72
+        },
+        {
+          "date": "2025-08-07",
+          "value": 6.63
+        },
+        {
+          "date": "2025-08-14",
+          "value": 6.58
+        },
+        {
+          "date": "2025-08-21",
+          "value": 6.58
+        },
+        {
+          "date": "2025-08-28",
+          "value": 6.56
+        },
+        {
+          "date": "2025-09-04",
+          "value": 6.5
+        },
+        {
+          "date": "2025-09-11",
+          "value": 6.35
+        },
+        {
+          "date": "2025-09-18",
+          "value": 6.26
+        },
+        {
+          "date": "2025-09-25",
+          "value": 6.3
+        },
+        {
+          "date": "2025-10-02",
+          "value": 6.34
+        },
+        {
+          "date": "2025-10-09",
+          "value": 6.3
+        },
+        {
+          "date": "2025-10-16",
+          "value": 6.27
+        },
+        {
+          "date": "2025-10-23",
+          "value": 6.19
+        },
+        {
+          "date": "2025-10-30",
+          "value": 6.17
+        },
+        {
+          "date": "2025-11-06",
+          "value": 6.22
+        },
+        {
+          "date": "2025-11-13",
+          "value": 6.24
+        },
+        {
+          "date": "2025-11-20",
+          "value": 6.26
+        },
+        {
+          "date": "2025-11-26",
+          "value": 6.23
+        },
+        {
+          "date": "2025-12-04",
+          "value": 6.19
+        },
+        {
+          "date": "2025-12-11",
+          "value": 6.22
+        },
+        {
+          "date": "2025-12-18",
+          "value": 6.21
+        },
+        {
+          "date": "2025-12-24",
+          "value": 6.18
+        },
+        {
+          "date": "2025-12-31",
+          "value": 6.15
+        },
+        {
+          "date": "2026-01-08",
+          "value": 6.16
+        },
+        {
+          "date": "2026-01-15",
+          "value": 6.06
+        },
+        {
+          "date": "2026-01-22",
+          "value": 6.09
+        },
+        {
+          "date": "2026-01-29",
+          "value": 6.1
+        },
+        {
+          "date": "2026-02-05",
+          "value": 6.11
+        },
+        {
+          "date": "2026-02-12",
+          "value": 6.09
+        },
+        {
+          "date": "2026-02-19",
+          "value": 6.01
+        },
+        {
+          "date": "2026-02-26",
+          "value": 5.98
+        },
+        {
+          "date": "2026-03-05",
+          "value": 6
+        },
+        {
+          "date": "2026-03-12",
+          "value": 6.11
+        },
+        {
+          "date": "2026-03-19",
+          "value": 6.22
+        },
+        {
+          "date": "2026-03-26",
+          "value": 6.38
+        },
+        {
+          "date": "2026-04-02",
+          "value": 6.46
+        },
+        {
+          "date": "2026-04-09",
+          "value": 6.37
+        },
+        {
+          "date": "2026-04-16",
+          "value": 6.3
+        },
+        {
+          "date": "2026-04-23",
+          "value": 6.23
+        },
+        {
+          "date": "2026-04-30",
+          "value": 6.3
+        },
+        {
+          "date": "2026-05-07",
+          "value": 6.37
+        },
+        {
+          "date": "2026-05-14",
+          "value": 6.36
+        },
+        {
+          "date": "2026-05-21",
+          "value": 6.51
+        },
+        {
+          "date": "2026-05-28",
+          "value": 6.53
+        },
+        {
+          "date": "2026-06-04",
+          "value": 6.48
+        },
+        {
+          "date": "2026-06-11",
+          "value": 6.52
+        },
+        {
+          "date": "2026-06-18",
+          "value": 6.47
+        },
+        {
+          "date": "2026-06-25",
+          "value": 6.49
+        },
+        {
+          "date": "2026-07-02",
+          "value": 6.43
+        },
+        {
+          "date": "2026-07-09",
+          "value": 6.49
+        },
+        {
+          "date": "2026-07-16",
+          "value": 6.55
+        },
+        {
+          "date": "2026-07-23",
+          "value": 6.58
+        },
+        {
+          "date": "2026-07-30",
+          "value": 6.66
+        },
+        {
+          "date": "2026-08-06",
+          "value": 6.69
+        }
+      ]
+    },
+    {
+      "id": "active-listings",
+      "label": "Aktif ilan sayısı",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 20962
+        },
+        {
+          "date": "2021-08-01",
+          "value": 20831
+        },
+        {
+          "date": "2021-09-01",
+          "value": 20298
+        },
+        {
+          "date": "2021-10-01",
+          "value": 19457
+        },
+        {
+          "date": "2021-11-01",
+          "value": 18303
+        },
+        {
+          "date": "2021-12-01",
+          "value": 17026
+        },
+        {
+          "date": "2022-01-01",
+          "value": 15400
+        },
+        {
+          "date": "2022-02-01",
+          "value": 13563
+        },
+        {
+          "date": "2022-03-01",
+          "value": 13063
+        },
+        {
+          "date": "2022-04-01",
+          "value": 12825
+        },
+        {
+          "date": "2022-05-01",
+          "value": 14723
+        },
+        {
+          "date": "2022-06-01",
+          "value": 17323
+        },
+        {
+          "date": "2022-07-01",
+          "value": 21070
+        },
+        {
+          "date": "2022-08-01",
+          "value": 22462
+        },
+        {
+          "date": "2022-09-01",
+          "value": 22559
+        },
+        {
+          "date": "2022-10-01",
+          "value": 23833
+        },
+        {
+          "date": "2022-11-01",
+          "value": 25517
+        },
+        {
+          "date": "2022-12-01",
+          "value": 25912
+        },
+        {
+          "date": "2023-01-01",
+          "value": 25919
+        },
+        {
+          "date": "2023-02-01",
+          "value": 25462
+        },
+        {
+          "date": "2023-03-01",
+          "value": 24536
+        },
+        {
+          "date": "2023-04-01",
+          "value": 23340
+        },
+        {
+          "date": "2023-05-01",
+          "value": 22854
+        },
+        {
+          "date": "2023-06-01",
+          "value": 22583
+        },
+        {
+          "date": "2023-07-01",
+          "value": 22403
+        },
+        {
+          "date": "2023-08-01",
+          "value": 22488
+        },
+        {
+          "date": "2023-09-01",
+          "value": 24077
+        },
+        {
+          "date": "2023-10-01",
+          "value": 26415
+        },
+        {
+          "date": "2023-11-01",
+          "value": 29158
+        },
+        {
+          "date": "2023-12-01",
+          "value": 30835
+        },
+        {
+          "date": "2024-01-01",
+          "value": 32515
+        },
+        {
+          "date": "2024-02-01",
+          "value": 34971
+        },
+        {
+          "date": "2024-03-01",
+          "value": 36367
+        },
+        {
+          "date": "2024-04-01",
+          "value": 36956
+        },
+        {
+          "date": "2024-05-01",
+          "value": 37421
+        },
+        {
+          "date": "2024-06-01",
+          "value": 37870
+        },
+        {
+          "date": "2024-07-01",
+          "value": 38455
+        },
+        {
+          "date": "2024-08-01",
+          "value": 38724
+        },
+        {
+          "date": "2024-09-01",
+          "value": 40335
+        },
+        {
+          "date": "2024-10-01",
+          "value": 41763
+        },
+        {
+          "date": "2024-11-01",
+          "value": 44007
+        },
+        {
+          "date": "2024-12-01",
+          "value": 44833
+        },
+        {
+          "date": "2025-01-01",
+          "value": 45792
+        },
+        {
+          "date": "2025-02-01",
+          "value": 48691
+        },
+        {
+          "date": "2025-03-01",
+          "value": 50841
+        },
+        {
+          "date": "2025-04-01",
+          "value": 51987
+        },
+        {
+          "date": "2025-05-01",
+          "value": 51901
+        },
+        {
+          "date": "2025-06-01",
+          "value": 51139
+        },
+        {
+          "date": "2025-07-01",
+          "value": 49980
+        },
+        {
+          "date": "2025-08-01",
+          "value": 48133
+        },
+        {
+          "date": "2025-09-01",
+          "value": 47033
+        },
+        {
+          "date": "2025-10-01",
+          "value": 47184
+        },
+        {
+          "date": "2025-11-01",
+          "value": 47554
+        },
+        {
+          "date": "2025-12-01",
+          "value": 47120
+        },
+        {
+          "date": "2026-01-01",
+          "value": 46369
+        },
+        {
+          "date": "2026-02-01",
+          "value": 47129
+        },
+        {
+          "date": "2026-03-01",
+          "value": 45974
+        },
+        {
+          "date": "2026-04-01",
+          "value": 45280
+        },
+        {
+          "date": "2026-05-01",
+          "value": 43929
+        },
+        {
+          "date": "2026-06-01",
+          "value": 42976
+        },
+        {
+          "date": "2026-07-01",
+          "value": 41524
+        }
+      ]
+    },
+    {
+      "id": "median-list-price",
+      "label": "Medyan liste fiyatı",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 455500
+        },
+        {
+          "date": "2021-08-01",
+          "value": 459500
+        },
+        {
+          "date": "2021-09-01",
+          "value": 467450
+        },
+        {
+          "date": "2021-10-01",
+          "value": 479850
+        },
+        {
+          "date": "2021-11-01",
+          "value": 482500
+        },
+        {
+          "date": "2021-12-01",
+          "value": 492000
+        },
+        {
+          "date": "2022-01-01",
+          "value": 495000
+        },
+        {
+          "date": "2022-02-01",
+          "value": 522450
+        },
+        {
+          "date": "2022-03-01",
+          "value": 544500
+        },
+        {
+          "date": "2022-04-01",
+          "value": 577500
+        },
+        {
+          "date": "2022-05-01",
+          "value": 622000
+        },
+        {
+          "date": "2022-06-01",
+          "value": 625000
+        },
+        {
+          "date": "2022-07-01",
+          "value": 620000
+        },
+        {
+          "date": "2022-08-01",
+          "value": 604250
+        },
+        {
+          "date": "2022-09-01",
+          "value": 599000
+        },
+        {
+          "date": "2022-10-01",
+          "value": 599000
+        },
+        {
+          "date": "2022-11-01",
+          "value": 599000
+        },
+        {
+          "date": "2022-12-01",
+          "value": 595000
+        },
+        {
+          "date": "2023-01-01",
+          "value": 595000
+        },
+        {
+          "date": "2023-02-01",
+          "value": 599000
+        },
+        {
+          "date": "2023-03-01",
+          "value": 599444
+        },
+        {
+          "date": "2023-04-01",
+          "value": 605000
+        },
+        {
+          "date": "2023-05-01",
+          "value": 607598
+        },
+        {
+          "date": "2023-06-01",
+          "value": 604848
+        },
+        {
+          "date": "2023-07-01",
+          "value": 600995
+        },
+        {
+          "date": "2023-08-01",
+          "value": 600000
+        },
+        {
+          "date": "2023-09-01",
+          "value": 599000
+        },
+        {
+          "date": "2023-10-01",
+          "value": 598500
+        },
+        {
+          "date": "2023-11-01",
+          "value": 594973
+        },
+        {
+          "date": "2023-12-01",
+          "value": 579900
+        },
+        {
+          "date": "2024-01-01",
+          "value": 564500
+        },
+        {
+          "date": "2024-02-01",
+          "value": 550000
+        },
+        {
+          "date": "2024-03-01",
+          "value": 549000
+        },
+        {
+          "date": "2024-04-01",
+          "value": 540000
+        },
+        {
+          "date": "2024-05-01",
+          "value": 539450
+        },
+        {
+          "date": "2024-06-01",
+          "value": 535000
+        },
+        {
+          "date": "2024-07-01",
+          "value": 535000
+        },
+        {
+          "date": "2024-08-01",
+          "value": 530000
+        },
+        {
+          "date": "2024-09-01",
+          "value": 525000
+        },
+        {
+          "date": "2024-10-01",
+          "value": 525000
+        },
+        {
+          "date": "2024-11-01",
+          "value": 525000
+        },
+        {
+          "date": "2024-12-01",
+          "value": 522500
+        },
+        {
+          "date": "2025-01-01",
+          "value": 520000
+        },
+        {
+          "date": "2025-02-01",
+          "value": 515000
+        },
+        {
+          "date": "2025-03-01",
+          "value": 512000
+        },
+        {
+          "date": "2025-04-01",
+          "value": 510000
+        },
+        {
+          "date": "2025-05-01",
+          "value": 510000
+        },
+        {
+          "date": "2025-06-01",
+          "value": 510000
+        },
+        {
+          "date": "2025-07-01",
+          "value": 509950
+        },
+        {
+          "date": "2025-08-01",
+          "value": 500000
+        },
+        {
+          "date": "2025-09-01",
+          "value": 499900
+        },
+        {
+          "date": "2025-10-01",
+          "value": 499999
+        },
+        {
+          "date": "2025-11-01",
+          "value": 500000
+        },
+        {
+          "date": "2025-12-01",
+          "value": 500000
+        },
+        {
+          "date": "2026-01-01",
+          "value": 500000
+        },
+        {
+          "date": "2026-02-01",
+          "value": 499999
+        },
+        {
+          "date": "2026-03-01",
+          "value": 499000
+        },
+        {
+          "date": "2026-04-01",
+          "value": 499250
+        },
+        {
+          "date": "2026-05-01",
+          "value": 499000
+        },
+        {
+          "date": "2026-06-01",
+          "value": 499000
+        },
+        {
+          "date": "2026-07-01",
+          "value": 495000
+        }
+      ]
+    },
+    {
+      "id": "list-price-sqft",
+      "label": "Liste fiyatı (ft² başına)",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 328
+        },
+        {
+          "date": "2021-08-01",
+          "value": 331
+        },
+        {
+          "date": "2021-09-01",
+          "value": 335
+        },
+        {
+          "date": "2021-10-01",
+          "value": 340
+        },
+        {
+          "date": "2021-11-01",
+          "value": 346
+        },
+        {
+          "date": "2021-12-01",
+          "value": 353
+        },
+        {
+          "date": "2022-01-01",
+          "value": 364
+        },
+        {
+          "date": "2022-02-01",
+          "value": 379
+        },
+        {
+          "date": "2022-03-01",
+          "value": 387
+        },
+        {
+          "date": "2022-04-01",
+          "value": 398
+        },
+        {
+          "date": "2022-05-01",
+          "value": 408
+        },
+        {
+          "date": "2022-06-01",
+          "value": 405
+        },
+        {
+          "date": "2022-07-01",
+          "value": 398
+        },
+        {
+          "date": "2022-08-01",
+          "value": 392
+        },
+        {
+          "date": "2022-09-01",
+          "value": 385
+        },
+        {
+          "date": "2022-10-01",
+          "value": 385
+        },
+        {
+          "date": "2022-11-01",
+          "value": 386
+        },
+        {
+          "date": "2022-12-01",
+          "value": 387
+        },
+        {
+          "date": "2023-01-01",
+          "value": 389
+        },
+        {
+          "date": "2023-02-01",
+          "value": 394
+        },
+        {
+          "date": "2023-03-01",
+          "value": 399
+        },
+        {
+          "date": "2023-04-01",
+          "value": 408
+        },
+        {
+          "date": "2023-05-01",
+          "value": 413
+        },
+        {
+          "date": "2023-06-01",
+          "value": 412
+        },
+        {
+          "date": "2023-07-01",
+          "value": 410
+        },
+        {
+          "date": "2023-08-01",
+          "value": 409
+        },
+        {
+          "date": "2023-09-01",
+          "value": 407
+        },
+        {
+          "date": "2023-10-01",
+          "value": 406
+        },
+        {
+          "date": "2023-11-01",
+          "value": 403
+        },
+        {
+          "date": "2023-12-01",
+          "value": 398
+        },
+        {
+          "date": "2024-01-01",
+          "value": 393
+        },
+        {
+          "date": "2024-02-01",
+          "value": 389
+        },
+        {
+          "date": "2024-03-01",
+          "value": 385
+        },
+        {
+          "date": "2024-04-01",
+          "value": 381
+        },
+        {
+          "date": "2024-05-01",
+          "value": 379
+        },
+        {
+          "date": "2024-06-01",
+          "value": 375
+        },
+        {
+          "date": "2024-07-01",
+          "value": 373
+        },
+        {
+          "date": "2024-08-01",
+          "value": 372
+        },
+        {
+          "date": "2024-09-01",
+          "value": 370
+        },
+        {
+          "date": "2024-10-01",
+          "value": 370
+        },
+        {
+          "date": "2024-11-01",
+          "value": 372
+        },
+        {
+          "date": "2024-12-01",
+          "value": 372
+        },
+        {
+          "date": "2025-01-01",
+          "value": 372
+        },
+        {
+          "date": "2025-02-01",
+          "value": 369
+        },
+        {
+          "date": "2025-03-01",
+          "value": 367
+        },
+        {
+          "date": "2025-04-01",
+          "value": 365
+        },
+        {
+          "date": "2025-05-01",
+          "value": 363
+        },
+        {
+          "date": "2025-06-01",
+          "value": 361
+        },
+        {
+          "date": "2025-07-01",
+          "value": 359
+        },
+        {
+          "date": "2025-08-01",
+          "value": 357
+        },
+        {
+          "date": "2025-09-01",
+          "value": 357
+        },
+        {
+          "date": "2025-10-01",
+          "value": 360
+        },
+        {
+          "date": "2025-11-01",
+          "value": 362
+        },
+        {
+          "date": "2025-12-01",
+          "value": 362
+        },
+        {
+          "date": "2026-01-01",
+          "value": 362
+        },
+        {
+          "date": "2026-02-01",
+          "value": 362
+        },
+        {
+          "date": "2026-03-01",
+          "value": 360
+        },
+        {
+          "date": "2026-04-01",
+          "value": 359
+        },
+        {
+          "date": "2026-05-01",
+          "value": 358
+        },
+        {
+          "date": "2026-06-01",
+          "value": 357
+        },
+        {
+          "date": "2026-07-01",
+          "value": 356
+        }
+      ]
+    },
+    {
+      "id": "days-on-market",
+      "label": "Piyasada kalma süresi",
+      "unit": "days",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 52
+        },
+        {
+          "date": "2021-08-01",
+          "value": 53
+        },
+        {
+          "date": "2021-09-01",
+          "value": 54
+        },
+        {
+          "date": "2021-10-01",
+          "value": 55
+        },
+        {
+          "date": "2021-11-01",
+          "value": 56
+        },
+        {
+          "date": "2021-12-01",
+          "value": 58
+        },
+        {
+          "date": "2022-01-01",
+          "value": 61
+        },
+        {
+          "date": "2022-02-01",
+          "value": 48
+        },
+        {
+          "date": "2022-03-01",
+          "value": 40
+        },
+        {
+          "date": "2022-04-01",
+          "value": 40
+        },
+        {
+          "date": "2022-05-01",
+          "value": 36
+        },
+        {
+          "date": "2022-06-01",
+          "value": 37
+        },
+        {
+          "date": "2022-07-01",
+          "value": 40
+        },
+        {
+          "date": "2022-08-01",
+          "value": 49
+        },
+        {
+          "date": "2022-09-01",
+          "value": 57
+        },
+        {
+          "date": "2022-10-01",
+          "value": 60
+        },
+        {
+          "date": "2022-11-01",
+          "value": 61
+        },
+        {
+          "date": "2022-12-01",
+          "value": 66
+        },
+        {
+          "date": "2023-01-01",
+          "value": 72
+        },
+        {
+          "date": "2023-02-01",
+          "value": 67
+        },
+        {
+          "date": "2023-03-01",
+          "value": 60
+        },
+        {
+          "date": "2023-04-01",
+          "value": 63
+        },
+        {
+          "date": "2023-05-01",
+          "value": 63
+        },
+        {
+          "date": "2023-06-01",
+          "value": 62
+        },
+        {
+          "date": "2023-07-01",
+          "value": 64
+        },
+        {
+          "date": "2023-08-01",
+          "value": 62
+        },
+        {
+          "date": "2023-09-01",
+          "value": 58
+        },
+        {
+          "date": "2023-10-01",
+          "value": 56
+        },
+        {
+          "date": "2023-11-01",
+          "value": 57
+        },
+        {
+          "date": "2023-12-01",
+          "value": 61
+        },
+        {
+          "date": "2024-01-01",
+          "value": 68
+        },
+        {
+          "date": "2024-02-01",
+          "value": 62
+        },
+        {
+          "date": "2024-03-01",
+          "value": 58
+        },
+        {
+          "date": "2024-04-01",
+          "value": 64
+        },
+        {
+          "date": "2024-05-01",
+          "value": 65
+        },
+        {
+          "date": "2024-06-01",
+          "value": 68
+        },
+        {
+          "date": "2024-07-01",
+          "value": 73
+        },
+        {
+          "date": "2024-08-01",
+          "value": 74
+        },
+        {
+          "date": "2024-09-01",
+          "value": 74
+        },
+        {
+          "date": "2024-10-01",
+          "value": 73
+        },
+        {
+          "date": "2024-11-01",
+          "value": 74
+        },
+        {
+          "date": "2024-12-01",
+          "value": 79
+        },
+        {
+          "date": "2025-01-01",
+          "value": 79
+        },
+        {
+          "date": "2025-02-01",
+          "value": 74
+        },
+        {
+          "date": "2025-03-01",
+          "value": 67
+        },
+        {
+          "date": "2025-04-01",
+          "value": 72
+        },
+        {
+          "date": "2025-05-01",
+          "value": 77
+        },
+        {
+          "date": "2025-06-01",
+          "value": 83
+        },
+        {
+          "date": "2025-07-01",
+          "value": 88
+        },
+        {
+          "date": "2025-08-01",
+          "value": 90
+        },
+        {
+          "date": "2025-09-01",
+          "value": 89
+        },
+        {
+          "date": "2025-10-01",
+          "value": 86
+        },
+        {
+          "date": "2025-11-01",
+          "value": 84
+        },
+        {
+          "date": "2025-12-01",
+          "value": 86
+        },
+        {
+          "date": "2026-01-01",
+          "value": 88
+        },
+        {
+          "date": "2026-02-01",
+          "value": 83
+        },
+        {
+          "date": "2026-03-01",
+          "value": 74
+        },
+        {
+          "date": "2026-04-01",
+          "value": 77
+        },
+        {
+          "date": "2026-05-01",
+          "value": 79
+        },
+        {
+          "date": "2026-06-01",
+          "value": 82
+        },
+        {
+          "date": "2026-07-01",
+          "value": 85
+        }
+      ]
+    },
+    {
+      "id": "new-listing-count",
+      "label": "Aya giren yeni ilan (Realtor.com)",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 11536
+        },
+        {
+          "date": "2021-08-01",
+          "value": 11216
+        },
+        {
+          "date": "2021-09-01",
+          "value": 10834
+        },
+        {
+          "date": "2021-10-01",
+          "value": 10808
+        },
+        {
+          "date": "2021-11-01",
+          "value": 10120
+        },
+        {
+          "date": "2021-12-01",
+          "value": 9530
+        },
+        {
+          "date": "2022-01-01",
+          "value": 10484
+        },
+        {
+          "date": "2022-02-01",
+          "value": 11292
+        },
+        {
+          "date": "2022-03-01",
+          "value": 11682
+        },
+        {
+          "date": "2022-04-01",
+          "value": 11404
+        },
+        {
+          "date": "2022-05-01",
+          "value": 12258
+        },
+        {
+          "date": "2022-06-01",
+          "value": 12288
+        },
+        {
+          "date": "2022-07-01",
+          "value": 11076
+        },
+        {
+          "date": "2022-08-01",
+          "value": 9888
+        },
+        {
+          "date": "2022-09-01",
+          "value": 9676
+        },
+        {
+          "date": "2022-10-01",
+          "value": 9132
+        },
+        {
+          "date": "2022-11-01",
+          "value": 8894
+        },
+        {
+          "date": "2022-12-01",
+          "value": 7712
+        },
+        {
+          "date": "2023-01-01",
+          "value": 10068
+        },
+        {
+          "date": "2023-02-01",
+          "value": 9964
+        },
+        {
+          "date": "2023-03-01",
+          "value": 9808
+        },
+        {
+          "date": "2023-04-01",
+          "value": 9304
+        },
+        {
+          "date": "2023-05-01",
+          "value": 9184
+        },
+        {
+          "date": "2023-06-01",
+          "value": 8754
+        },
+        {
+          "date": "2023-07-01",
+          "value": 8836
+        },
+        {
+          "date": "2023-08-01",
+          "value": 9128
+        },
+        {
+          "date": "2023-09-01",
+          "value": 9588
+        },
+        {
+          "date": "2023-10-01",
+          "value": 10166
+        },
+        {
+          "date": "2023-11-01",
+          "value": 9704
+        },
+        {
+          "date": "2023-12-01",
+          "value": 8752
+        },
+        {
+          "date": "2024-01-01",
+          "value": 12102
+        },
+        {
+          "date": "2024-02-01",
+          "value": 12024
+        },
+        {
+          "date": "2024-03-01",
+          "value": 11436
+        },
+        {
+          "date": "2024-04-01",
+          "value": 11570
+        },
+        {
+          "date": "2024-05-01",
+          "value": 10616
+        },
+        {
+          "date": "2024-06-01",
+          "value": 10128
+        },
+        {
+          "date": "2024-07-01",
+          "value": 9724
+        },
+        {
+          "date": "2024-08-01",
+          "value": 10028
+        },
+        {
+          "date": "2024-09-01",
+          "value": 10412
+        },
+        {
+          "date": "2024-10-01",
+          "value": 10422
+        },
+        {
+          "date": "2024-11-01",
+          "value": 10728
+        },
+        {
+          "date": "2024-12-01",
+          "value": 9740
+        },
+        {
+          "date": "2025-01-01",
+          "value": 12604
+        },
+        {
+          "date": "2025-02-01",
+          "value": 12872
+        },
+        {
+          "date": "2025-03-01",
+          "value": 12388
+        },
+        {
+          "date": "2025-04-01",
+          "value": 11450
+        },
+        {
+          "date": "2025-05-01",
+          "value": 10632
+        },
+        {
+          "date": "2025-06-01",
+          "value": 9844
+        },
+        {
+          "date": "2025-07-01",
+          "value": 9240
+        },
+        {
+          "date": "2025-08-01",
+          "value": 9196
+        },
+        {
+          "date": "2025-09-01",
+          "value": 9710
+        },
+        {
+          "date": "2025-10-01",
+          "value": 10164
+        },
+        {
+          "date": "2025-11-01",
+          "value": 10164
+        },
+        {
+          "date": "2025-12-01",
+          "value": 8320
+        },
+        {
+          "date": "2026-01-01",
+          "value": 11796
+        },
+        {
+          "date": "2026-02-01",
+          "value": 11350
+        },
+        {
+          "date": "2026-03-01",
+          "value": 11232
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10626
+        },
+        {
+          "date": "2026-05-01",
+          "value": 10064
+        },
+        {
+          "date": "2026-06-01",
+          "value": 9806
+        },
+        {
+          "date": "2026-07-01",
+          "value": 8974
+        }
+      ]
+    },
+    {
+      "id": "price-reduced-count",
+      "label": "Fiyatı düşürülen ilan sayısı",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-07-01",
+          "value": 3892
+        },
+        {
+          "date": "2021-08-01",
+          "value": 3762
+        },
+        {
+          "date": "2021-09-01",
+          "value": 3642
+        },
+        {
+          "date": "2021-10-01",
+          "value": 3376
+        },
+        {
+          "date": "2021-11-01",
+          "value": 2992
+        },
+        {
+          "date": "2021-12-01",
+          "value": 2440
+        },
+        {
+          "date": "2022-01-01",
+          "value": 2300
+        },
+        {
+          "date": "2022-02-01",
+          "value": 1960
+        },
+        {
+          "date": "2022-03-01",
+          "value": 2030
+        },
+        {
+          "date": "2022-04-01",
+          "value": 2244
+        },
+        {
+          "date": "2022-05-01",
+          "value": 3622
+        },
+        {
+          "date": "2022-06-01",
+          "value": 5296
+        },
+        {
+          "date": "2022-07-01",
+          "value": 6888
+        },
+        {
+          "date": "2022-08-01",
+          "value": 6586
+        },
+        {
+          "date": "2022-09-01",
+          "value": 6874
+        },
+        {
+          "date": "2022-10-01",
+          "value": 7192
+        },
+        {
+          "date": "2022-11-01",
+          "value": 7200
+        },
+        {
+          "date": "2022-12-01",
+          "value": 5972
+        },
+        {
+          "date": "2023-01-01",
+          "value": 7130
+        },
+        {
+          "date": "2023-02-01",
+          "value": 6946
+        },
+        {
+          "date": "2023-03-01",
+          "value": 6826
+        },
+        {
+          "date": "2023-04-01",
+          "value": 5880
+        },
+        {
+          "date": "2023-05-01",
+          "value": 5818
+        },
+        {
+          "date": "2023-06-01",
+          "value": 5630
+        },
+        {
+          "date": "2023-07-01",
+          "value": 5360
+        },
+        {
+          "date": "2023-08-01",
+          "value": 5354
+        },
+        {
+          "date": "2023-09-01",
+          "value": 6176
+        },
+        {
+          "date": "2023-10-01",
+          "value": 7776
+        },
+        {
+          "date": "2023-11-01",
+          "value": 8452
+        },
+        {
+          "date": "2023-12-01",
+          "value": 6764
+        },
+        {
+          "date": "2024-01-01",
+          "value": 9652
+        },
+        {
+          "date": "2024-02-01",
+          "value": 11138
+        },
+        {
+          "date": "2024-03-01",
+          "value": 11920
+        },
+        {
+          "date": "2024-04-01",
+          "value": 11498
+        },
+        {
+          "date": "2024-05-01",
+          "value": 11390
+        },
+        {
+          "date": "2024-06-01",
+          "value": 10804
+        },
+        {
+          "date": "2024-07-01",
+          "value": 10604
+        },
+        {
+          "date": "2024-08-01",
+          "value": 10212
+        },
+        {
+          "date": "2024-09-01",
+          "value": 10348
+        },
+        {
+          "date": "2024-10-01",
+          "value": 10570
+        },
+        {
+          "date": "2024-11-01",
+          "value": 10520
+        },
+        {
+          "date": "2024-12-01",
+          "value": 9210
+        },
+        {
+          "date": "2025-01-01",
+          "value": 12724
+        },
+        {
+          "date": "2025-02-01",
+          "value": 14680
+        },
+        {
+          "date": "2025-03-01",
+          "value": 15400
+        },
+        {
+          "date": "2025-04-01",
+          "value": 14884
+        },
+        {
+          "date": "2025-05-01",
+          "value": 14276
+        },
+        {
+          "date": "2025-06-01",
+          "value": 13408
+        },
+        {
+          "date": "2025-07-01",
+          "value": 12118
+        },
+        {
+          "date": "2025-08-01",
+          "value": 11644
+        },
+        {
+          "date": "2025-09-01",
+          "value": 10738
+        },
+        {
+          "date": "2025-10-01",
+          "value": 10966
+        },
+        {
+          "date": "2025-11-01",
+          "value": 10372
+        },
+        {
+          "date": "2025-12-01",
+          "value": 8292
+        },
+        {
+          "date": "2026-01-01",
+          "value": 11244
+        },
+        {
+          "date": "2026-02-01",
+          "value": 11450
+        },
+        {
+          "date": "2026-03-01",
+          "value": 10942
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10576
+        },
+        {
+          "date": "2026-05-01",
+          "value": 9960
+        },
+        {
+          "date": "2026-06-01",
+          "value": 9650
+        },
+        {
+          "date": "2026-07-01",
+          "value": 8810
+        }
+      ]
+    },
+    {
+      "id": "redfin-condo-sale",
+      "label": "Kondo medyan satış fiyatı",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-05-01",
+          "value": 327500
+        },
+        {
+          "date": "2021-06-01",
+          "value": 340000
+        },
+        {
+          "date": "2021-07-01",
+          "value": 339000
+        },
+        {
+          "date": "2021-08-01",
+          "value": 327250
+        },
+        {
+          "date": "2021-09-01",
+          "value": 320000
+        },
+        {
+          "date": "2021-10-01",
+          "value": 315000
+        },
+        {
+          "date": "2021-11-01",
+          "value": 340000
+        },
+        {
+          "date": "2021-12-01",
+          "value": 352000
+        },
+        {
+          "date": "2022-01-01",
+          "value": 365000
+        },
+        {
+          "date": "2022-02-01",
+          "value": 383000
+        },
+        {
+          "date": "2022-03-01",
+          "value": 410000
+        },
+        {
+          "date": "2022-04-01",
+          "value": 399950
+        },
+        {
+          "date": "2022-05-01",
+          "value": 420000
+        },
+        {
+          "date": "2022-06-01",
+          "value": 410000
+        },
+        {
+          "date": "2022-07-01",
+          "value": 370000
+        },
+        {
+          "date": "2022-08-01",
+          "value": 365000
+        },
+        {
+          "date": "2022-09-01",
+          "value": 385000
+        },
+        {
+          "date": "2022-10-01",
+          "value": 375000
+        },
+        {
+          "date": "2022-11-01",
+          "value": 363500
+        },
+        {
+          "date": "2022-12-01",
+          "value": 350000
+        },
+        {
+          "date": "2023-01-01",
+          "value": 395000
+        },
+        {
+          "date": "2023-02-01",
+          "value": 390000
+        },
+        {
+          "date": "2023-03-01",
+          "value": 395000
+        },
+        {
+          "date": "2023-04-01",
+          "value": 400000
+        },
+        {
+          "date": "2023-05-01",
+          "value": 400000
+        },
+        {
+          "date": "2023-06-01",
+          "value": 390000
+        },
+        {
+          "date": "2023-07-01",
+          "value": 414000
+        },
+        {
+          "date": "2023-08-01",
+          "value": 407750
+        },
+        {
+          "date": "2023-09-01",
+          "value": 395000
+        },
+        {
+          "date": "2023-10-01",
+          "value": 380000
+        },
+        {
+          "date": "2023-11-01",
+          "value": 393550
+        },
+        {
+          "date": "2023-12-01",
+          "value": 385000
+        },
+        {
+          "date": "2024-01-01",
+          "value": 390000
+        },
+        {
+          "date": "2024-02-01",
+          "value": 390000
+        },
+        {
+          "date": "2024-03-01",
+          "value": 430000
+        },
+        {
+          "date": "2024-04-01",
+          "value": 422350
+        },
+        {
+          "date": "2024-05-01",
+          "value": 400000
+        },
+        {
+          "date": "2024-06-01",
+          "value": 407750
+        },
+        {
+          "date": "2024-07-01",
+          "value": 405000
+        },
+        {
+          "date": "2024-08-01",
+          "value": 385000
+        },
+        {
+          "date": "2024-09-01",
+          "value": 380000
+        },
+        {
+          "date": "2024-10-01",
+          "value": 384000
+        },
+        {
+          "date": "2024-11-01",
+          "value": 405000
+        },
+        {
+          "date": "2024-12-01",
+          "value": 403750
+        },
+        {
+          "date": "2025-01-01",
+          "value": 385000
+        },
+        {
+          "date": "2025-02-01",
+          "value": 420000
+        },
+        {
+          "date": "2025-03-01",
+          "value": 417000
+        },
+        {
+          "date": "2025-04-01",
+          "value": 415000
+        },
+        {
+          "date": "2025-05-01",
+          "value": 405000
+        },
+        {
+          "date": "2025-06-01",
+          "value": 415000
+        },
+        {
+          "date": "2025-07-01",
+          "value": 375000
+        },
+        {
+          "date": "2025-08-01",
+          "value": 362000
+        },
+        {
+          "date": "2025-09-01",
+          "value": 378000
+        },
+        {
+          "date": "2025-10-01",
+          "value": 373950
+        },
+        {
+          "date": "2025-11-01",
+          "value": 380000
+        },
+        {
+          "date": "2025-12-01",
+          "value": 392900
+        },
+        {
+          "date": "2026-01-01",
+          "value": 389000
+        },
+        {
+          "date": "2026-02-01",
+          "value": 379000
+        },
+        {
+          "date": "2026-03-01",
+          "value": 430000
+        },
+        {
+          "date": "2026-04-01",
+          "value": 420000
+        },
+        {
+          "date": "2026-05-01",
+          "value": 397500
+        }
+      ]
+    },
+    {
+      "id": "redfin-condo-sold",
+      "label": "Satılan kondo sayısı",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-05-01",
+          "value": 2053
+        },
+        {
+          "date": "2021-06-01",
+          "value": 2307
+        },
+        {
+          "date": "2021-07-01",
+          "value": 2104
+        },
+        {
+          "date": "2021-08-01",
+          "value": 1838
+        },
+        {
+          "date": "2021-09-01",
+          "value": 1630
+        },
+        {
+          "date": "2021-10-01",
+          "value": 1643
+        },
+        {
+          "date": "2021-11-01",
+          "value": 1686
+        },
+        {
+          "date": "2021-12-01",
+          "value": 1948
+        },
+        {
+          "date": "2022-01-01",
+          "value": 1538
+        },
+        {
+          "date": "2022-02-01",
+          "value": 1685
+        },
+        {
+          "date": "2022-03-01",
+          "value": 2345
+        },
+        {
+          "date": "2022-04-01",
+          "value": 2078
+        },
+        {
+          "date": "2022-05-01",
+          "value": 1843
+        },
+        {
+          "date": "2022-06-01",
+          "value": 1600
+        },
+        {
+          "date": "2022-07-01",
+          "value": 1243
+        },
+        {
+          "date": "2022-08-01",
+          "value": 1230
+        },
+        {
+          "date": "2022-09-01",
+          "value": 1112
+        },
+        {
+          "date": "2022-10-01",
+          "value": 1044
+        },
+        {
+          "date": "2022-11-01",
+          "value": 986
+        },
+        {
+          "date": "2022-12-01",
+          "value": 943
+        },
+        {
+          "date": "2023-01-01",
+          "value": 741
+        },
+        {
+          "date": "2023-02-01",
+          "value": 872
+        },
+        {
+          "date": "2023-03-01",
+          "value": 1244
+        },
+        {
+          "date": "2023-04-01",
+          "value": 1080
+        },
+        {
+          "date": "2023-05-01",
+          "value": 1184
+        },
+        {
+          "date": "2023-06-01",
+          "value": 1193
+        },
+        {
+          "date": "2023-07-01",
+          "value": 983
+        },
+        {
+          "date": "2023-08-01",
+          "value": 1062
+        },
+        {
+          "date": "2023-09-01",
+          "value": 948
+        },
+        {
+          "date": "2023-10-01",
+          "value": 961
+        },
+        {
+          "date": "2023-11-01",
+          "value": 798
+        },
+        {
+          "date": "2023-12-01",
+          "value": 847
+        },
+        {
+          "date": "2024-01-01",
+          "value": 691
+        },
+        {
+          "date": "2024-02-01",
+          "value": 821
+        },
+        {
+          "date": "2024-03-01",
+          "value": 943
+        },
+        {
+          "date": "2024-04-01",
+          "value": 1136
+        },
+        {
+          "date": "2024-05-01",
+          "value": 1115
+        },
+        {
+          "date": "2024-06-01",
+          "value": 938
+        },
+        {
+          "date": "2024-07-01",
+          "value": 929
+        },
+        {
+          "date": "2024-08-01",
+          "value": 840
+        },
+        {
+          "date": "2024-09-01",
+          "value": 733
+        },
+        {
+          "date": "2024-10-01",
+          "value": 782
+        },
+        {
+          "date": "2024-11-01",
+          "value": 685
+        },
+        {
+          "date": "2024-12-01",
+          "value": 795
+        },
+        {
+          "date": "2025-01-01",
+          "value": 647
+        },
+        {
+          "date": "2025-02-01",
+          "value": 633
+        },
+        {
+          "date": "2025-03-01",
+          "value": 887
+        },
+        {
+          "date": "2025-04-01",
+          "value": 844
+        },
+        {
+          "date": "2025-05-01",
+          "value": 833
+        },
+        {
+          "date": "2025-06-01",
+          "value": 800
+        },
+        {
+          "date": "2025-07-01",
+          "value": 761
+        },
+        {
+          "date": "2025-08-01",
+          "value": 732
+        },
+        {
+          "date": "2025-09-01",
+          "value": 723
+        },
+        {
+          "date": "2025-10-01",
+          "value": 850
+        },
+        {
+          "date": "2025-11-01",
+          "value": 633
+        },
+        {
+          "date": "2025-12-01",
+          "value": 897
+        },
+        {
+          "date": "2026-01-01",
+          "value": 636
+        },
+        {
+          "date": "2026-02-01",
+          "value": 725
+        },
+        {
+          "date": "2026-03-01",
+          "value": 872
+        },
+        {
+          "date": "2026-04-01",
+          "value": 882
+        },
+        {
+          "date": "2026-05-01",
+          "value": 765
+        }
+      ]
+    },
+    {
+      "id": "redfin-all-sale",
+      "label": "Tüm konutlarda medyan satış fiyatı",
+      "unit": "usd",
+      "points": [
+        {
+          "date": "2021-05-01",
+          "value": 405000
+        },
+        {
+          "date": "2021-06-01",
+          "value": 415000
+        },
+        {
+          "date": "2021-07-01",
+          "value": 413100
+        },
+        {
+          "date": "2021-08-01",
+          "value": 405000
+        },
+        {
+          "date": "2021-09-01",
+          "value": 405000
+        },
+        {
+          "date": "2021-10-01",
+          "value": 405000
+        },
+        {
+          "date": "2021-11-01",
+          "value": 415000
+        },
+        {
+          "date": "2021-12-01",
+          "value": 435000
+        },
+        {
+          "date": "2022-01-01",
+          "value": 435000
+        },
+        {
+          "date": "2022-02-01",
+          "value": 446500
+        },
+        {
+          "date": "2022-03-01",
+          "value": 465000
+        },
+        {
+          "date": "2022-04-01",
+          "value": 470000
+        },
+        {
+          "date": "2022-05-01",
+          "value": 490000
+        },
+        {
+          "date": "2022-06-01",
+          "value": 485000
+        },
+        {
+          "date": "2022-07-01",
+          "value": 469500
+        },
+        {
+          "date": "2022-08-01",
+          "value": 456900
+        },
+        {
+          "date": "2022-09-01",
+          "value": 475000
+        },
+        {
+          "date": "2022-10-01",
+          "value": 475000
+        },
+        {
+          "date": "2022-11-01",
+          "value": 473750
+        },
+        {
+          "date": "2022-12-01",
+          "value": 455000
+        },
+        {
+          "date": "2023-01-01",
+          "value": 470000
+        },
+        {
+          "date": "2023-02-01",
+          "value": 482000
+        },
+        {
+          "date": "2023-03-01",
+          "value": 500000
+        },
+        {
+          "date": "2023-04-01",
+          "value": 500000
+        },
+        {
+          "date": "2023-05-01",
+          "value": 512500
+        },
+        {
+          "date": "2023-06-01",
+          "value": 515000
+        },
+        {
+          "date": "2023-07-01",
+          "value": 523000
+        },
+        {
+          "date": "2023-08-01",
+          "value": 525000
+        },
+        {
+          "date": "2023-09-01",
+          "value": 510000
+        },
+        {
+          "date": "2023-10-01",
+          "value": 515000
+        },
+        {
+          "date": "2023-11-01",
+          "value": 514000
+        },
+        {
+          "date": "2023-12-01",
+          "value": 507000
+        },
+        {
+          "date": "2024-01-01",
+          "value": 535000
+        },
+        {
+          "date": "2024-02-01",
+          "value": 525000
+        },
+        {
+          "date": "2024-03-01",
+          "value": 560000
+        },
+        {
+          "date": "2024-04-01",
+          "value": 555000
+        },
+        {
+          "date": "2024-05-01",
+          "value": 535000
+        },
+        {
+          "date": "2024-06-01",
+          "value": 553000
+        },
+        {
+          "date": "2024-07-01",
+          "value": 555000
+        },
+        {
+          "date": "2024-08-01",
+          "value": 535000
+        },
+        {
+          "date": "2024-09-01",
+          "value": 550000
+        },
+        {
+          "date": "2024-10-01",
+          "value": 550000
+        },
+        {
+          "date": "2024-11-01",
+          "value": 568950
+        },
+        {
+          "date": "2024-12-01",
+          "value": 573500
+        },
+        {
+          "date": "2025-01-01",
+          "value": 550000
+        },
+        {
+          "date": "2025-02-01",
+          "value": 571000
+        },
+        {
+          "date": "2025-03-01",
+          "value": 567500
+        },
+        {
+          "date": "2025-04-01",
+          "value": 585000
+        },
+        {
+          "date": "2025-05-01",
+          "value": 568000
+        },
+        {
+          "date": "2025-06-01",
+          "value": 575000
+        },
+        {
+          "date": "2025-07-01",
+          "value": 550000
+        },
+        {
+          "date": "2025-08-01",
+          "value": 555000
+        },
+        {
+          "date": "2025-09-01",
+          "value": 560000
+        },
+        {
+          "date": "2025-10-01",
+          "value": 550000
+        },
+        {
+          "date": "2025-11-01",
+          "value": 550000
+        },
+        {
+          "date": "2025-12-01",
+          "value": 550000
+        },
+        {
+          "date": "2026-01-01",
+          "value": 555000
+        },
+        {
+          "date": "2026-02-01",
+          "value": 550000
+        },
+        {
+          "date": "2026-03-01",
+          "value": 575000
+        },
+        {
+          "date": "2026-04-01",
+          "value": 570000
+        },
+        {
+          "date": "2026-05-01",
+          "value": 570000
+        }
+      ]
+    },
+    {
+      "id": "redfin-inventory",
+      "label": "Redfin stok sayımı",
+      "unit": "count",
+      "points": [
+        {
+          "date": "2021-05-01",
+          "value": 13039
+        },
+        {
+          "date": "2021-06-01",
+          "value": 12784
+        },
+        {
+          "date": "2021-07-01",
+          "value": 12880
+        },
+        {
+          "date": "2021-08-01",
+          "value": 12753
+        },
+        {
+          "date": "2021-09-01",
+          "value": 12737
+        },
+        {
+          "date": "2021-10-01",
+          "value": 12394
+        },
+        {
+          "date": "2021-11-01",
+          "value": 11932
+        },
+        {
+          "date": "2021-12-01",
+          "value": 10688
+        },
+        {
+          "date": "2022-01-01",
+          "value": 10392
+        },
+        {
+          "date": "2022-02-01",
+          "value": 10110
+        },
+        {
+          "date": "2022-03-01",
+          "value": 9648
+        },
+        {
+          "date": "2022-04-01",
+          "value": 9538
+        },
+        {
+          "date": "2022-05-01",
+          "value": 10046
+        },
+        {
+          "date": "2022-06-01",
+          "value": 11131
+        },
+        {
+          "date": "2022-07-01",
+          "value": 11687
+        },
+        {
+          "date": "2022-08-01",
+          "value": 11831
+        },
+        {
+          "date": "2022-09-01",
+          "value": 11894
+        },
+        {
+          "date": "2022-10-01",
+          "value": 12120
+        },
+        {
+          "date": "2022-11-01",
+          "value": 12378
+        },
+        {
+          "date": "2022-12-01",
+          "value": 11803
+        },
+        {
+          "date": "2023-01-01",
+          "value": 12083
+        },
+        {
+          "date": "2023-02-01",
+          "value": 11928
+        },
+        {
+          "date": "2023-03-01",
+          "value": 11486
+        },
+        {
+          "date": "2023-04-01",
+          "value": 11018
+        },
+        {
+          "date": "2023-05-01",
+          "value": 10812
+        },
+        {
+          "date": "2023-06-01",
+          "value": 10363
+        },
+        {
+          "date": "2023-07-01",
+          "value": 10286
+        },
+        {
+          "date": "2023-08-01",
+          "value": 10634
+        },
+        {
+          "date": "2023-09-01",
+          "value": 11158
+        },
+        {
+          "date": "2023-10-01",
+          "value": 11908
+        },
+        {
+          "date": "2023-11-01",
+          "value": 12632
+        },
+        {
+          "date": "2023-12-01",
+          "value": 12473
+        },
+        {
+          "date": "2024-01-01",
+          "value": 13570
+        },
+        {
+          "date": "2024-02-01",
+          "value": 14291
+        },
+        {
+          "date": "2024-03-01",
+          "value": 14501
+        },
+        {
+          "date": "2024-04-01",
+          "value": 14642
+        },
+        {
+          "date": "2024-05-01",
+          "value": 14754
+        },
+        {
+          "date": "2024-06-01",
+          "value": 14929
+        },
+        {
+          "date": "2024-07-01",
+          "value": 15065
+        },
+        {
+          "date": "2024-08-01",
+          "value": 15405
+        },
+        {
+          "date": "2024-09-01",
+          "value": 15987
+        },
+        {
+          "date": "2024-10-01",
+          "value": 16420
+        },
+        {
+          "date": "2024-11-01",
+          "value": 16800
+        },
+        {
+          "date": "2024-12-01",
+          "value": 16558
+        },
+        {
+          "date": "2025-01-01",
+          "value": 17747
+        },
+        {
+          "date": "2025-02-01",
+          "value": 18580
+        },
+        {
+          "date": "2025-03-01",
+          "value": 18995
+        },
+        {
+          "date": "2025-04-01",
+          "value": 19335
+        },
+        {
+          "date": "2025-05-01",
+          "value": 19304
+        },
+        {
+          "date": "2025-06-01",
+          "value": 18990
+        },
+        {
+          "date": "2025-07-01",
+          "value": 18555
+        },
+        {
+          "date": "2025-08-01",
+          "value": 18104
+        },
+        {
+          "date": "2025-09-01",
+          "value": 17930
+        },
+        {
+          "date": "2025-10-01",
+          "value": 17924
+        },
+        {
+          "date": "2025-11-01",
+          "value": 17849
+        },
+        {
+          "date": "2025-12-01",
+          "value": 16798
+        },
+        {
+          "date": "2026-01-01",
+          "value": 17182
+        },
+        {
+          "date": "2026-02-01",
+          "value": 17158
+        },
+        {
+          "date": "2026-03-01",
+          "value": 16497
+        },
+        {
+          "date": "2026-04-01",
+          "value": 16084
+        },
+        {
+          "date": "2026-05-01",
+          "value": 15373
+        }
+      ]
+    }
+  ],
+  "publishers": [
+    {
+      "id": "zillow",
+      "name": "Zillow Research",
+      "url": "https://www.zillow.com/research/data/",
+      "terms": "Zillow Research verileri kamuya açık olarak, kaynak gösterme koşuluyla yayınlanır."
+    },
+    {
+      "id": "fred",
+      "name": "FRED — St. Louis Fed",
+      "url": "https://fred.stlouisfed.org/",
+      "terms": "FRED üzerinden dağıtılan seriler kamuya açıktır; her serinin telif durumu kaynak kurumuna aittir."
+    },
+    {
+      "id": "redfin",
+      "name": "Redfin Data Center",
+      "url": "https://www.redfin.com/news/data-center/",
+      "terms": "Redfin, pazar verisini kaynak gösterme koşuluyla kamuya açık olarak yayınlar."
+    }
+  ],
+  "warnings": []
+}

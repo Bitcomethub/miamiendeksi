@@ -1,0 +1,254 @@
+[
+  {
+    "slug": "stok-eriyor-fiyat-geriliyor",
+    "title": "Miami’de satılık stok çift haneli eridi, değer endeksi hâlâ eksi",
+    "excerpt": "Üç bağımsız kaynağın üçünde de satılık stok yıllık çift haneli azaldı; buna rağmen Zillow’un tipik konut değeri endeksi yıllık eksi. Bu iki sinyal neden aynı anda doğru olabiliyor?",
+    "answer": "Miami metro alanında satılık konut stoku üç bağımsız kaynağın üçünde de çift haneli azaldı: Zillow’da yıllık %13,20, Realtor.com’da %16,92, Redfin’de %20,36. Buna rağmen Zillow’un tipik konut değeri endeksi Haziran 2026’da 476.598 dolarla yıllık %2,23 geriledi. Stok daralırken değer endeksinin eksi kalması bir çelişki değil: iki ölçü farklı şeyleri sayıyor ve farklı hızlarda hareket ediyor.",
+    "publishedAt": "2026-08-08",
+    "period": "2026-08",
+    "keywords": [
+      "Miami konut stoku",
+      "Miami emlak piyasası",
+      "Zillow ZHVI Miami",
+      "Miami konut fiyatları 2026"
+    ],
+    "blocks": [
+      {
+        "type": "h2",
+        "text": "Üç kaynak, aynı yön"
+      },
+      {
+        "type": "p",
+        "text": "Stok verisini üç ayrı kurum yayınlıyor ve üçü de aynı yönü gösteriyor. Zillow’un Haziran 2026 için bildirdiği satılık ilan sayısı 51.021; bu, geçen yılın aynı ayına göre %13,20 daha az. Realtor.com’un FRED üzerinden yayınladığı aktif ilan sayısı Temmuz 2026’da 41.524 ile yıllık %16,92 geriledi. Redfin’in Mayıs 2026 için verdiği stok 15.373 ve yıllık düşüş %20,36."
+      },
+      {
+        "type": "p",
+        "text": "Üç rakamın SEVİYESİ birbirini tutmuyor — 51.021, 41.524 ve 15.373 aynı ayın aynı şehri için çok farklı sayılar. Bunun nedeni ölçüm hatası değil, tanım farkı: her kurum “satılık konut” tanımını kendi veri tabanına göre kuruyor. Kimi yalnızca kendi listeleme ağındaki ilanları, kimi belirli mülk tiplerini sayıyor. Bu yüzden bu üç sayı BİRBİRİYLE karşılaştırılmaz; her biri yalnızca kendi geçmişiyle karşılaştırılır. Anlamlı olan da tam olarak bu: üçü de kendi tarihsel serisine göre çift haneli daralma gösteriyor."
+      },
+      {
+        "type": "chart",
+        "metricId": "zillow-inventory"
+      },
+      {
+        "type": "h2",
+        "text": "Peki değer endeksi neden eksi?"
+      },
+      {
+        "type": "p",
+        "text": "Zillow’un tipik konut değeri endeksi (ZHVI) Haziran 2026’da 476.598 dolar ve yıllık %2,23 aşağıda. Aylık değişim ise yalnızca %0,01 — yani seri pratikte yatay. Bu, stok daralmasıyla çelişmiyor, çünkü iki ölçü farklı evreni tarıyor. Stok, belirli bir anda satışta olan konutların sayımıdır. ZHVI ise satışta olsun olmasın BÖLGEDEKİ TÜM konut stokunun tahmini değerini izler ve mevsimsellikten arındırılıp yumuşatılmıştır. Yumuşatma, endeksin dönüşleri geç göstermesi anlamına gelir."
+      },
+      {
+        "type": "p",
+        "text": "Satış hızı tarafında da daralmayla uyumlu bir görüntü var. Zillow’un “satışa bağlanma süresi” göstergesi Haziran 2026’da 52 gün ve yıllık %8,77 kısalmış durumda. Realtor.com’un piyasada kalma süresi ise 85 gün ile yıllık %3,41 daha kısa. İki gösterge de aynı ayın aynı piyasası için farklı sayı veriyor — yine tanım farkı — ama ikisi de kısalma yönünde."
+      },
+      {
+        "type": "chart",
+        "metricId": "zillow-days-pending",
+        "accent": "magenta"
+      },
+      {
+        "type": "h2",
+        "text": "Satıcılar indirimden çekildi"
+      },
+      {
+        "type": "p",
+        "text": "Sıkışan bir piyasada beklenebilecek en net işaretlerden biri fiyat indirimlerinin seyri. Haziran 2026’da Miami’de satılık ilanların %19,7’si fiyat indirmişti; bu oran bir yıl önceye göre 3,74 puan daha düşük. Realtor.com’un ayrı ayrı saydığı fiyat indirimli ilan adedi de Temmuz 2026’da 8.810 ile yıllık %27,30 azaldı. Yeni ilan akışı ise zayıf: Zillow’a göre Haziran 2026’da 8.984 yeni ilan girildi, yıllık %9,52 daha az."
+      },
+      {
+        "type": "caveat",
+        "text": "Fiyat indirimi oranı ile fiyat indirimli ilan ADEDİ ayrı göstergelerdir ve birbirinin yerine kullanılamaz. Stok küçülürken indirim yapan ilan sayısının azalması, kısmen toplam ilan sayısının azalmasının sonucudur. Oran göstergesi (%19,7) bu etkiden arındırılmış olan taraftır."
+      },
+      {
+        "type": "h2",
+        "text": "Bu veriden çıkarılabilecek ve çıkarılamayacak şeyler"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Çıkarılabilir: Arz tarafı üç bağımsız kaynağa göre de bir yıl öncesine kıyasla belirgin biçimde daralmış durumda.",
+          "Çıkarılabilir: Satış hızı hem Zillow hem Realtor.com ölçümünde bir yıl öncesine göre artmış, indirime giden ilanların oranı düşmüş.",
+          "Çıkarılabilir: Değer endeksi yıllık bazda hâlâ eksi, ancak aylık hareketi %0,01 ile pratikte durmuş.",
+          "Çıkarılamaz: Bu göstergelerin hiçbiri gelecek aylara dair bir yön bilgisi taşımaz. Bu sayfa gerçekleşmiş ölçümleri yayınlar.",
+          "Çıkarılamaz: Metro geneli rakamlardan tek bir mahalle, bina ya da daire için sonuç çıkarılamaz. Endeksler üç ilçeyi kapsayan bir ortalamadır."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Miami’de satılık konut sayısı ne kadar azaldı?",
+        "a": "Zillow verisine göre Haziran 2026’da Miami metro alanında 51.021 satılık ilan vardı ve bu sayı yıllık %13,20 azaldı. Realtor.com’un aktif ilan sayısı Temmuz 2026’da 41.524 ile yıllık %16,92, Redfin’in stok verisi Mayıs 2026’da 15.373 ile yıllık %20,36 geriledi."
+      },
+      {
+        "q": "Miami’de tipik konut değeri ne kadar?",
+        "a": "Zillow Home Value Index’e göre Haziran 2026’da Miami metro alanında tipik konut değeri 476.598 dolar. Bu değer bir önceki aya göre %0,01, bir yıl öncesine göre %2,23 daha düşük."
+      },
+      {
+        "q": "Üç farklı kaynağın stok sayıları neden birbirini tutmuyor?",
+        "a": "Her kurum “satılık konut” tanımını kendi veri tabanına göre kuruyor; hangi mülk tiplerinin ve hangi listeleme kanallarının sayıldığı değişiyor. Bu yüzden seviyeler karşılaştırılmaz, yalnızca her serinin kendi geçmişine göre değişimi karşılaştırılır."
+      }
+    ]
+  },
+  {
+    "slug": "kondo-ayrismasi",
+    "title": "Kondo endeksi genel endeksten çok daha hızlı geriliyor",
+    "excerpt": "Zillow’un kondo değer endeksi yıllık %6,18 düşerken tüm konut tiplerini kapsayan genel endeks %2,23 geriledi. Miami piyasasında kondo tarafı ayrışıyor.",
+    "answer": "Zillow’un kondo değer endeksi Haziran 2026’da 269.083 dolara inerek yıllık %6,18 geriledi. Aynı ayda tüm konut tiplerini kapsayan genel endeks 476.598 dolar ve yıllık düşüşü %2,23. Kondo tarafındaki yıllık kayıp, genel endekstekinin yaklaşık üç katı. Satış hacmi tarafında da aynı ayrışma görülüyor: Redfin’e göre Mayıs 2026’da satılan kondo sayısı 765 ile yıllık %8,16 azaldı.",
+    "publishedAt": "2026-08-08",
+    "period": "2026-08",
+    "keywords": [
+      "Miami kondo fiyatları",
+      "Miami condo market",
+      "Miami daire yatırımı",
+      "Zillow kondo endeksi"
+    ],
+    "blocks": [
+      {
+        "type": "h2",
+        "text": "İki endeks, iki ayrı yön"
+      },
+      {
+        "type": "p",
+        "text": "Miami piyasasını tek bir ortalamayla anlatmak bu dönemde yanıltıcı. Zillow yalnızca kondo ve kooperatif tipi konutları kapsayan ayrı bir değer endeksi yayınlıyor. Bu endeks Haziran 2026’da 269.083 dolar ve yıllık %6,18 aşağıda. Aynı ayın genel endeksi ise 476.598 dolar, yıllık düşüşü %2,23. Aylık değişimlerde de fark var: kondo endeksi %0,18 gerilerken genel endeks %0,01 ile neredeyse yatay."
+      },
+      {
+        "type": "chart",
+        "metricId": "zhvi-condo",
+        "accent": "magenta"
+      },
+      {
+        "type": "p",
+        "text": "İki endeks arasındaki SEVİYE farkı beklenen bir şey — kondolar tipik olarak müstakil konutlardan ucuz ve genel endeks her iki tipi birden içeriyor. Dikkat çeken, seviye farkı değil, YÖN farkının büyüklüğü: aynı metro alanında, aynı ayda, aynı kurumun aynı yöntemle hesapladığı iki endeks belirgin biçimde farklı yıllık değişim gösteriyor."
+      },
+      {
+        "type": "h2",
+        "text": "Satış tarafı ne diyor?"
+      },
+      {
+        "type": "p",
+        "text": "Değer endeksleri modellenmiş tahminlerdir; gerçekleşen satışlar ayrı bir kaynaktan gelir. Redfin’in Mayıs 2026 verisine göre Miami metro alanında kondo medyan satış fiyatı 397.500 dolar ve yıllık %1,85 düşük. Satılan kondo adedi ise 765 ile yıllık %8,16, aylık %13,27 azaldı. Tüm konut tiplerinin medyan satış fiyatı ise aynı ay 570.000 dolar ve yıllık %0,35 ile yukarıda."
+      },
+      {
+        "type": "caveat",
+        "text": "Medyan satış fiyatı ile değer endeksi aynı şey değildir. Medyan, o ay SATILAN konutların ortasıdır ve satılanların bileşimi değişince oynar; pahalı dairelerin ağırlığı arttığı bir ayda medyan, hiçbir konutun değeri değişmeden yükselebilir. Zillow’un değer endeksi ise satılsın satılmasın tüm stoku modellediği için bu bileşim etkisini taşımaz. İki göstergenin farklı yön göstermesi bu nedenle tek başına tutarsızlık değildir."
+      },
+      {
+        "type": "h2",
+        "text": "Kira tarafı aynı ayrışmayı göstermiyor"
+      },
+      {
+        "type": "p",
+        "text": "Zillow’un gözlemlenen kira endeksi Haziran 2026’da 2.695 dolar ve yıllık %1,15 yukarıda. Yani değer tarafındaki gerileme kira tarafına aynı biçimde yansımış görünmüyor. Bu ikisinin birlikte hareket etmesi de gerekmez: kira sözleşmeleri yıllık yenilenir ve satış piyasasından farklı bir talep havuzuna bakar."
+      },
+      {
+        "type": "chart",
+        "metricId": "zori"
+      },
+      {
+        "type": "h2",
+        "text": "Sınırlar"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bu sayfadaki tüm rakamlar Miami-Fort Lauderdale-Pompano Beach metro alanına aittir; Miami-Dade, Broward ve Palm Beach ilçelerini birlikte kapsar.",
+          "Kondo endeksi bina yaşı, aidat düzeyi ya da konum kırılımı vermez. Metro ortalaması, tek bir binanın durumu hakkında bilgi taşımaz.",
+          "Zillow ve Redfin rakamları farklı aylara aittir (Haziran ve Mayıs 2026); iki kaynağın seviyeleri doğrudan karşılaştırılmamalıdır."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Miami’de kondo fiyatları düşüyor mu?",
+        "a": "Zillow’un kondo değer endeksi Haziran 2026’da 269.083 dolar ile bir yıl öncesine göre %6,18 daha düşük. Redfin’in gerçekleşen satışlara dayanan kondo medyan satış fiyatı ise Mayıs 2026’da 397.500 dolar ve yıllık %1,85 aşağıda."
+      },
+      {
+        "q": "Miami’de kondo ile genel konut piyasası arasındaki fark ne?",
+        "a": "Haziran 2026 verisiyle kondo endeksi yıllık %6,18, tüm konut tiplerini kapsayan genel endeks ise %2,23 geriledi. Kondo tarafındaki yıllık kayıp genel endekstekinin yaklaşık üç katı."
+      },
+      {
+        "q": "Miami’de kaç kondo satıldı?",
+        "a": "Redfin verisine göre Mayıs 2026’da Miami metro alanında 765 kondo satıldı. Bu sayı bir önceki aya göre %13,27, bir yıl öncesine göre %8,16 daha düşük."
+      }
+    ]
+  },
+  {
+    "slug": "kira-getirisi-ve-mortgage-faizi",
+    "title": "Brüt kira getirisi %6,78, mortgage faizi %6,69: iki oran neden yan yana okunamaz",
+    "excerpt": "Miami’de brüt kira getirisi ile ABD geneli mortgage faizi neredeyse eşit. Ama biri giderleri içermiyor, diğeri Miami’ye ait değil — bu iki oranı yan yana koymak göründüğü kadar basit değil.",
+    "answer": "Haziran 2026 verisiyle Miami metro alanında brüt kira getirisi %6,78. Aynı dönemde ABD geneli 30 yıllık sabit mortgage faizi %6,69 (6 Ağustos 2026 haftası). İki oran birbirine çok yakın görünüyor, ancak yan yana okunamazlar: brüt getiri aidat, emlak vergisi, sigorta, boşluk ve yönetim giderlerini İÇERMEZ, dolayısıyla net getiri bu rakamın belirgin biçimde altındadır. Mortgage faizi ise ABD ortalamasıdır, Miami’ye özgü değildir.",
+    "publishedAt": "2026-08-08",
+    "period": "2026-08",
+    "keywords": [
+      "Miami kira getirisi",
+      "Miami emlak yatırımı getiri",
+      "mortgage faizi 2026",
+      "fiyat kira çarpanı"
+    ],
+    "blocks": [
+      {
+        "type": "h2",
+        "text": "Brüt getiri nasıl hesaplanıyor?"
+      },
+      {
+        "type": "p",
+        "text": "Bu sitedeki brüt kira getirisi tek bir formülden gelir: yıllık kira, konut değerine bölünür. Haziran 2026 için Zillow’un gözlemlenen kira endeksi 2.695 dolar, tipik konut değeri endeksi 476.598 dolar. Aylık kiranın on iki katı, konut değerine bölündüğünde %6,78 çıkıyor. Aynı iki sayının tersi oran da yayınlanıyor: fiyat/yıllık kira çarpanı 14,74. Yani tipik konut, kabaca on beş yıllık brüt kirasına denk geliyor."
+      },
+      {
+        "type": "caveat",
+        "text": "Bu bir GÖSTERGEDİR, bir dairenin getirisi değil. Pay ve payda iki AYRI endeksten gelir: kira endeksi kiralık havuzunu, değer endeksi tüm konut stokunu tarar. İkisi aynı konutlar değildir. Ayrıca aidat, emlak vergisi, sigorta, boşluk dönemleri ve yönetim gideri düşülmemiştir — Miami’de aidat ve sigorta kalemleri kondo tarafında özellikle belirleyicidir. Net getiri bu rakamın belirgin biçimde altındadır."
+      },
+      {
+        "type": "h2",
+        "text": "Mortgage faizi neden bu tabloda ayrı duruyor?"
+      },
+      {
+        "type": "p",
+        "text": "Bu sitedeki tüm göstergeler Miami metro alanına aitken tek bir istisna var: 30 yıllık sabit mortgage faizi. Freddie Mac’in haftalık yayınladığı ve FRED üzerinden dağıtılan bu seri ABD GENELİ ortalamadır. 6 Ağustos 2026 haftasında %6,69 seviyesinde; bir önceki aya göre 0,20 puan, bir yıl öncesine göre 0,06 puan yukarıda. Endeks tablosunda bu satır “ABD geneli” etiketiyle işaretlidir."
+      },
+      {
+        "type": "chart",
+        "metricId": "mortgage-30y",
+        "accent": "magenta"
+      },
+      {
+        "type": "p",
+        "text": "Faiz farkının puan cinsinden verilmesi bilinçli. Faizin bir önceki aya göre 0,20 puan yukarıda olması ile faizin yüzde 0,20 artmış olması AYNI ŞEY DEĞİLDİR; ikincisi çok daha küçük bir hareketi tarif eder. Bu sitede oran birimli göstergelerin (mortgage faizi, indirim oranı) değişimi her zaman puan olarak, diğerlerininki yüzde olarak yazılır. İkisini karıştırmak faiz göstergelerinde büyük hata üretir."
+      },
+      {
+        "type": "h2",
+        "text": "Kira tarafındaki hareket"
+      },
+      {
+        "type": "p",
+        "text": "Kira endeksi Haziran 2026’da 2.695 dolar; aylık değişim %0,05, yıllık %1,15. Yani kira tarafı yatay denebilecek bir seyirde. Değer tarafı ise yıllık %2,23 aşağıda. Brüt getiri oranının bileşenlerinden biri hafif yukarı, diğeri aşağı hareket ettiği için oranın kendisi mekanik olarak yukarı taşınır — bu, kiraların hızla artmasından değil, paydanın gerilemesinden kaynaklanan bir etkidir ve göstergeyi okurken ayrıştırılması gerekir."
+      },
+      {
+        "type": "h2",
+        "text": "Bu iki oranı karşılaştırmak isteyen için"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Brüt getiri gider içermez; kıyaslanabilir hâle gelmesi için aidat, vergi, sigorta, boşluk ve yönetim giderleri düşülmelidir.",
+          "Mortgage faizi ABD ortalamasıdır; kredi tutarı, peşinat oranı, kredi notu ve mülk tipi başvuruya özel faizi değiştirir.",
+          "Yabancı alıcılar için geçerli kredi koşulları ABD’de ikamet edenlerinkinden farklı olabilir; bu seri o farkı yansıtmaz.",
+          "İki oran farklı tarihlere aittir: getiri Haziran 2026, faiz 6 Ağustos 2026 haftası."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Miami’de kira getirisi ne kadar?",
+        "a": "Haziran 2026 verisiyle Miami metro alanında brüt kira getirisi %6,78. Bu oran, Zillow’un gözlemlenen kira endeksinin (2.695 dolar) on iki katının tipik konut değerine (476.598 dolar) bölünmesiyle bulunur. Aidat, emlak vergisi, sigorta ve boşluk giderleri düşülmemiştir."
+      },
+      {
+        "q": "Miami’de fiyat/kira çarpanı kaç?",
+        "a": "Haziran 2026 verisiyle fiyat/yıllık kira çarpanı 14,74. Yani tipik konutun değeri, kabaca on beş yıllık brüt kirasına denk geliyor."
+      },
+      {
+        "q": "ABD’de 30 yıllık mortgage faizi ne kadar?",
+        "a": "Freddie Mac’in FRED üzerinden yayınlanan haftalık serisine göre 6 Ağustos 2026 haftasında ABD geneli 30 yıllık sabit mortgage faizi %6,69. Bu oran ABD ortalamasıdır, Miami’ye özgü değildir."
+      }
+    ]
+  }
+]

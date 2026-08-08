@@ -1,0 +1,130 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Aylık endeks hattı.
+#
+# SIRA BİLİNÇLİDİR: önce veri, sonra yorum. Veri çekilir ve commit'lenir;
+# yorum üretimi başarısız olsa BİLE o ayın endeks sayfası yayına girer.
+# Sayfa veriden üretilir, modelden değil — modelin sustuğu bir ay,
+# yayınlanmayacak bir ay değildir.
+#
+# Yorum kapıda takılırsa iş KIRMIZI düşer (sessizce atlamaz), ama bu
+# veri commit'inden SONRA olur.
+# ─────────────────────────────────────────────────────────────────────────
+name: Aylık endeks
+
+on:
+  schedule:
+    # Ayın 22'si 08:00 UTC. Zillow ZHVI/ZORI ayın ortasında, Redfin aylık
+    # dosyayı ayın başında günceller; 22 ikisinin de yerleşmesini bekler.
+    - cron: '0 8 22 * *'
+  workflow_dispatch:
+    inputs:
+      period:
+        description: 'Dönem (YYYY-AA). Boşsa bulunduğumuz ay.'
+        required: false
+        type: string
+      skip_redfin:
+        description: "Redfin'i atla (~111 MB indirme)"
+        required: false
+        type: boolean
+        default: false
+
+# Aynı anda iki kez koşarsa ikisi de aynı dosyaya yazıp birbirini ezer.
+concurrency:
+  group: monthly-index
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Hattı DEĞİŞTİRMEDEN önce mevcut hâlin sağlam olduğunu doğrula.
+      # Burada kırmızı düşerse veri çekmenin anlamı yok.
+      - name: Öz-test (mevcut hâl)
+        run: npm test
+
+      - name: Veriyi çek
+        run: |
+          npm run data:fetch -- \
+            ${{ inputs.period && format('--period={0}', inputs.period) || '' }} \
+            ${{ inputs.skip_redfin && '--skip-redfin' || '' }}
+
+      # Veri commit'i BAŞLI BAŞINA değerlidir: yorum üretilemese bile
+      # o ayın sayfası bu commit'le yayına girer.
+      - name: Veriyi commit'le
+        id: commit_data
+        run: |
+          git config user.name  "miamiendeksi-bot"
+          git config user.email "bot@miamiendeksi.com"
+          git add src/content/index
+          if git diff --staged --quiet; then
+            echo "değişiklik yok — commit atlandı"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "veri: aylık endeks anlık görüntüsü"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Yorum üretimi. Kapıdan geçemezse burada durmayız — hata aşağıda
+      # rapor edilir, ama veri zaten yayında.
+      - name: Aylık yorumu üret
+        id: commentary
+        continue-on-error: true
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: npm run index:generate
+
+      # Yeni yazı, YAZILDIKTAN SONRA bir kez daha aynı kapıdan geçirilir.
+      # Üretici zaten doğruluyor; buradaki tekrar, dosyaya yazma adımında
+      # bir şeyin bozulmadığını garanti eder.
+      - name: Öz-test (yeni içerikle)
+        if: steps.commentary.outcome == 'success'
+        run: npm test
+
+      - name: Derleme (yayına girecek hâlin gerçekten derlendiğini doğrula)
+        run: npm run build
+
+      - name: Yorumu commit'le
+        if: steps.commentary.outcome == 'success'
+        run: |
+          git config user.name  "miamiendeksi-bot"
+          git config user.email "bot@miamiendeksi.com"
+          git add src/content/articles/articles.json
+          if git diff --staged --quiet; then
+            echo "yeni yazı yok"
+          else
+            git commit -m "içerik: aylık analiz yazısı"
+            git push
+          fi
+
+      - name: Reddedilen taslağı sakla
+        if: steps.commentary.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: reddedilen-taslak
+          path: .needs-review/
+          if-no-files-found: ignore
+
+      # En sona bırakıldı: veri commit'i ve derleme tamamlandıktan sonra
+      # işin görünür şekilde kırmızı olması gerekiyor ki kimse "her ay
+      # yeşildi" diye kapıyı unutmasın.
+      - name: Yorum kapıda takıldıysa işi kırmızı bitir
+        if: steps.commentary.outcome == 'failure'
+        run: |
+          echo "::error::Aylık yorum doğrulama kapısından geçemedi. Veri yayında, yorum yok."
+          echo "Reddedilen taslak 'reddedilen-taslak' artefaktında."
+          exit 1

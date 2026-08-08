@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Miami Endeksi — "Neon Nights"
+   Yön: Bloomberg terminali × Ocean Drive neonu. Gece laciverti zemin,
+   buz beyazı metin, neon camgöbeği birincil aksan. Bu site GECE — krem,
+   bej ve beyaz zemin yasak.
+
+   KONTRAST NOTU — sayılar BURADA TUTULMUYOR, HESAPLANIYOR:
+
+       npm run check:a11y -- --tokens
+
+   komutu bu bloktaki her rengi her zemine karşı ölçer ve AA altına düşeni
+   kırmızı verir. Elle yazılmış bir kontrast tablosu, yanındaki hex bir kez
+   değiştiği an yalan söylemeye başlar; bu yüzden tablo koda taşındı.
+
+   ÜÇÜNCÜ YÜZEYİ UNUTMA: `--color-panel-2` yalnızca dekor değil,
+   `.panel-hover` kartlarının ÜZERİNE GELİNDİĞİNDEKİ zeminidir. Lighthouse
+   sayfayı yalnız durağan hâlde denetler, yani hover kontrastını HİÇBİR
+   Lighthouse koşusu görmez. `--color-dim` tam olarak burada yakalandı:
+   #7489AE panel üzerinde 4,88:1 ile geçiyor ama panel-2 üzerinde 4,33:1'e
+   düşüyordu ve `/analiz` ile `/endeks` kartlarında gerçekten o zemine
+   biniyordu. Bugünkü değer (#7C90B6) en kötü yüzeyde 4,76:1 verir.
+
+   Bu üç rengi koyulaştırma: dim, down (#FB4E4E, hover'da 4,60:1) ve
+   panel-2. Üçü de AA sınırına en yakın duran değerlerdir.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Yüzeyler — gece laciverti katmanları */
+  --color-night: #0b0f1e;
+  --color-panel: #131a2e;
+  --color-panel-2: #1a2440;
+  --color-edge: #22304f;
+
+  /* Metin */
+  --color-ice: #eaf2ff;
+  --color-mute: #8fa3c8;
+  --color-dim: #7c90b6;
+
+  /* Aksanlar — neon */
+  --color-cyan: #22d3ee;
+  --color-cyan-deep: #0e7f92;
+  --color-magenta: #f472b6;
+  --color-magenta-deep: #9d3f74;
+
+  /* Veri renkleri — YÖN kodlar, yargı değil (metodolojide yazılı) */
+  --color-up: #a3e635;
+  --color-down: #fb4e4e;
+
+  /* Tipografi ölçeği */
+  --text-hero: clamp(2.4rem, 1rem + 6vw, 5.2rem);
+  --text-hero--line-height: 0.98;
+  --text-h1: clamp(1.9rem, 1.2rem + 3.2vw, 3.2rem);
+  --text-h1--line-height: 1.06;
+  --text-h2: clamp(1.4rem, 1.1rem + 1.5vw, 2.1rem);
+  --text-h2--line-height: 1.16;
+  --text-h3: clamp(1.1rem, 1rem + 0.55vw, 1.35rem);
+  --text-h3--line-height: 1.3;
+  --text-body: clamp(1rem, 0.97rem + 0.16vw, 1.0938rem);
+  --text-body--line-height: 1.7;
+  --text-small: 0.9063rem;
+  --text-small--line-height: 1.58;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.3;
+
+  /* Bölüm ritmi */
+  --spacing-band: clamp(3rem, 1.8rem + 5vw, 6rem);
+  --spacing-stack: clamp(1.5rem, 1.1rem + 1.8vw, 2.75rem);
+}
+
+@theme inline {
+  --font-display: var(--font-space);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-ice);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Rakam hizası ────────────────────────────────────────────────────────
+   Veri sitesinde ZORUNLU: sütun sütun okunan sayılarda basamaklar
+   birbirinin altına gelmezse tablo gözle taranamaz hâle gelir.          */
+table,
+.tabular,
+.font-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+::selection {
+  background-color: var(--color-cyan);
+  color: var(--color-night);
+}
+
+/* ── Odak halkası — neon, her zemin üzerinde görünür ──────────────────── */
+:where(a, button, summary, input, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Terminal ızgarası ───────────────────────────────────────────────────
+   Görsel dosya yok. Çok düşük kontrastlı iki yönlü ızgara — Bloomberg
+   ekranının dokusal imzası. Metnin okunurluğuna dokunmaz.               */
+.grid-glow {
+  background-image:
+    linear-gradient(to right, rgb(34 211 238 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(34 211 238 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Ekranın üstünden aşağı sönümlenen neon perde. */
+.night-wash {
+  background-image:
+    radial-gradient(ellipse 80% 55% at 12% -8%, rgb(34 211 238 / 0.13), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 92% -4%, rgb(244 114 182 / 0.1), transparent 60%);
+}
+
+/* ── Neon çizgi: bölüm ayracı ──────────────────────────────────────────── */
+.neon-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    var(--color-cyan),
+    color-mix(in oklch, var(--color-cyan) 22%, transparent) 42%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgb(34 211 238 / 0.32);
+}
+
+.neon-rule-magenta {
+  background: linear-gradient(
+    to right,
+    var(--color-magenta),
+    color-mix(in oklch, var(--color-magenta) 22%, transparent) 42%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgb(244 114 182 / 0.28);
+}
+
+/* ── Panel: veri kartı ──────────────────────────────────────────────────
+   Kenarlık kart BAŞINA `box-shadow` halkasıyla çiziliyor (miamili'deki
+   `gap-px` + zemin deseni, öğe sayısı sütuna bölünmediğinde boş hücreyi
+   dolu bir bloğa çeviriyordu). Halka yaklaşımı eksik satırdan etkilenmez. */
+.panel {
+  background-color: var(--color-panel);
+  box-shadow: inset 0 0 0 1px var(--color-edge);
+}
+
+.panel-hover {
+  transition:
+    box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panel-hover:hover {
+  background-color: var(--color-panel-2);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklch, var(--color-cyan) 45%, transparent),
+    0 0 22px -6px rgb(34 211 238 / 0.3);
+}
+
+/* ── Neon metin parıltısı — YALNIZ büyük display metinde ────────────────
+   Küçük puntoda glow, kenar yumuşamasıyla birleşip algılanan kontrastı
+   düşürüyor. 24px altındaki metne UYGULAMA.                              */
+.glow-cyan {
+  text-shadow: 0 0 24px rgb(34 211 238 / 0.42);
+}
+
+.glow-magenta {
+  text-shadow: 0 0 24px rgb(244 114 182 / 0.38);
+}
+
+/* ── Uzun-form içerik ───────────────────────────────────────────────────── */
+.prose-me {
+  max-width: 68ch;
+}
+
+.prose-me p + p {
+  margin-top: 1.05em;
+}
+
+.prose-me a {
+  color: var(--color-cyan);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in oklch, var(--color-cyan) 45%, transparent);
+  transition: text-decoration-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prose-me a:hover {
+  text-decoration-color: var(--color-cyan);
+}
+
+/* ── Giriş hareketi ─────────────────────────────────────────────────────── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
