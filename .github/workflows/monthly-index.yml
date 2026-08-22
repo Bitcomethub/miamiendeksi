@@ -56,6 +56,21 @@ jobs:
       - name: Öz-test (mevcut hâl)
         run: npm test
 
+      # Palet kapısı — YALNIZ kaynak aşaması.
+      #
+      # Hat `src/content/*` dışına dokunmaz, yani krem/bej zemini hattın
+      # KENDİSİ getiremez. Buradaki amaç başka: bu iş, deponun tek zamanlanmış
+      # koşusu. İki çalışma arasında elle commit'lenmiş bir palet kaymasını
+      # yakalayacak başka bir düzenli kapı yok — aylık kanarya bu.
+      #
+      # Veri çekmeden ÖNCE koşar: Redfin dosyası ~111 MB, palet bozuksa o
+      # indirmeyi yapmanın anlamı yok.
+      #
+      # `--render` aşaması CI'da DEĞİL: gerçek Chrome + ayakta bir sunucu
+      # ister. Elle koşulur (`npm run check:palette:render`).
+      - name: Palet kapısı (krem/bej/beyaz zemin)
+        run: npm run check:palette
+
       - name: Veriyi çek
         run: |
           npm run data:fetch -- \
