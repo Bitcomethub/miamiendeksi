@@ -6,6 +6,11 @@
 > OKUNMAZ — yalnızca buradaki bir başlığa benzeyen bir semptom aktif olarak
 > ayıklanırken açılır.
 
+## 2026-08-22 — Eşik sabiti testsizse kapıda sessiz delik vardır
+- **Problem:** Palet kapısının 6 eşiğinden birini (`SURFACE_MAX_L`) körelttiğimde o anki 55 testten HİÇBİRİ düşmedi — o dal hiç test edilmemişti ve fark edilmeden silinebilirdi.
+- **Neden görünmedi:** Kapının iki kuralı vardı (krem ailesi + yüzey koyuluğu) ve testler yalnız birincisini zorluyordu. `#808080` krem DEĞİLDİR (L=0,600, eşiğin altı), yani orta gri bir sayfa zeminini yalnız ikinci kural durduruyordu.
+- **KURAL:** Bir kapı yazdıktan sonra her eşik sabitini/dalını tek tek boz ve `npm test` koştur. Hiçbir testi düşürmeyen mutasyon = test edilmemiş dal = kapıda delik. "Testler geçiyor" ile "kapı çalışıyor" aynı şey değildir; ikincisi ancak kapının kendisi sabote edilerek kanıtlanır.
+
 ## 2026-08-08 — 393 px'te yatay taşma var, taşan hiçbir eleman yok
 - **Problem:** `/endeks/2026-08` 393 px'te 53 px taşıyordu; ölçüm hiçbir elemanı suçlu göstermiyordu — taşma "sahipsizdi".
 - **Elenen:** tablonun kendisi (`min-w-[46rem]` kasıtlı, `overflow-x-auto` zaten sarıyordu) → sarmalayıcı VARDI, yine taşıyordu; bayat layout ölçümü ("rAF/reflow bekle") → `first/afterRaf/afterReflow/afterWait` dördü de 446 verdi, hipotez öldü; `<td>` gizleyip bakmak → her `<td>` "düzeltiyordu", çünkü tablo daralınca mutlak konumlu çocuk da yer değiştiriyordu — yanlış iz.

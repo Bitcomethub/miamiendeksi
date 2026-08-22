@@ -25,6 +25,15 @@ import { parseDelimitedLine, parseDelimited, toNumber } from './lib/csv.mjs';
 import { shiftMonths, findNearest, change, round, buildMetric } from './lib/compute.mjs';
 import { hasFlag, readPeriod } from './lib/args.mjs';
 import { verifyNumbers, verifyLanguage, extractNumbers, parseTurkishNumber } from './lib/guard.mjs';
+import {
+  oklch,
+  parseColor,
+  isForbiddenSurface,
+  readTheme,
+  checkTheme,
+  scanText,
+  scanTree,
+} from './lib/palette.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -348,6 +357,160 @@ check('anlık görüntü: yer tutucu/uydurma değer taşımaz', () => {
     }
   }
 });
+
+// ── 10. Palet kapısı — krem/bej/beyaz koruması ───────────────────────────
+// Bu site GECE. Kapı İKİ YÖNLÜ sınanır ve sebebi somut: eşiği krem ailesini
+// yakalayacak kadar geniş tutarsan neon camgöbeğini de eler (aradaki fark
+// yalnızca renklilikte: khaki C=0,112 · cyan C=0,134), o zaman kapı her
+// commit'te bağırır ve biri onu kapatır. Sessiz kapı, kırmızı kapıdan
+// tehlikelidir.
+
+
+// Deterministik palet — testler globals.css değişince kaymasın diye
+// sabittir; gerçek dosyanın kendisi ayrı bir testle sınanır.
+const THEME = {
+  night: '#0b0f1e', panel: '#131a2e', 'panel-2': '#1a2440', edge: '#22304f',
+  ice: '#eaf2ff', mute: '#8fa3c8', dim: '#7c90b6', cyan: '#22d3ee',
+  'cyan-deep': '#0e7f92', magenta: '#f472b6', 'magenta-deep': '#9d3f74',
+  up: '#a3e635', down: '#fb4e4e',
+};
+
+check('OKLCH: dönüşüm bilinen renklerde doğru koordinat verir', () => {
+  const w = oklch('#ffffff');
+  ok(Math.abs(w.L - 1) < 0.005, `beyaz L=${w.L.toFixed(3)}, 1 olmalı`);
+  ok(w.C < 0.005, `beyaz renkliliği ${w.C.toFixed(3)}, 0 olmalı`);
+  const n = oklch('#0b0f1e');
+  ok(Math.abs(n.L - 0.173) < 0.01, `night L=${n.L.toFixed(3)}, ~0,173 olmalı`);
+});
+
+check('sınıflandırıcı: krem/bej/beyaz ailesinin TAMAMINI yakalar', () => {
+  const banned = {
+    white: '#ffffff', cream: '#FFFDD0', beige: '#F5F5DC', ivory: '#FFFFF0',
+    linen: '#FAF0E6', antiquewhite: '#FAEBD7', oldlace: '#FDF5E6',
+    seashell: '#FFF5EE', tan: '#D2B48C', wheat: '#F5DEB3', khaki: '#F0E68C',
+    bisque: '#FFE4C4', eggshell: '#F0EAD6', 'off-white': '#FAF7F0',
+    'warm-gray': '#E7E5E4', 'tw-stone-100': '#F5F5F4', 'tw-amber-50': '#FFFBEB',
+    'tw-neutral-200': '#E5E5E5', 'tw-slate-100': '#F1F5F9', 'tw-stone-300': '#D6D3D1',
+    lightcyan: '#E0FFFF', 'pale-pink': '#FFE4E1',
+  };
+  const missed = Object.entries(banned).filter(([, hex]) => !isForbiddenSurface(hex));
+  eq(missed, [], 'kaçan krem tonu: ');
+});
+
+check('sınıflandırıcı: proje paletinin TAMAMINI geçirir (ice hariç)', () => {
+  // ice (#eaf2ff, L=0,959) gerçekten bir kırık beyazdır ve sınıflandırıcı
+  // onu dürüstçe yakalar; taramada ADIYLA muaf tutulur. Eşiği ice'ı
+  // geçirecek kadar gevşetmek, bejin tamamını da geçirirdi.
+  const palette = {
+    night: '#0b0f1e', panel: '#131a2e', 'panel-2': '#1a2440', edge: '#22304f',
+    mute: '#8fa3c8', dim: '#7c90b6', cyan: '#22d3ee', 'cyan-deep': '#0e7f92',
+    magenta: '#f472b6', 'magenta-deep': '#9d3f74', up: '#a3e635', down: '#fb4e4e',
+  };
+  const flagged = Object.entries(palette).filter(([, hex]) => isForbiddenSurface(hex));
+  eq(flagged, [], 'yanlışlıkla yasaklanan proje rengi: ');
+});
+
+check('sınıflandırıcı: EN DAR sınır — khaki yakalanır, camgöbeği geçer', () => {
+  // Eşiğin iki yakası. Bu test kırmızıya dönerse eşik kaymıştır; hangi
+  // yöne kaydığını da söyler.
+  ok(isForbiddenSurface('#F0E68C'), 'khaki (C=0,112) yakalanmalıydı');
+  ok(!isForbiddenSurface('#22d3ee'), 'neon camgöbeği (C=0,134) geçmeliydi');
+});
+
+check('sınıflandırıcı: ice dürüstçe kırık-beyaz sayılır', () => {
+  ok(isForbiddenSurface('#eaf2ff'), 'ice sınıflandırıcıda yakalanmalı (muafiyet ADLA verilir)');
+});
+
+check('parseColor: hex3/hex6/hex8, rgb(), rgba() ve Tailwind alt çizgili biçim', () => {
+  eq(parseColor('#fff'), { hex: '#ffffff', alpha: 1 });
+  eq(parseColor('#F5F5DC'), { hex: '#f5f5dc', alpha: 1 });
+  eq(parseColor('#F5F5DC80'), { hex: '#f5f5dc', alpha: 128 / 255 });
+  eq(parseColor('rgb(34 211 238 / 0.045)'), { hex: '#22d3ee', alpha: 0.045 });
+  eq(parseColor('rgba(255, 253, 208, 0.5)'), { hex: '#fffdd0', alpha: 0.5 });
+  eq(parseColor('rgb(0_0_0/0.7)'), { hex: '#000000', alpha: 0.7 });
+});
+
+check('tarama: saydam krem ELENİR, opak krem yakalanır', () => {
+  // Alfa eşiği bir ELEME kuralıdır; eleme kuralları kapıyı sessizleştirdiği
+  // için iki yönü de kilitleniyor.
+  const seffaf = scanText('.x { background: rgb(255 253 208 / 0.08); }', 'a.css', THEME);
+  eq(seffaf, [], 'saydam doku ihlal sayılmamalı: ');
+  const opak = scanText('.x { background: rgb(255 253 208 / 0.9); }', 'a.css', THEME);
+  eq(opak.length, 1, 'opak krem yakalanmalı: ');
+});
+
+check('tarama: CSS yorumundaki hex sayılmaz ama AYNI satırdaki gerçek ihlal sayılır', () => {
+  // Yorum ayıklama da bir eleme kuralıdır: fazla ayıklarsa kapı körelir.
+  const v = scanText('.x { background: #F5F5DC; /* #FAF0E6 yasak */ }', 'a.css', THEME);
+  eq(v.length, 1, 'ihlal sayısı: ');
+  eq(v[0].raw, '#f5f5dc', 'yakalanan: ');
+});
+
+check('jeton kapısı: mevcut yüzey jetonları geçer', () => {
+  eq(checkTheme(THEME), [], 'mevcut palet temiz olmalı: ');
+});
+
+check('jeton kapısı: yüzey jetonu kreme kayarsa yakalar', () => {
+  const sabote = { ...THEME, night: '#FAF7F0' };
+  const v = checkTheme(sabote);
+  eq(v.length, 1, 'ihlal sayısı: ');
+  ok(v[0].detail.includes('night'), `mesaj jetonu adlandırmalı: ${v[0].detail}`);
+});
+
+check('jeton kapısı: ice DIŞINDA açık jeton eklenirse yakalar', () => {
+  // Muafiyet listesi tek isimlidir; "krem jetonu tanımlayıp bg-krem yaz"
+  // kaçamağını kapatan test budur.
+  const v = checkTheme({ ...THEME, parchment: '#F5F5DC' });
+  eq(v.length, 1, 'ihlal sayısı: ');
+  ok(v[0].detail.includes('parchment'), `mesaj jetonu adlandırmalı: ${v[0].detail}`);
+});
+
+check('jeton kapısı: yüzey jetonu orta griye kayarsa yakalar (krem ailesi DEĞİL)', () => {
+  // Mutasyon testi bu boşluğu buldu: #808080 krem DEĞİLDİR (L=0,600, eşiğin
+  // altında), yani krem sınıflandırıcısı onu hiç görmez. Gece sitesinin
+  // zemininin gri olmasını engelleyen tek şey yüzey jetonlarının ayrıca
+  // "koyu olma" şartıdır. O şart test edilmeden sessizce silinebiliyordu.
+  ok(!isForbiddenSurface('#808080'), 'orta gri krem ailesinde OLMAMALI');
+  const v = checkTheme({ ...THEME, panel: '#808080' });
+  eq(v.length, 1, 'ihlal sayısı: ');
+  ok(v[0].detail.includes('YÜZEY'), `yüzey kuralı devreye girmeliydi: ${v[0].detail}`);
+});
+
+check('sınıf taraması: palet dışı zemin yardımcıları yakalanır', () => {
+  const cases = ['bg-white', 'bg-stone-100', 'bg-amber-50', 'bg-[#F5F5DC]', 'to-neutral-200'];
+  for (const c of cases) {
+    const v = scanText(`<div className="${c}" />`, 'a.tsx', THEME);
+    ok(v.length === 1, `${c} yakalanmalıydı (bulunan: ${v.length})`);
+  }
+});
+
+check('sınıf taraması: gerçek kaynaktaki zemin biçimleri GEÇER', () => {
+  // Bunlar repoda BUGÜN kullanılan biçimler. Kapı bunlara bağırırsa
+  // kullanılamaz hâle gelir.
+  const gercek =
+    '<div className="bg-night bg-panel/40 hover:bg-ice focus:bg-cyan bg-edge bg-night/95 bg-transparent bg-black" />';
+  eq(scanText(gercek, 'a.tsx', THEME), [], 'yanlış pozitif: ');
+});
+
+check('sınıf taraması: renk OLMAYAN bg-* yardımcıları geçer', () => {
+  const v = scanText('<div className="bg-cover bg-center bg-no-repeat bg-gradient-to-r" />', 'a.tsx', THEME);
+  eq(v, [], 'renk olmayan yardımcı ihlal sayılmamalı: ');
+});
+
+check('gerçek dosya: globals.css @theme bloğu jeton kapısından geçer', () => {
+  const css = readFileSync(path.join(ROOT, 'src/app/globals.css'), 'utf8');
+  eq(checkTheme(readTheme(css)), [], 'globals.css jeton ihlali: ');
+});
+
+check('gerçek kaynak: src/ ağacında krem/bej/beyaz yok', () => {
+  const v = scanTree(path.join(ROOT, 'src'));
+  eq(
+    v.map((x) => `${x.file}:${x.line} ${x.raw ?? x.detail}`),
+    [],
+    'gerçek kaynakta ihlal: ',
+  );
+});
+
 
 // ── Sonuç ────────────────────────────────────────────────────────────────
 

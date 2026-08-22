@@ -72,7 +72,11 @@ yeniden üretir. Commit'lenirse bayatlar.
 ## Görsel kimlik — "Neon Nights"
 
 Bloomberg terminali × Ocean Drive neonu. **Bu site GECE.**
-Krem, bej, beyaz zemin **YASAK**.
+Krem, bej, beyaz zemin **YASAK** — ve bu yasak bir dilek değil, bir kapı:
+`npm run check:palette` her rengi OKLCH'te ölçer (yasak-hex listesi YOK, ölçüm
+var), `bg-*` zeminlerinin `@theme` jetonundan gelmesini şart koşar ve
+`--render` ile gerçek Chrome'da boyanan pikseli doğrular. Ayrıntı ve eşiklerin
+gerekçesi: `scripts/lib/palette.mjs` başlığı.
 
 | Rol | Jeton | Değer |
 |---|---|---|
@@ -98,16 +102,19 @@ yumuşamasıyla birleşip algılanan kontrastı düşürür.
 ## Doğrulama kapıları (hepsi commit'ten önce)
 
 ```bash
-npm test                      # 39 test — hat, kapı, biçimlendirme, şema
+npm test                      # 56 test — hat, kapı, biçimlendirme, şema, palet
 npm run index:dry             # ağsız/anahtarsız hat provası (mock model)
 npm run build                 # 12 statik sayfa
 npm run check:a11y -- --tokens   # jeton kontrastı (saniyeler, tarayıcısız)
 npm run check:a11y            # + Lighthouse (sunucu açık olmalı)
 npm run check:layout          # 320/393/768 px yatay taşma (gerçek Chrome, CDP)
+npm run check:palette         # krem/bej/beyaz zemin taraması (saniyenin altı)
+npm run check:palette:render  # + gerçek render computed style (sunucu açık olmalı)
 ```
 
 `check:*` betikleri `CHECK_BASE` ile başka bir kökene bakabilir
-(varsayılan `http://localhost:4321`); önce `npm run build && npm start -p 4321`.
+(varsayılan `http://localhost:4321`); önce `npm run build && npm start -- -p 4321`
+(`--` şart: onsuz `next start` 4321'i **dizin adı** sanır).
 
 **Kapılar hakkında iki kural, ikisi de acıdan öğrenildi:**
 
@@ -128,7 +135,8 @@ npm run check:layout          # 320/393/768 px yatay taşma (gerçek Chrome, CDP
   `relative`'ler süs değil, silme.
 - **Kontrastı yorum satırında tutma, hesapla.** Elle yazılmış tablo, yanındaki hex
   bir kez değiştiği an yalan söyler.
-- **Renk değiştiren her commit** `npm run check:a11y -- --tokens` çalıştırır.
+- **Renk değiştiren her commit** `npm run check:a11y -- --tokens` **ve**
+  `npm run check:palette` çalıştırır. Biri kontrastı, diğeri gece kimliğini korur.
   AA sınırına en yakın üç değer: `dim` (4,76), `down` (4,60), `panel-2`. Koyulaştırma.
 - **Dar ekranda flex önce metni ezer.** Sığmayan bir satırda kırılma noktası tahmin
   etme: iki tarafa `shrink-0` + kapsayıcıya `flex-wrap` kendi kendini hesaplar.

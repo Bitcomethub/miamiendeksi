@@ -6,6 +6,58 @@
 
 ---
 
+## 2026-08-22 — "Krem zemin yasak" bir kural olarak vardı, kapı olarak yoktu
+
+- **Problem:** Gece paleti yalnızca `CLAUDE.md`'de ve `globals.css` yorumunda
+  yazılıydı. Hiçbir kapı krem/bej/beyaz zemini KESMİYORDU; kural, uyulup
+  uyulmadığı ölçülmeyen bir dilekti. `check:a11y` kontrastı ölçer ama krem
+  zemin üzerinde koyu metin AA'yı rahatça geçer — yani a11y kapısı bu ihlali
+  yeşil yakardı.
+
+- **Elenen — yasak-hex listesi:** "banned = [#FFFDD0, #F5F5DC, …]". `check-a11y`
+  yorumundaki kontrast tablosunun aynı arızası: 21. krem tonu seçildiği gün
+  liste yalan söyler. Renk uzayı sürekli, liste sonlu.
+- **Elenen — "açık olanı yasakla" (tek eşik: L ≥ 0.78):** neon camgöbeğini de
+  eler (cyan L=0,797 · bej L=0,964 — İKİSİ DE açık). Markanın birincil aksanını
+  yasaklayan kapı, ilk haftasında kapatılır.
+- **Elenen — eşiği `ice`'ı geçirecek kadar gevşetmek:** `--color-ice` (#eaf2ff,
+  L=0,959 C=0,019) gerçekten bir kırık beyazdır ve beyden DAHA nötrdür
+  (bej C=0,033). Ice'ı geçiren her eşik, bejin tamamını da geçirir. Eşik
+  gevşetmek burada kapıyı tümden iptal etmekle eşdeğerdi.
+- **Elenen — yalnızca kaynak taraması:** kaynak NİYETİ okur, boyanan pikseli
+  değil. Stil sayfası hiç yüklenmezse kaynak tertemizdir ve Chrome sayfayı
+  BEYAZ boyar. Kanıtlandı: derlenmiş CSS boşaltıldığında Aşama 1 "✓ Kaynak
+  temiz" dedi, sayfa bembeyazdı.
+
+- **Seçilen:** ölçüm + iki aşama.
+  1. Her renk OKLCH'e çevrilir; yasak aile = **L ≥ 0,78 VE C ≤ 0,12**. Ayırt
+     edici RENKLİLİKTİR, açıklık değil (khaki C=0,112 yakalanır · cyan C=0,134
+     geçer — en dar aralık burası).
+  2. `ice` istisnası **eşikle değil ADLA** verilir (`ALLOWED_LIGHT_TOKENS`) —
+     tek isimli, greplenebilir, gerekçesi dosyada.
+  3. Kapalı palet: `bg-*` / `from-*` / `via-*` / `to-*` renk adı `@theme`
+     jetonu olmak zorunda → `bg-white`, `bg-stone-100`, `bg-amber-50` tek
+     kuralla, hiçbir Tailwind renk tablosu gömmeden kapanır.
+  4. Aşama 2 gerçek Chrome'da `getComputedStyle` okur ve `body` zemininin
+     GERÇEKTEN gece rengi olduğunu doğrular — "krem bulamadım" yetmez, boş
+     sayfada da krem yoktur.
+
+- **Kanıt:** 6 kaynak sabotajı (jeton kreme çevrildi · yeni açık jeton ·
+  CSS'e krem kural · `bg-stone-100` · `bg-[#FFFDD0]` · satır içi ham hex) →
+  6/6 exit 1, dosya+satır+ölçülmüş L/C ile. 3 render sabotajı (yayınlanan
+  CSS'e krem body · stil sayfası boş · `main` bej) → 3/3 exit 1 ve
+  ÜÇÜNDE DE Aşama 1 "✓ Kaynak temiz" dedi (aşamalar birbirinin yedeği değil).
+  2 kontrol: saydam krem doku (α=0,08) ve 1 px'lik açık yüzey → exit 0.
+  `npm test` 39 → 56.
+
+- **Mutasyon testi bir boşluk buldu:** 6 eşik mutasyonundan biri
+  (`SURFACE_MAX_L` 0,45 → 0,99) HİÇBİR testi düşürmedi. Yüzey jetonlarının
+  "koyu olma" şartı test edilmemişti; `--color-panel: #808080` (orta gri,
+  L=0,600) krem eşiğinin ALTINDA olduğu için krem sınıflandırıcısına da
+  görünmüyordu. Test eklendi, mutasyon artık yakalanıyor.
+
+---
+
 ## 2026-08-08 — 393 px'te yatay taşma var, taşan hiçbir eleman yok
 
 **Semptom.** `npm run check:layout` (CDP ile gerçek Chrome'da `scrollWidth`

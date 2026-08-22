@@ -15,7 +15,9 @@
     "prebuild": "node scripts/export-public-data.mjs",
     "data:export": "node scripts/export-public-data.mjs",
     "check:layout": "node --experimental-websocket scripts/check-layout.mjs",
-    "check:a11y": "node scripts/check-a11y.mjs"
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:palette": "node scripts/check-palette.mjs",
+    "check:palette:render": "node --experimental-websocket scripts/check-palette.mjs --render"
   },
   "dependencies": {
     "next": "16.3.0",
