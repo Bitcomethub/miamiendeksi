@@ -6,6 +6,18 @@
 > OKUNMAZ — yalnızca buradaki bir başlığa benzeyen bir semptom aktif olarak
 > ayıklanırken açılır.
 
+## 2026-08-26 — "Mutasyon sessiz geçti" önce ARACI suçla, sonra testi
+
+- **Problem:** Yeni geometrinin 7 mutasyonunun 7'si de sessiz geçti; sanki 12 yeni testin hiçbiri hiçbir dalı tutmuyordu. Testler değil, mutasyon koşum aracı bozuktu — ve tek oturumda iki farklı biçimde.
+- **Elenen:** `npm test | tail -3` içinde `"✗ N test kaldı"` aramak → başlık listenin BAŞINDA yazılır, birkaç test düşünce pencerenin dışına kayar (bu repodaki *"kesen rapor, rapor değildir"* dersinin, kapıyı sınayan araçtaki tekrarı); `if grep ... | head` → boru hattının çıkış kodu SON komuta aittir, `head` daima 0 döner, koşul hep doğru okunur; yalnız çıkış koduna geçmek → `sed` deseni eşleşmezse dosya hiç değişmez, test doğal olarak geçer ve yine "sessiz geçti" gibi görünür.
+- **KURAL:** Bir mutasyon koşum aracı üç şeyi birden yapmadan güvenilmez: (1) çıktıyı grep'lemek yerine **çıkış koduna** bakar, (2) her turdan önce `diff` ile **mutasyonun gerçekten uygulandığını** doğrular, (3) yedekten geri yükler. Aracı önce KASITLI bir gerçek hatayla sınayıp kırmızı verdiğini gör; vermiyorsa ölçtüğün şey kod değil, araçtır.
+
+## 2026-08-26 — "Eşdeğer mutant" iddiası kanıtlanmadıkça bir bahanedir
+
+- **Problem:** `Math.min(0, ...values)` → `Math.min(...values)` mutasyonu hiçbir testi düşürmedi. "Yanındaki üçlü işleç zaten sıfırı garantiliyor, eşdeğer mutant" diyip geçmeye hazırdım.
+- **Elenen:** Muhakemeyle eşdeğerlik ilan etmek → elle hesaplayınca yanlış çıktı: TEK gözlemli kümede `min === max` olur, `span === 0` dalına düşülür ve tek bir −27,3 değeri x = **−1315**'e, tuvalin çok dışına gider. Test kaçırmıştı çünkü `w > 0` diye bakıyordu — felaket de bu koşulu sağlıyor.
+- **KURAL:** Sessiz kalan mutasyonu eşdeğer ilan etmeden önce **sınır girdilerinde sayısal olarak karşılaştır** (tek eleman, hepsi aynı işaret, hepsi sıfır). Ve bir geometri testi asla yalnızca "çizildi mi" (`w > 0`) diye sormaz; **nereye çizildiğini** sorar (`0 ≤ x` ve `x + w ≤ genişlik`). Gerçekten eşdeğer olanı da yazılı bırak: `BAR_PAD` saf estetik paydır, onu sabitleyen sahte test YAZMA.
+
 ## 2026-08-22 — Eşik sabiti testsizse kapıda sessiz delik vardır
 - **Problem:** Palet kapısının 6 eşiğinden birini (`SURFACE_MAX_L`) körelttiğimde o anki 55 testten HİÇBİRİ düşmedi — o dal hiç test edilmemişti ve fark edilmeden silinebilirdi.
 - **Neden görünmedi:** Kapının iki kuralı vardı (krem ailesi + yüzey koyuluğu) ve testler yalnız birincisini zorluyordu. `#808080` krem DEĞİLDİR (L=0,600, eşiğin altı), yani orta gri bir sayfa zeminini yalnız ikinci kural durduruyordu.

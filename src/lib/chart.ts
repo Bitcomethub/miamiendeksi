@@ -1,19 +1,36 @@
 // ─────────────────────────────────────────────────────────────────────────
-// Grafik geometrisi — kütüphane YOK, saf SVG
+// Grafik geometrisi — kütüphane YOK
 //
-// Neden kütüphane yok: bu sitenin tüm sayfaları statik üretiliyor ve tek
-// ihtiyaç duyduğu biçim tek serili çizgi grafiği. Recharts/Chart.js gibi bir
-// bağımlılık ~50–100 kB JS ekler, hiçbirini karşılamadığı bir a11y yükü
-// getirir ve neon/koyu temada zaten baştan aşağı override edilirdi.
+// Neden kütüphane yok: bu sitenin tüm sayfaları statik üretiliyor ve ihtiyaç
+// duyduğu iki biçim de (tek serili çizgi, ıraksayan karşılaştırma çubuğu)
+// birkaç satır aritmetik. Recharts/Chart.js gibi bir bağımlılık ~50–100 kB JS
+// ekler, hiçbirini karşılamadığı bir a11y yükü getirir ve neon/koyu temada
+// zaten baştan aşağı override edilirdi. Çubuk grafiğin bu sitedeki hâli
+// ayrıca HİÇ JS istemiyor: sunucu bileşeni + CSS kutuları.
 //
-// TASARIM KARARI (dataviz yordamı): her grafik TEK seri gösterir. Böylece
-// kategorik palet kısıtları (renk körlüğü ayrımı, sabit hue sırası) devreye
-// girmez — geriye yalnızca zemine karşı kontrast şartı kalır ve neon paleti
-// bunu geçer. İki ölçüyü tek eksene BİNDİRMEK yasak; iki metrik = iki grafik.
+// TASARIM KARARI (dataviz yordamı): her ÇİZGİ grafiği TEK seri gösterir.
+// Böylece kategorik palet kısıtları (renk körlüğü ayrımı, sabit hue sırası)
+// devreye girmez — geriye yalnızca zemine karşı kontrast şartı kalır ve neon
+// paleti bunu geçer. İki ölçüyü tek eksene BİNDİRMEK yasak; iki metrik = iki
+// grafik. Karşılaştırma çubuğu bu kuralın istisnası DEĞİL: orada tek bir ölçü
+// (yıllık değişim) birden çok gösterge için yan yana konur, iki farklı ölçü
+// üst üste değil. Birim karışırsa (pp ↔ pct) satır hiç seçilmez.
+//
+// İKİ GRAFİĞİN TABAN ÇİZGİSİ KURALI TERSTİR, ikisi de bilinçlidir:
+//   · çizgi  → sıfırdan BAŞLAMAZ (değeri konum kodlar, bkz. `bounds()`)
+//   · çubuk  → sıfırdan BAŞLAR   (değeri uzunluk kodlar, bkz. chart-geom.mjs)
 // ─────────────────────────────────────────────────────────────────────────
 
+import {
+  barPlot as barPlotRaw,
+  comparableChanges as comparableChangesRaw,
+  superlative,
+  BAR_W as BAR_W_RAW,
+  MIN_BARS as MIN_BARS_RAW,
+} from './chart-geom.mjs';
 import type { SeriesPoint, Unit } from './snapshot';
-import { formatCompact, formatValue, formatDate } from './format';
+import { formatCompact, formatValue, formatDate, formatChange } from './format';
+import type { Change } from './format';
 
 export type Box = { w: number; h: number; top: number; right: number; bottom: number; left: number };
 
@@ -100,5 +117,88 @@ export function describeSeries(points: SeriesPoint[], unit: Unit, label: string)
     `${label}: ${formatDate(first.date)} – ${formatDate(last.date)} arası ${points.length} gözlem. ` +
     `${formatValue(first.value, unit)} seviyesinden ${formatValue(last.value, unit)} seviyesine ${dir}. ` +
     `Dönemin en düşüğü ${formatValue(min, unit)}, en yükseği ${formatValue(max, unit)}.`
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Karşılaştırma çubukları
+//
+// Geometri BU DOSYADA DEĞİL, `chart-geom.mjs`'te: `npm test` bir Node 20
+// script'i ve TypeScript çalıştıramıyor. Çubuğun taşıdığı iddia (uzunluk =
+// büyüklük) bir render kapısının göremeyeceği kadar aritmetik olduğu için
+// düz ESM'ye alındı ve birim testi var. Gerekçenin tamamı o dosyanın
+// başlığında.
+//
+// Burada yalnızca TİP yüzeyi ve — `describeSeries` ile aynı disiplinde —
+// grafiğin SÖZLE özeti var.
+// ─────────────────────────────────────────────────────────────────────────
+
+export type BarItem = { id: string; label: string; value: number };
+export type BarDir = 'up' | 'down' | 'flat';
+export type BarRow = BarItem & { x: number; w: number; dir: BarDir };
+export type BarPlot = { rows: BarRow[]; zero: number; lo: number; hi: number; width: number };
+
+export const BAR_W: number = BAR_W_RAW;
+export const MIN_BARS: number = MIN_BARS_RAW;
+
+/** Çizilebilir mi — eşik `chart-geom.mjs`'te tek yerde. */
+export function canDrawBars(items: unknown[]): boolean {
+  return items.length >= MIN_BARS;
+}
+
+export const barPlot = barPlotRaw as (items: BarItem[]) => BarPlot;
+
+/**
+ * `pp` ile `pct` aynı eksene giremez — mortgage faizinin +0,06 PUANLIK farkı
+ * ile stokun %−20,36'sı aynı birim değildir. Karışık birim ELENMEZ, hiç
+ * SEÇİLMEZ; kapının kendisi `chart-geom.mjs`'te ve testli.
+ */
+export function comparableChanges<T extends { change: Change | null }>(
+  entries: T[],
+  kind: Change['kind'],
+): T[] {
+  return comparableChangesRaw(entries, kind) as T[];
+}
+
+/**
+ * Çubuk grafiğin sözle özeti — `<figcaption>` içine girer.
+ *
+ * `describeSeries` ile aynı kural: KODDAN hesaplanır, model yazmaz. Grafiğin
+ * yanındaki cümle de bir veri iddiasıdır. Ekran okuyucu kullanıcısı sıralamayı
+ * bu cümleden, kesin sayıları alttaki tablodan alır — SVG yok, çubuklar zaten
+ * `aria-hidden` işaretli kutulardır.
+ */
+export function describeBars(rows: BarRow[], kind: Change['kind'], label: string): string {
+  if (rows.length === 0) return `${label}: veri yok.`;
+
+  const artan = rows.filter((r) => r.dir === 'up').length;
+  const azalan = rows.filter((r) => r.dir === 'down').length;
+  const sabit = rows.length - artan - azalan;
+
+  const sirali = [...rows].sort((a, b) => a.value - b.value);
+  const enDusuk = sirali[0];
+  const enYuksek = sirali[sirali.length - 1];
+
+  const ch = (v: number): string => formatChange({ value: v, kind });
+
+  const dagilim = [
+    azalan > 0 ? `${azalan} gösterge geriledi` : null,
+    artan > 0 ? `${artan} gösterge arttı` : null,
+    sabit > 0 ? `${sabit} gösterge değişmedi` : null,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
+  // Sıfat DEĞERİN İŞARETİNE bakar, dizideki konumuna değil. Hepsi negatif bir
+  // kümede en büyük değer "en çok artan" DEĞİL, "en az gerileyen"dir — aksi
+  // hâlde cümle, artmayan bir göstergeyi artmış gibi yazar.
+  const dus = superlative(enDusuk.value, 'low');
+  const yuk = superlative(enYuksek.value, 'high');
+  const bas = dus.charAt(0).toLocaleUpperCase('tr') + dus.slice(1);
+
+  return (
+    `${label}: ${rows.length} gösterge karşılaştırıldı. ${dagilim}. ` +
+    `${bas} ${enDusuk.label} (${ch(enDusuk.value)}), ` +
+    `${yuk} ${enYuksek.label} (${ch(enYuksek.value)}).`
   );
 }

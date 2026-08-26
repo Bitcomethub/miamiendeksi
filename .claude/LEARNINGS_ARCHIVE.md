@@ -6,6 +6,69 @@
 
 ---
 
+## 2026-08-26 — Mutasyon "sessiz geçti" dedi; sessiz olan koşum aracıydı
+
+- **Problem:** Karşılaştırma çubuğu geometrisine 12 birim testi yazdıktan
+  sonra, `LEARNINGS.md`'deki kural gereği her eşiği/dalı tek tek bozup
+  `npm test` koşturdum. **7 mutasyonun 7'si de sessiz geçti** — yani teste
+  göre geometrinin hiçbir dalı test edilmemişti. Bu, yeni yazılmış 12 testin
+  tamamının işe yaramadığı anlamına gelirdi.
+
+- **Elenen (koşum aracının kendisi, iki kez bozuk çıktı):**
+  - `npm test 2>&1 | tail -3` içinde `"test kaldı"` aramak → başarısızlık
+    başlığı (`✗ N test kaldı`) listenin BAŞINDA yazılıyor, ardından her
+    başarısız test tek tek dökülüyor. 5 test düşünce başlık `tail -3`
+    penceresinin dışına kayıyor ve araç "geçti" sanıyordu. Bu, bu repodaki
+    *"kesen rapor, rapor değildir"* dersinin birebir tekrarı — bu sefer
+    kapıda değil, kapıyı sınayan araçta.
+  - `if grep -rl "X" dir/ | head -5; then` → **boru hattının çıkış kodu son
+    komuta aittir**; `head` her zaman 0 döner. Koşul hep doğru okundu ve
+    "BarChart istemci chunk'ında bulundu" diye yanlış rapor verdi (gerçekte
+    hiç yoktu). Aynı tuzak iki farklı biçimde, tek oturumda.
+  - Çıkış koduna geçmek → yetmedi: `sed` deseni eşleşmediğinde dosya hiç
+    değişmiyor, test doğal olarak geçiyor ve bu da "sessiz geçti" gibi
+    görünüyordu. Araca `diff -q` ile **mutasyonun gerçekten uygulandığını**
+    doğrulatmak gerekti.
+
+- **Seçilen:** koşum aracı üç şeyi birden yapar — (1) `npm test`'in ÇIKIŞ
+  KODUNA bakar, çıktısını grep'lemez; (2) her turdan önce `diff -q` ile
+  mutasyonun uygulandığını doğrular, uygulanmadıysa `⚠ sed eşleşmedi` der;
+  (3) yedekten geri yükler. Düzeltilmiş araçla 10 mutasyonun 9'u yakalandı.
+
+- **Sonra çıkan asıl bulgu (semptomdan uzakta):** Geriye kalan tek sessiz
+  mutasyon `barDomain`'deki `Math.min(0, ...values)` → `Math.min(...values)`
+  idi. "Yanındaki üçlü işleç zaten sıfırı garantiliyor, demek ki eşdeğer
+  mutant" diye geçiştirmeye hazırdım. Elle hesaplayınca **öyle olmadığı**
+  ortaya çıktı: TEK gözlemli bir kümede `min === max` olur, `span === 0`
+  dalına düşülür ve alan `[-1, 1]`'e sabitlenir. Tek bir −27,3 değeri
+  x = **−1315**'e, yani tuvalin çok dışına ışınlanıyordu. Test bunu
+  kaçırmıştı çünkü `w > 0` diye bakıyordu ve bu felaket de `w > 0`
+  koşulunu sağlıyordu. Testi sınır denetimi ekleyerek güçlendirdim
+  (`x >= 0 && x + w <= BAR_W`, ayrıca tek gözlemde sıfırın kenarda olması).
+
+- **Kanıt:** Düzeltilmiş araçla ikinci tur: `M1 min(0,…) düştü ✓ YAKALANDI
+  (2 test düştü)`, `M1b max(0,…) ✓`, M2–M8 ✓ — 10/10 anlamlı mutasyon
+  yakalandı. Geriye kalan tek sessiz mutasyon `BAR_PAD 0,06 → 0,2`; bu
+  GERÇEKTEN eşdeğer mutant (saf estetik boşluk payı, ne sıfır tabanını ne
+  oranı bozar) ve keyfi bir estetik değeri sabitleyen sahte test yazmadım.
+
+- **Mimari seçim (reddedileni de çalışırdı):** Geometri neden `.mjs`?
+  `npm test` Node 20 script'i; tip sıyırma Node 22.6+ özelliği, yani
+  `src/lib/chart.ts` içe aktarılamıyor. Bu yüzden mevcut `plot()` bugüne dek
+  hiç birim testi görmedi — yalnızca sunucu ayaktayken `check:layout` ve
+  `check:palette --render` ile denetlendi. Çizgi için bu yeterliydi; çubuk
+  için DEĞİL: çubuğun iddiası (uzunluk = büyüklük) tamamen aritmetiktir,
+  kesilmiş bir taban çizgisi ekranda kusursuz görünür ve yalnızca oranları
+  bozar — hiçbir render kapısı bunu göremez. Elenen seçenekler: TS'i test
+  için derlemek (hatta bir build adımı daha), geometriyi `.mjs`'e kopyalamak
+  (iki kopya = test yayına gitmeyen kodu doğrular). Seçilen: tek dosya
+  `src/lib/chart-geom.mjs`, hem `chart.ts` hem `self-test.mjs` AYNI dosyayı
+  içe aktarır.
+
+- **Kural:** Aşağıdaki iki satır `LEARNINGS.md`'ye taşındı.
+
+---
+
 ## 2026-08-22 — "Krem zemin yasak" bir kural olarak vardı, kapı olarak yoktu
 
 - **Problem:** Gece paleti yalnızca `CLAUDE.md`'de ve `globals.css` yorumunda

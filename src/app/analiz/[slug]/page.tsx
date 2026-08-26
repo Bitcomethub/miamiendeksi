@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { TrendChart } from '@/components/TrendChart';
+import { BarChart } from '@/components/BarChart';
 import { abs, miamiliUrl } from '@/lib/site';
 import { formatDate, formatPeriod } from '@/lib/format';
 import { ARTICLES, articleBySlug } from '@/content/articles';
 import type { Article, Block } from '@/content/articles/types';
 import { getSnapshot, metric, seriesFor, publisherOf, type Snapshot } from '@/lib/snapshot';
+import { comparableChanges } from '@/lib/chart';
 import { graph, webPageSchema, articleSchema, breadcrumbSchema, faqSchema } from '@/lib/schema';
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -104,6 +106,50 @@ function BlockView({ block, snap }: { block: Block; snap: Snapshot }) {
           label={m.label}
           accent={block.accent ?? 'cyan'}
           source={`${publisherOf(snap, m.publisher)?.name ?? ''} · ${m.dataset}`}
+        />
+      );
+    }
+
+    case 'bars': {
+      const compare = block.compare ?? 'yoy';
+
+      // Bilinmeyen id sessizce atlanır (yazı eski bir metriğe atıfta
+      // bulunuyor olabilir); AMA aşağıdaki iki eşik yüzünden grafik ya
+      // dürüst çizilir ya hiç çizilmez.
+      const entries = block.metricIds.flatMap((id) => {
+        const m = metric(snap, id);
+        if (!m) return [];
+        return [{ id: m.id, label: m.label, change: compare === 'yoy' ? m.yoy : m.mom }];
+      });
+
+      // `pp` satırları HİÇ seçilmez — puan farkı ile yüzde değişim aynı
+      // eksene konamaz (bkz. chart-geom.mjs → comparableChanges).
+      const items = comparableChanges(entries, 'pct').flatMap((e) =>
+        e.change ? [{ id: e.id, label: e.label, value: e.change.value }] : [],
+      );
+
+      // Eşik BURADA TEKRARLANMAZ: `BarChart` yetersiz satırda kendi `null`'ını
+      // döner (bkz. chart-geom.mjs → MIN_BARS). Buraya ikinci bir kopya koymak,
+      // biri güncellenip diğeri unutulduğunda ikisinin ayrışması demekti.
+
+      const kaynaklar = [
+        ...new Set(
+          items.flatMap((i) => {
+            const m = metric(snap, i.id);
+            return m ? [publisherOf(snap, m.publisher)?.name ?? ''] : [];
+          }),
+        ),
+      ].filter(Boolean);
+
+      return (
+        <BarChart
+          items={items}
+          kind="pct"
+          label={compare === 'yoy' ? 'Yıllık değişim' : 'Aylık değişim'}
+          compareLabel={
+            compare === 'yoy' ? 'geçen yılın aynı ayına' : 'önceki aya'
+          }
+          source={kaynaklar.join(' · ')}
         />
       );
     }

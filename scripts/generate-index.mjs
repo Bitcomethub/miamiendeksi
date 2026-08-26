@@ -27,6 +27,7 @@ import { fileURLToPath } from 'node:url';
 
 import { hasFlag, readPeriodOrExit } from './lib/args.mjs';
 import { verifyNumbers, verifyLanguage } from './lib/guard.mjs';
+import { MIN_BARS } from '../src/lib/chart-geom.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -172,10 +173,16 @@ ${facts}
   ilk paragrafta tam sayılarla cevapla. AI arama motorları alıntıyı
   buradan alacak, tek başına okunduğunda anlamlı olmalı.
 - blocks: 6-10 blok. "h2" (ara başlık), "p" (paragraf), "list" (madde
-  listesi), "chart" (FACTS'teki bir id ile grafik), "caveat" (metodolojik
-  çekince) tiplerini karışık kullan. En az 1 chart ve en az 1 caveat
-  bulunsun. chart bloğunun metricId'si FACTS'teki bir id ile BİREBİR aynı
-  olmalı.
+  listesi), "chart" (FACTS'teki bir id ile çizgi grafiği), "bars" (birden
+  çok göstergenin değişimini yan yana koyan karşılaştırma çubuğu),
+  "caveat" (metodolojik çekince) tiplerini karışık kullan. En az 1 chart
+  ve en az 1 caveat bulunsun. chart bloğunun metricId'si FACTS'teki bir id
+  ile BİREBİR aynı olmalı.
+  "bars" bloğu: metricIds alanına FACTS'ten EN AZ 3 id yaz, hepsi yazının
+  konusuyla ilgili olsun. Bu bloğa SAYI YAZMAZSIN — değerler veriden
+  okunur. DİKKAT: yüzde PUANI ile ölçülen göstergeler (yıllık/aylık
+  değişimi "puan" olan satırlar, ör. faiz ve oran metrikleri) bu bloğa
+  ALINMAZ, çizilmezler; en az 3 id'nin yüzde değişimli olması gerekir.
 - faqs: 4-6 soru-cevap. Sorular Türk yatırımcının gerçekten arattığı
   biçimde ("Miami'de konut fiyatları düşüyor mu?"). Cevaplar 2-4 cümle.
 - keywords: 4-6 Türkçe arama terimi.
@@ -212,10 +219,12 @@ const SCHEMA = {
         additionalProperties: false,
         required: ['type'],
         properties: {
-          type: { type: 'string', enum: ['h2', 'p', 'list', 'chart', 'caveat'] },
+          type: { type: 'string', enum: ['h2', 'p', 'list', 'chart', 'bars', 'caveat'] },
           text: { type: 'string' },
           items: { type: 'array', items: { type: 'string' } },
           metricId: { type: 'string' },
+          metricIds: { type: 'array', items: { type: 'string' } },
+          compare: { type: 'string', enum: ['yoy', 'mom'] },
           accent: { type: 'string', enum: ['cyan', 'magenta'] },
         },
       },
@@ -288,6 +297,16 @@ async function callModel(facts, feedback) {
 function mockDraft(snap) {
   const pick = snap.metrics.slice(0, 4);
   const [m, b, c, d] = [pick[0], pick[1] ?? pick[0], pick[2] ?? pick[0], pick[3] ?? pick[0]];
+
+  // `bars` bloğu için YÜZDE DEĞİŞİMLİ göstergeler — sabit bir id listesi
+  // yazmıyorum, çünkü o liste bir gün veriyle uyuşmaz hâle gelir ve
+  // `index:dry` kapıyı gerçekten sınamadan yeşil kalır (bu dosyanın taklit
+  // gerekçesiyle aynı sebep). `pp` ölçülenler burada da kendiliğinden
+  // dışarıda kalır — kapının eleme dalı böylece gerçekten koşulur.
+  const karsilastirilabilir = snap.metrics
+    .filter((x) => !x.national && x.yoy && x.yoy.kind === 'pct')
+    .slice(0, 4)
+    .map((x) => x.id);
   const say = (x) => `${x.label.toLowerCase()} ${fmtValue(x.value, x.unit)}`;
 
   return {
@@ -310,6 +329,9 @@ function mockDraft(snap) {
       { type: 'h2', text: 'Bu ayın gözlemi' },
       { type: 'p', text: `${m.label}: ${fmtValue(m.value, m.unit)} (${fmtMonth(m.asOf)}).` },
       { type: 'chart', metricId: m.id, accent: 'cyan' },
+      ...(karsilastirilabilir.length >= 2
+        ? [{ type: 'bars', metricIds: karsilastirilabilir, compare: 'yoy' }]
+        : []),
       { type: 'h2', text: 'Diğer göstergeler' },
       { type: 'list', items: [say(b), say(c), say(d)] },
       { type: 'p', text: `${b.label} verisi ${b.dataset} veri setinden geliyor.` },
@@ -359,6 +381,28 @@ function checkStructure(d, snap, existingSlugs) {
       // Var olmayan bir metrik id'si, sayfada SESSİZCE grafiksiz bir boşluk
       // bırakır — kapıdan geçmesine izin verilmez.
       if (!ids.has(b.metricId)) problems.push(`bilinmeyen chart metricId: "${b.metricId}"`);
+    } else if (b.type === 'bars') {
+      const list = Array.isArray(b.metricIds) ? b.metricIds : [];
+      if (list.length < MIN_BARS) {
+        problems.push(`bars bloğu en az ${MIN_BARS} metricId ister (${list.length} geldi)`);
+      }
+      for (const id of list) {
+        if (!ids.has(id)) problems.push(`bilinmeyen bars metricId: "${id}"`);
+      }
+      // Şema id'lerin VARLIĞINI doğrular, ÇİZİLEBİLİRLİĞİNİ değil: `pp`
+      // ölçülen satırlar aynı eksene giremediği için elenir ve blok 2'nin
+      // altına düşerse sayfada hiç görünmez. Sessiz kayıp = kırmızı kapı.
+      const alan = b.compare === 'mom' ? 'mom' : 'yoy';
+      const cizilebilir = list.filter((id) => {
+        const m = snap.metrics.find((x) => x.id === id);
+        return m && m[alan] && m[alan].kind === 'pct';
+      });
+      if (list.length >= MIN_BARS && cizilebilir.length < MIN_BARS) {
+        problems.push(
+          `bars bloğu ${alan} için yalnızca ${cizilebilir.length} karşılaştırılabilir ` +
+            `gösterge bırakıyor (yüzde PUANI ölçülenler çizilemez)`,
+        );
+      }
     } else if (b.type === 'list') {
       if (!Array.isArray(b.items) || b.items.length === 0) problems.push('boş list bloğu');
     } else if (!b.text || b.text.trim().length === 0) {

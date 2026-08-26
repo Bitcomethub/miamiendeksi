@@ -66,6 +66,7 @@ yeniden üretir. Commit'lenirse bayatlar.
 | `src/content/articles/articles.json` | Yazılar — hat append eder |
 | `src/lib/site.ts` | Site sabitleri + `miamiliUrl()` (UTM disiplini) |
 | `src/lib/format.ts` | **Sayı/tarih biçimlendirmenin tek yolu.** JSX'te elle `toFixed()` yazma — ondalık ayırıcı sayfadan sayfaya kayar. |
+| `src/lib/chart-geom.mjs` | **Çubuk geometrisi — düz ESM, çünkü `npm test` TS çalıştıramaz (Node 20).** Sıfır taban çizgisi, oran, `pp`/`pct` ayrımı ve `MIN_BARS` eşiği burada; hepsi birim testli. Kopyalama, içe aktar. |
 | `src/lib/schema.ts` | JSON-LD |
 | `src/app/globals.css` `@theme` | Renk ve tipografi jetonları |
 
@@ -96,13 +97,30 @@ sütun gözle taranamaz.
 **Renk = YÖN kodlar, yargı değil.** Düşen fiyat alıcı için iyi, satıcı için kötüdür;
 metodoloji sayfasında böyle yazılı. `up`/`down` iyi/kötü demek DEĞİL.
 
+**İki grafik biçimi, iki TERS taban çizgisi kuralı — ikisi de bilinçli:**
+`TrendChart` (çizgi) sıfırdan **başlamaz** — değeri konum kodlar, sıfır tabanlı
+eksen ZHVI'yi bir şeride sıkıştırır. `BarChart` (ıraksayan çubuk) sıfırdan
+**başlar** — değeri uzunluk kodlar, kaydırılmış taban oranı bozar ve grafik
+ekranda kusursuz görünürken yalan söyler. Aynı dosyada iki zıt kural; birini
+diğerine benzetme.
+
+**Bir grafiğin yanındaki CÜMLE de bir veri iddiasıdır.** `describeSeries` ve
+`describeBars` koddan hesaplanır, model yazmaz. Üstünlük sıfatı değerin
+İŞARETİNE bakar, dizideki konumuna değil: hepsi negatif bir kümede en büyük
+değer "en çok artan" değil **"en az gerileyen"**dir.
+
+**`pp` ile `pct` aynı eksene giremez.** Yüzde PUANI farkı ile yüzde değişim
+farklı birimlerdir; karışık birim satırı **elenmez, hiç seçilmez**
+(`comparableChanges`). Karşılaştırma grafiğine ayrıca `national` gösterge de
+girmez — mortgage faizi Miami'yi ölçmez.
+
 **Glow yalnızca 24 px üstü display metinde.** Küçük puntoda `text-shadow` kenar
 yumuşamasıyla birleşip algılanan kontrastı düşürür.
 
 ## Doğrulama kapıları (hepsi commit'ten önce)
 
 ```bash
-npm test                      # 56 test — hat, kapı, biçimlendirme, şema, palet
+npm test                      # 71 test — hat, kapı, biçimlendirme, şema, palet, grafik geometrisi
 npm run index:dry             # ağsız/anahtarsız hat provası (mock model)
 npm run build                 # 12 statik sayfa
 npm run check:a11y -- --tokens   # jeton kontrastı (saniyeler, tarayıcısız)

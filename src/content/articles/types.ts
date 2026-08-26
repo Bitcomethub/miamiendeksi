@@ -12,6 +12,14 @@ export type Block =
   | { type: 'list'; items: string[] }
   /** Yazının içine gömülen grafik — metrik id'siyle anlık görüntüden çekilir. */
   | { type: 'chart'; metricId: string; accent?: 'cyan' | 'magenta' }
+  /**
+   * Karşılaştırma çubuğu — birden çok göstergenin AYNI ölçüsü yan yana.
+   *
+   * Blokta SAYI YOKTUR, yalnızca metrik id'leri: değerler render anında
+   * anlık görüntüden okunur. Böylece yazının çubuğu ile endeks sayfasının
+   * çubuğu aynı veriden gelir ve ayrışamaz — `chart` bloğuyla aynı gerekçe.
+   */
+  | { type: 'bars'; metricIds: string[]; compare?: 'yoy' | 'mom' }
   /** Uyarı/çekince kutusu — metodolojik sınırlar burada yazılır. */
   | { type: 'caveat'; text: string };
 

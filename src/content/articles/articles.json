@@ -26,6 +26,18 @@
         "text": "Üç rakamın SEVİYESİ birbirini tutmuyor — 51.021, 41.524 ve 15.373 aynı ayın aynı şehri için çok farklı sayılar. Bunun nedeni ölçüm hatası değil, tanım farkı: her kurum “satılık konut” tanımını kendi veri tabanına göre kuruyor. Kimi yalnızca kendi listeleme ağındaki ilanları, kimi belirli mülk tiplerini sayıyor. Bu yüzden bu üç sayı BİRBİRİYLE karşılaştırılmaz; her biri yalnızca kendi geçmişiyle karşılaştırılır. Anlamlı olan da tam olarak bu: üçü de kendi tarihsel serisine göre çift haneli daralma gösteriyor."
       },
       {
+        "type": "bars",
+        "metricIds": [
+          "zillow-inventory",
+          "redfin-inventory",
+          "active-listings",
+          "zillow-new-listings",
+          "new-listing-count",
+          "price-reduced-count"
+        ],
+        "compare": "yoy"
+      },
+      {
         "type": "chart",
         "metricId": "zillow-inventory"
       },
@@ -118,6 +130,18 @@
       {
         "type": "p",
         "text": "İki endeks arasındaki SEVİYE farkı beklenen bir şey — kondolar tipik olarak müstakil konutlardan ucuz ve genel endeks her iki tipi birden içeriyor. Dikkat çeken, seviye farkı değil, YÖN farkının büyüklüğü: aynı metro alanında, aynı ayda, aynı kurumun aynı yöntemle hesapladığı iki endeks belirgin biçimde farklı yıllık değişim gösteriyor."
+      },
+      {
+        "type": "bars",
+        "metricIds": [
+          "zhvi-condo",
+          "zhvi-all",
+          "redfin-condo-sale",
+          "redfin-all-sale",
+          "redfin-condo-sold",
+          "zillow-median-sale"
+        ],
+        "compare": "yoy"
       },
       {
         "type": "h2",
@@ -221,6 +245,17 @@
       {
         "type": "p",
         "text": "Kira endeksi Haziran 2026’da 2.695 dolar; aylık değişim %0,05, yıllık %1,15. Yani kira tarafı yatay denebilecek bir seyirde. Değer tarafı ise yıllık %2,23 aşağıda. Brüt getiri oranının bileşenlerinden biri hafif yukarı, diğeri aşağı hareket ettiği için oranın kendisi mekanik olarak yukarı taşınır — bu, kiraların hızla artmasından değil, paydanın gerilemesinden kaynaklanan bir etkidir ve göstergeyi okurken ayrıştırılması gerekir."
+      },
+      {
+        "type": "bars",
+        "metricIds": [
+          "zori",
+          "zhvi-all",
+          "zhvi-condo",
+          "median-list-price",
+          "list-price-sqft"
+        ],
+        "compare": "yoy"
       },
       {
         "type": "h2",

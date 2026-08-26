@@ -34,6 +34,15 @@ import {
   scanText,
   scanTree,
 } from './lib/palette.mjs';
+import {
+  barPlot,
+  barDomain,
+  comparableChanges,
+  superlative,
+  BAR_W,
+  BAR_PAD,
+  MIN_BARS,
+} from '../src/lib/chart-geom.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -315,6 +324,28 @@ check('yayındaki yazılar veri setine karşı doğrulanır', () => {
           `${a.slug}: bilinmeyen metrik "${b.metricId}"`,
         );
       }
+      // `bars` bloğu birden çok id taşır. Her biri var olmalı ve blok
+      // ÇİZİLEBİLİR olmalı: `pp` elemesinden sonra 2'nin altına düşen bir
+      // blok sayfada sessizce kaybolur — yazıda ona atıf varsa okuyucu
+      // olmayan bir grafiğe gönderilir.
+      if (b.type === 'bars') {
+        ok(Array.isArray(b.metricIds), `${a.slug}: bars bloğunda metricIds dizisi yok`);
+        for (const id of b.metricIds) {
+          ok(
+            snap.metrics.some((m) => m.id === id),
+            `${a.slug}: bars bloğunda bilinmeyen metrik "${id}"`,
+          );
+        }
+        const alan = b.compare === 'mom' ? 'mom' : 'yoy';
+        const cizilebilir = b.metricIds
+          .map((id) => snap.metrics.find((m) => m.id === id))
+          .filter((m) => m && m[alan] && m[alan].kind === 'pct');
+        ok(
+          cizilebilir.length >= MIN_BARS,
+          `${a.slug}: bars bloğu ${alan} için yalnızca ${cizilebilir.length} karşılaştırılabilir ` +
+            `gösterge bırakıyor (en az ${MIN_BARS} gerekir) — blok sayfada hiç çizilmez`,
+        );
+      }
     }
     for (const f of a.faqs) parts.push(f.q, f.a);
 
@@ -509,6 +540,224 @@ check('gerçek kaynak: src/ ağacında krem/bej/beyaz yok', () => {
     [],
     'gerçek kaynakta ihlal: ',
   );
+});
+
+
+// ── 11. Çubuk grafik geometrisi ──────────────────────────────────────────
+// Çubuğun iddiası ARİTMETİKTİR: uzunluk = büyüklük. Kesilmiş bir taban
+// çizgisi ekranda kusursuz görünür ve yalnızca ORANLARI bozar — yani
+// `check:layout` de `check:palette --render` de onu göremez. Bu yüzden
+// geometri burada, sunucusuz ve deterministik olarak sınanır.
+//
+// Kapı yine İKİ YÖNLÜ: yanlış oranı yakalamalı, meşru veriyi geçirmeli.
+
+const EPS = 1e-9;
+
+check('çubuk: boş girdi çizmez ama patlamaz', () => {
+  for (const empty of [[], null, undefined]) {
+    const g = barPlot(empty);
+    eq(g.rows, [], `${JSON.stringify(empty)} için: `);
+    ok(Number.isFinite(g.zero), 'zero sayı olmalı');
+    ok(Number.isFinite(g.lo) && Number.isFinite(g.hi), 'alan sınırları sayı olmalı');
+  }
+});
+
+check('çubuk: tüm değerler sıfırken NaN üretmez', () => {
+  const g = barPlot([
+    { id: 'a', label: 'A', value: 0 },
+    { id: 'b', label: 'B', value: 0 },
+  ]);
+  for (const r of g.rows) {
+    ok(Number.isFinite(r.x), `${r.id}: x NaN`);
+    ok(Number.isFinite(r.w), `${r.id}: w NaN`);
+    eq(r.w, 0, `${r.id}: sıfır değer sıfır genişlik olmalı — `);
+    eq(r.dir, 'flat', `${r.id}: yön `);
+  }
+});
+
+// Tek gözlem, geometrinin en kırılgan hâli: `barDomain` uçları sıfıra
+// KARŞI almazsa min ile max eşitlenir, "hepsi sıfır" dalına düşülür ve tek
+// çubuk alanın çok dışına ışınlanır (ölçüldü: −27,3 için x = −1315).
+// Bu yüzden burada `w > 0` YETMEZ — sınır denetimi şart.
+check('çubuk: tek gözlem alanın içinde çizilir', () => {
+  for (const value of [-27.3, 0.06, 18.4]) {
+    const g = barPlot([{ id: 'a', label: 'A', value }]);
+    eq(g.rows.length, 1, `${value} için satır sayısı: `);
+    const r = g.rows[0];
+    ok(r.w > 0, `${value}: tek çubuk sıfır genişlikte kalmamalı`);
+    ok(Number.isFinite(g.zero), `${value}: zero sayı olmalı`);
+    ok(r.x >= -EPS, `${value}: sol kenardan taştı (x=${r.x})`);
+    ok(r.x + r.w <= BAR_W + EPS, `${value}: sağ kenardan taştı (sağ=${r.x + r.w})`);
+    // Tek gözlemde sıfır DAİMA bir kenardadır: pozitifse solda, negatifse sağda.
+    const kenar = value > 0 ? 0 : BAR_W;
+    ok(Math.abs(g.zero - kenar) < EPS, `${value}: zero ${g.zero}, ${kenar} olmalı`);
+  }
+});
+
+// Payın HANGİ YÖNE eklendiğini sabitler. Bu test olmasaydı hem `Math.min(0,…)`
+// hem de yanındaki üçlü işleç aynı değişmezi savunduğu için ikisinden birini
+// silmek hiçbir testi düşürmezdi — yani biri ölü kod sanılıp atılabilirdi.
+check('çubuk alanı: pay yalnızca veri yönüne eklenir, sıfır kenarda kalır', () => {
+  // Hepsi negatif: üst sınır TAM sıfır. Aralık sıfıra karşı ölçülür
+  // (0 − (−9) = 9), veri uçları arasında değil (−3 − (−9) = 6).
+  const neg = barDomain([-3, -9]);
+  eq(neg.hi, 0, 'negatif kümede üst sınır tam sıfır olmalı: ');
+  ok(
+    Math.abs(neg.lo - (-9 - 9 * BAR_PAD)) < 1e-9,
+    `alt sınır ${neg.lo}, ${-9 - 9 * BAR_PAD} olmalı`,
+  );
+
+  // Hepsi pozitif: alt sınır TAM sıfır, aralık yine sıfıra karşı (9 − 0 = 9).
+  const poz = barDomain([3, 9]);
+  eq(poz.lo, 0, 'pozitif kümede alt sınır tam sıfır olmalı: ');
+  ok(
+    Math.abs(poz.hi - (9 + 9 * BAR_PAD)) < 1e-9,
+    `üst sınır ${poz.hi}, ${9 + 9 * BAR_PAD} olmalı`,
+  );
+});
+
+// ASIL TEST: uzunluk büyüklükle ORANTILI olmalı. Taban sıfırdan kaydığı an
+// bu oran bozulur — grafiğin tek yalan söyleme biçimi budur.
+check('çubuk: uzunluk büyüklükle orantılıdır (taban sıfırda)', () => {
+  const g = barPlot([
+    { id: 'a', label: 'A', value: 10 },
+    { id: 'b', label: 'B', value: 20 },
+    { id: 'c', label: 'C', value: -5 },
+  ]);
+  const w = Object.fromEntries(g.rows.map((r) => [r.id, r.w]));
+  ok(Math.abs(w.b / w.a - 2) < 1e-9, `iki katı değer iki katı uzunluk olmalı, oran ${w.b / w.a}`);
+  ok(Math.abs(w.a / w.c - 2) < 1e-9, `|10| / |−5| = 2 olmalı, oran ${w.a / w.c}`);
+});
+
+check('çubuk: her çubuk taban çizgisine DEĞER', () => {
+  const g = barPlot([
+    { id: 'a', label: 'A', value: 18.4 },
+    { id: 'b', label: 'B', value: -27.3 },
+    { id: 'c', label: 'C', value: 0 },
+  ]);
+  for (const r of g.rows) {
+    const baslangic = Math.abs(r.x - g.zero) < EPS;
+    const bitis = Math.abs(r.x + r.w - g.zero) < EPS;
+    ok(baslangic || bitis, `${r.id}: çubuk sıfırdan başlamıyor (x=${r.x}, w=${r.w}, zero=${g.zero})`);
+  }
+});
+
+check('çubuk: yön işareti değerin işaretidir', () => {
+  const g = barPlot([
+    { id: 'p', label: 'P', value: 1.2 },
+    { id: 'n', label: 'N', value: -1.2 },
+    { id: 'z', label: 'Z', value: 0 },
+  ]);
+  eq(g.rows.map((r) => r.dir), ['up', 'down', 'flat']);
+});
+
+check('çubuk: hepsi pozitifse sıfır sol kenarda, hepsi negatifse sağ kenarda', () => {
+  const poz = barPlot([
+    { id: 'a', label: 'A', value: 3 },
+    { id: 'b', label: 'B', value: 9 },
+  ]);
+  ok(Math.abs(poz.zero - 0) < EPS, `hepsi pozitif: zero ${poz.zero}, 0 olmalı`);
+
+  const neg = barPlot([
+    { id: 'a', label: 'A', value: -3 },
+    { id: 'b', label: 'B', value: -9 },
+  ]);
+  ok(Math.abs(neg.zero - BAR_W) < EPS, `hepsi negatif: zero ${neg.zero}, ${BAR_W} olmalı`);
+});
+
+check('çubuk: çubuklar alanın dışına taşmaz', () => {
+  const g = barPlot([
+    { id: 'a', label: 'A', value: 41.7 },
+    { id: 'b', label: 'B', value: -38.2 },
+  ]);
+  for (const r of g.rows) {
+    ok(r.x >= -EPS, `${r.id}: sol kenardan taştı (x=${r.x})`);
+    ok(r.x + r.w <= BAR_W + EPS, `${r.id}: sağ kenardan taştı (sağ=${r.x + r.w})`);
+  }
+});
+
+check('çubuk alanı: sıfır her zaman sınırların içindedir', () => {
+  const kumeler = [[5, 9], [-5, -9], [-4, 7], [0, 0], [0.06], [-27.3]];
+  for (const values of kumeler) {
+    const { lo, hi } = barDomain(values);
+    ok(lo <= 0 && hi >= 0, `${JSON.stringify(values)} → [${lo}, ${hi}] sıfırı içermiyor`);
+    ok(hi > lo, `${JSON.stringify(values)} → alan sıfır genişlikte`);
+  }
+});
+
+// pp (yüzde PUANI) ile pct (yüzde) aynı eksene KONAMAZ. Bu kapı olmasaydı
+// mortgage faizinin +0,06 PUANLIK farkı, stokun %−20,36'sıyla aynı birimmiş
+// gibi yan yana çizilirdi.
+check('çubuk: pp ile pct aynı eksene giremez', () => {
+  const entries = [
+    { id: 'zhvi-all', change: { value: -2.23, kind: 'pct' } },
+    { id: 'mortgage-30y', change: { value: 0.06, kind: 'pp' } },
+    { id: 'zillow-price-cut', change: { value: -3.74, kind: 'pp' } },
+    { id: 'zori', change: { value: 1.15, kind: 'pct' } },
+    { id: 'yok', change: null },
+  ];
+  eq(comparableChanges(entries, 'pct').map((e) => e.id), ['zhvi-all', 'zori']);
+  eq(comparableChanges(entries, 'pp').map((e) => e.id), ['mortgage-30y', 'zillow-price-cut']);
+});
+
+check('çubuk: sayı olmayan değişim seçilmez', () => {
+  const entries = [
+    { id: 'iyi', change: { value: -1.5, kind: 'pct' } },
+    { id: 'nan', change: { value: NaN, kind: 'pct' } },
+    { id: 'inf', change: { value: Infinity, kind: 'pct' } },
+  ];
+  eq(comparableChanges(entries, 'pct').map((e) => e.id), ['iyi']);
+});
+
+// Grafiğin yanındaki CÜMLE de bir veri iddiasıdır. Hepsi negatif bir kümede
+// en büyük değere "en çok artan" demek, artmayan bir göstergeyi artmış gibi
+// yazar — bir kez oldu: −%2,88 "en çok artan" olarak yayımlandı.
+check('çubuk özeti: sıfat değerin İŞARETİNE bakar, sıradaki yerine değil', () => {
+  // Hepsi negatif: en büyük değer artmış değil, EN AZ gerilemiştir.
+  eq(superlative(-27.3, 'low'), 'en çok gerileyen');
+  eq(superlative(-2.88, 'high'), 'en az gerileyen');
+
+  // Hepsi pozitif: en küçük değer gerilemiş değil, EN AZ artmıştır.
+  eq(superlative(0.35, 'low'), 'en az artan');
+  eq(superlative(18.4, 'high'), 'en çok artan');
+
+  // Karışık işaret: iki uç da kendi yönünü alır.
+  eq(superlative(-13.2, 'low'), 'en çok gerileyen');
+  eq(superlative(1.15, 'high'), 'en çok artan');
+
+  // Sıfır hiçbir yöne yazılmaz.
+  eq(superlative(0, 'low'), 'değişmeyen');
+  eq(superlative(0, 'high'), 'değişmeyen');
+});
+
+check('çubuk: MIN_BARS eşiği tek kaynakta ve anlamlı', () => {
+  ok(MIN_BARS >= 2, `MIN_BARS ${MIN_BARS} — tek çubuk karşılaştırma değildir`);
+});
+
+// Yayındaki gerçek veriyle: endeks sayfasındaki karşılaştırma grafiği
+// gerçekten çizilebiliyor mu, ve içine pp sızıyor mu?
+check('çubuk: yayındaki anlık görüntü karşılaştırılabilir çubuk üretir', () => {
+  const pointer = JSON.parse(readFileSync(path.join(ROOT, 'src/content/index/latest.json'), 'utf8'));
+  const snap = JSON.parse(
+    readFileSync(path.join(ROOT, `src/content/index/${pointer.period}.json`), 'utf8'),
+  );
+
+  const entries = snap.metrics
+    .filter((m) => !m.national)
+    .map((m) => ({ id: m.id, label: m.short ?? m.label, change: m.yoy }));
+  const secilen = comparableChanges(entries, 'pct');
+
+  ok(secilen.length >= 2, `karşılaştırma için en az 2 metrik gerekir, ${secilen.length} bulundu`);
+  for (const e of secilen) {
+    ok(e.change.kind === 'pct', `${e.id}: pct olmayan değişim seçildi (${e.change.kind})`);
+  }
+
+  const g = barPlot(secilen.map((e) => ({ id: e.id, label: e.label, value: e.change.value })));
+  eq(g.rows.length, secilen.length, 'satır sayısı: ');
+  for (const r of g.rows) {
+    ok(Number.isFinite(r.x) && Number.isFinite(r.w), `${r.id}: geometri NaN`);
+    ok(r.x >= -EPS && r.x + r.w <= BAR_W + EPS, `${r.id}: alan dışına taştı`);
+  }
 });
 
 

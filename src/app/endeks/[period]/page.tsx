@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { MetricCard, DerivedCard } from '@/components/Metric';
 import { MetricTable } from '@/components/MetricTable';
 import { TrendChart } from '@/components/TrendChart';
+import { BarChart } from '@/components/BarChart';
 import { abs, miamiliUrl } from '@/lib/site';
 import { formatPeriod, formatDate, formatValue } from '@/lib/format';
 import {
@@ -14,6 +15,7 @@ import {
   publisherOf,
   type Snapshot,
 } from '@/lib/snapshot';
+import { comparableChanges, canDrawBars } from '@/lib/chart';
 import { graph, webPageSchema, datasetSchema, breadcrumbSchema } from '@/lib/schema';
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -77,6 +79,26 @@ export default async function IndexPeriodPage({ params }: PageProps<'/endeks/[pe
   const zori = metric(snap, 'zori');
   const zhviSeries = seriesFor(snap, 'zhvi-all');
   const zoriSeries = seriesFor(snap, 'zori');
+
+  // Yıllık değişim karşılaştırması — iki eleme de veri dürüstlüğü için:
+  //
+  //  1. `!m.national` — mortgage faizi ABD genelidir. Miami metro
+  //     göstergeleriyle aynı sıralamaya koymak, okuyucuya bu sayının da
+  //     bölgeyi ölçtüğünü söyler. Ölçmüyor.
+  //  2. `comparableChanges(..., 'pct')` — `pp` (yüzde PUANI) satırları HİÇ
+  //     seçilmez. `zillow-price-cut` yıllık farkı −3,74 PUANDIR; onu
+  //     stokun %−13,20'siyle aynı eksene koymak iki farklı birimi tek
+  //     çubuk ailesi gibi gösterirdi. Kapı `chart-geom.mjs`'te ve testli.
+  //
+  // Elenen gösterge yok sayılmaz: ikisi de "Tüm göstergeler" tablosunda
+  // kendi birimiyle durur.
+  const yoyEntries = snap.metrics
+    .filter((m) => !m.national)
+    .map((m) => ({ id: m.id, label: m.label, change: m.yoy }));
+
+  const yoyItems = comparableChanges(yoyEntries, 'pct').flatMap((e) =>
+    e.change ? [{ id: e.id, label: e.label, value: e.change.value }] : [],
+  );
 
   const periods = listPeriods();
   const idx = periods.indexOf(period);
@@ -223,6 +245,38 @@ export default async function IndexPeriodPage({ params }: PageProps<'/endeks/[pe
               label={zori.label}
               accent="magenta"
               source={`${publisherOf(snap, zori.publisher)?.name ?? ''} · ${zori.dataset}`}
+            />
+          </section>
+        ) : null}
+
+        {canDrawBars(yoyItems) ? (
+          <section className="mt-band" aria-labelledby="yillik-degisim">
+            <h2
+              id="yillik-degisim"
+              className="font-display text-h2 font-semibold tracking-tight text-ice"
+            >
+              Yıllık değişim, gösterge bazında
+            </h2>
+            <hr className="neon-rule mt-3" />
+            <p className="prose-me mt-4 text-small text-mute">
+              Aşağıdaki {yoyItems.length} gösterge, bir yıl önceki aynı gözlemle
+              karşılaştırılmıştır. Çubuğun uzunluğu değişimin büyüklüğüdür ve
+              taban çizgisi sıfırdadır — iki katı uzun çubuk iki katı değişim
+              demektir. Karşılaştırılan şey her satırda YÜZDE DEĞİŞİMDİR,
+              seviyeler değil: fiyat, adet ve gün ölçen göstergeler bu yüzden
+              yan yana durabilir.
+            </p>
+            <p className="mt-3 font-mono text-[0.75rem] leading-relaxed text-dim">
+              Yüzde PUANI ile ölçülen göstergeler (fiyat indirimi oranı,
+              mortgage faizi) bu grafiğe alınmaz — puan farkı ile yüzde değişim
+              aynı birim değildir. Onlar tabloda kendi birimleriyle durur.
+            </p>
+            <BarChart
+              items={yoyItems}
+              kind="pct"
+              label="Yıllık değişim"
+              compareLabel="geçen yılın aynı ayına"
+              source={snap.publishers.map((p) => p.name).join(' · ')}
             />
           </section>
         ) : null}
