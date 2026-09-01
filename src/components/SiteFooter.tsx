@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE, PUBLISHER, miamiliUrl } from '@/lib/site';
+import { SITE, PUBLISHER, KARDES_SITELER, miamiliUrl } from '@/lib/site';
 import { formatDate } from '@/lib/format';
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -113,6 +113,35 @@ export function SiteFooter({
             </p>
           </div>
         </div>
+
+        {/* ── İlgili siteler — kardeş yayın ağı ──────────────────────────
+            Dört site karşılıklı linkli; liste ve atıf parametreleri
+            `lib/site.ts` → `KARDES_SITELER`'den gelir (elle URL YAZMA,
+            utm sessizce düşer). `rel="nofollow"` YOK: bağ gerçek. */}
+        <section aria-labelledby="footer-ag" className="mt-10 border-t border-edge pt-6">
+          <h2
+            id="footer-ag"
+            className="font-mono text-[0.6875rem] tracking-wider text-dim uppercase"
+          >
+            İlgili siteler
+          </h2>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-3">
+            {KARDES_SITELER.map((site) => (
+              <li key={site.alan}>
+                <a
+                  href={site.href}
+                  rel="noopener"
+                  className="group block border border-edge px-4 py-3 no-underline transition-colors hover:border-cyan/60 hover:bg-panel-2/60"
+                >
+                  <span className="block text-small font-medium text-ice">{site.ad}</span>
+                  <span className="mt-0.5 block font-mono text-[0.6875rem] text-dim transition-colors group-hover:text-cyan">
+                    {site.alan}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <hr className="neon-rule mt-10" />
 
