@@ -6,6 +6,13 @@
 > OKUNMAZ — yalnızca buradaki bir başlığa benzeyen bir semptom aktif olarak
 > ayıklanırken açılır.
 
+
+## 2026-09-03 — "Logo" istenen model sahne çizdi; sonra 1 ikon ölçülmüş sarma eşiğini itti
+
+- **Problem:** Marka işareti üretimi + başlığa yerleştirme. İki ayrı tuzak çıktı.
+- **Elenen:** Prompt'u sıkılaştırmak → Recraft V3 negative prompt'u HİÇ onurlandırmıyor, iki tur boyunca editoryal sahne çizdi (grafiğin yanında duran adam); alt stiller (`cutout`/`roundish_flat`) durumu KÖTÜLEŞTİRDİ, çünkü stil ailesi illüstrasyon üzerine eğitilmiş. · `recraft/vectorize` ile SVG almak → alfayı DÜZLEŞTİRİYOR, işareti "dolu dikdörtgen + oyan yollar" olarak kuruyor; zemin yollarını silmek dolu bloğa düşürür. · Başlıkta boşlukları (`gap-2.5`, menü `gap-1`) kısmak → 8px kazandırıp eşiği geri alıyor AMA o değerler bu başlıkta ölçülerek verilmiş, yan etki olarak değiştirilemez.
+- **KURAL:** (1) Üretken modelde "logo/ikon" istiyorsan model AİLESİNİ değiştir, prompt'u değil: `ideogram/v3` + `style: DESIGN` + `negative_prompt` + `color_palette`, ve **`expand_prompt: false`** (açıksa MagicPrompt manzarayı geri getirir). Yeteneği şema enum'undan doğrula, hafızadan değil. (2) Raster→SVG'de şeffaflık korundu SANMA; alfayı kaynak alan yerel `potrace` kullan. (3) Ölçülmüş boşluk bütçesi olan başlığa görsel eklerken eşiği YENİDEN ölç (sarmayı `header` YÜKSEKLİĞİNDEN tespit et — `nav.top` karşılaştırması flex hizası yüzünden yanıltır) ve gerileme varsa **breakpoint'le görünürlüğü** çöz: ikon 393→417px'e itmişti, `hidden min-[420px]:block` dar ekranı birebir eski hâline döndürdü.
+
 ## 2026-08-26 — "Mutasyon sessiz geçti" önce ARACI suçla, sonra testi
 
 - **Problem:** Yeni geometrinin 7 mutasyonunun 7'si de sessiz geçti; sanki 12 yeni testin hiçbiri hiçbir dalı tutmuyordu. Testler değil, mutasyon koşum aracı bozuktu — ve tek oturumda iki farklı biçimde.

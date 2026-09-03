@@ -6,6 +6,60 @@
 
 ---
 
+## 2026-09-03 — fal.ai "logo" istendi, editoryal illüstrasyon geldi; suçlu prompt değil MODELdi
+- **Problem:** Marka işareti üretimi. `recraft-v3` + `vector_illustration` gravür
+  dokulu, kalabalık SAHNE çizdi (martı, yürüyen adam, manzara) — 32px'te lapa.
+  Prompt'a "minimalist / no scene / no people" yazmak hiçbir şey değiştirmedi.
+- **Eliminated:** Prompt'u sıkılaştırmak → Recraft V3 **negative prompt'u hiç
+  onurlandırmıyor**, 2 tur boyunca ispatlandı. · Alt stiller
+  (`cutout`, `roundish_flat`) → DAHA KÖTÜ: stil ailesi editoryal illüstrasyon
+  üzerine eğitilmiş, alt stil onu derinleştiriyor (grafiğin yanında duran adam). ·
+  `recraft-20b` / `recraft/v2` `icon/*` stilleri → fal'ın hiçbir Recraft ucunda
+  enum'da YOK (şemadan doğrulandı).
+- **Chosen:** `fal-ai/ideogram/v3`, `style: DESIGN` + `negative_prompt` +
+  `color_palette` (RGB + ağırlık) + **`expand_prompt: false`** — sonuncusu şart,
+  açık kalırsa MagicPrompt prompt'u süsleyip manzarayı geri getiriyor.
+- **Evidence:** Aynı motif/prompt iskeletiyle 4 tur: recraft 15 aday → 0 kullanılabilir;
+  ideogram DESIGN 12 aday → 9'u marka işareti, 3'ü doğrudan yayına girdi.
+  Şema enum'u: `curl "https://fal.ai/api/openapi/queue/openapi.json?endpoint_id=..."`.
+- **Rule:** Üretken görsel modeli seçerken ÖNCE şema enum'unu çek; "logo/ikon"
+  istiyorsan illüstrasyon modeline prompt yazma, işi görsel KİMLİK olan modele git.
+
+## 2026-09-03 — Vektörleştirici şeffaflığı yedi; zemin yollarını silmek işareti dolu bloğa çevirdi
+- **Problem:** `fal-ai/recraft/vectorize` şeffaf PNG'yi SVG'ye çevirdi ama alfa
+  gitti. Zemin renkli path'leri silince işaret dolu renkli DİKDÖRTGENE düştü.
+- **Eliminated:** Zemin path'lerini silmek → vektörleştirici işareti "büyük dolu
+  dikdörtgen + üstünde zemin renginde OYAN yollar" olarak kuruyor; oymayı silince
+  geriye dikdörtgen kalıyor (florida ve miamigezi böyle çöktü, endeksi'nin
+  katmanlanması gerçekten arkada olduğu için tesadüfen kurtuldu — bu tesadüf
+  kuralı gizliyordu). · Zemini sayfa rengine boyamak → şeffaflık yok, koyu/açık
+  temada ve favicon'da kırılır.
+- **Chosen:** Yerel `potrace`, maskeyi **alfa kanalından** kurarak; çok renkli
+  işarette her opak piksel en yakın marka rengine atanıp katman katman izlendi.
+- **Evidence:** florida 38KB → blur(3)+threshold ön işlemle 3,3KB; üç işaret de
+  hem beyazda hem lacivertte, hem 24px hem 1024px'te doğru çizildi (render kanıtı).
+- **Rule:** Raster→SVG dönüşümünde şeffaflık KORUNDU sanma; alfayı kaynak alan
+  bir izleyici kullan. Fal'ın vectorize'ı alfayı düzleştirir.
+
+## 2026-09-03 — Başlığa 1 ikon eklemek ölçülmüş sarma eşiğini 393→417px'e itti
+- **Problem:** Marka işareti künye GENİŞLİĞİNE ekleniyor. miamiendeksi başlığının
+  tek-satır eşiği ölçülmüştü; ikon 27px (17px ikon + 10px boşluk) ekleyip 393→417px yaptı; iPhone 15'te başlık 65→98px.
+- **Eliminated:** Eşiği kabul edip yaşamak → iPhone 15 (393px)
+  gibi ÇOK yaygın bir genişlikte başlık kalıcı olarak yükseliyor, sticky olduğu
+  için viewport'tan sürekli yiyor. · Boşlukları kısmak (`gap`, ikon boyu, menü
+  `gap`) → 8px kazandırıyor ve eşiği geri alıyor AMA o değerler bu başlıkta
+  ölçülerek verilmiş; sahibinin kararını yan etki olarak değiştirmek olurdu.
+- **Chosen:** İkon `hidden min-[420px]:block` — eşiğin altında hiç RENDER
+  edilmiyor. `display:none` flex öğesini kutudan tamamen çıkarır, `gap` de
+  uygulanmaz; dar ekran eski hâline BİREBİR döner. Boşluklara dokunulmadı.
+- **Evidence:** headless Chrome + CDP, `Emulation.setDeviceMetricsOverride` ile
+  genişlik taraması; sarma `header.getBoundingClientRect().height` ile ölçüldü
+  (nav.top karşılaştırması YANILTTI — flex hizası yüzünden hep "sarmış" dedi).
+  Sonrası: eşiğin altında ikon=0 ve eski eşik aynen, üstünde ikon var + tek satır.
+- **Rule:** Ölçülmüş boşluk bütçesi olan bir başlığa görsel eklerken eşiği YENİDEN
+  ÖLÇ ve gerileme varsa önce **görünürlüğü breakpoint'le** çöz — başkasının
+  ölçerek verdiği `gap` değerlerini yan etki olarak değiştirme.
+
 ## 2026-08-26 — Mutasyon "sessiz geçti" dedi; sessiz olan koşum aracıydı
 
 - **Problem:** Karşılaştırma çubuğu geometrisine 12 birim testi yazdıktan
