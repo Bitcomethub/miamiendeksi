@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import { formatPeriod } from '@/lib/format';
+import { SiteMark } from './SiteMark';
 
 // ─────────────────────────────────────────────────────────────────────────
 // Üst bar
@@ -30,6 +31,25 @@ export function SiteHeader({ period }: { period: string }) {
           `shrink-0` olmazsa flex önce metni ezmeyi dener — asıl kusur oydu. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-3.5 sm:px-8">
         <Link href="/" className="group flex shrink-0 items-baseline gap-2.5">
+          {/* `items-baseline` KORUNUR — dönem etiketi marka adıyla aynı
+              çizgide durmalı. SVG'nin tabanı metin taban çizgisine oturur,
+              2px kaydırma optik hizayı verir.
+
+              ÖLÇÜM (headless Chrome, menü sabit 223px, gap-x-4, px-5):
+                marka 110px (işaretsiz) → ≥393px tek satır
+                marka 137px (işaretli)  → ≥417px tek satır  (416 sarıyor)
+              İşaret 27px (17px ikon + 10px `gap-2.5`) ekliyor ve iPhone 15
+              genişliğini (393) sarmaya itiyordu (65px → 98px). ÇÖZÜM: işaret
+              420px ALTINDA render EDİLMEZ — ölçülen eşik 417, 3px pay yazı tipi
+              geri düşerse metin genişliği kayabildiği için. Boşluk değerlerine
+              (`gap-2.5`, menü `gap-1`, `px-2.5`) DOKUNULMADI, kasıtlı.
+
+              BEDELİ AÇIK OLSUN: işaret çoğu telefonda GÖRÜNMEZ (393 iPhone 15,
+              360-412 Android). 430px+ (Pro Max) ve tablet/masaüstünde görünür.
+              Telefonda da istenirse tek yol boşluk kısmaktır: `gap-2.5`→`gap-2`
+              + ikon `1.05`→`0.95rem` + menü `gap-1`→`gap-0.5` = 8px, eşiği
+              393'e indirir. ÖLÇÜLDÜ ama uygulanmadı. Değiştiren YENİDEN ölçer. */}
+          <SiteMark className="hidden h-[1.05rem] w-[1.05rem] shrink-0 translate-y-[2px] min-[420px]:block" />
           <span className="font-display text-[1.0625rem] font-semibold tracking-tight text-ice">
             {SITE.name}
           </span>
