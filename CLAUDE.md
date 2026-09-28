@@ -181,6 +181,8 @@ Tam liste ve açıklamalar: `.env.example`. Özet:
   yoktur** (izlemediğimiz ziyaretçiden onay istemek yanıltıcıdır). Doluyken bile
   gtag yalnızca "Kabul et" sonrası DOM'a basılır — onay **render'ı** kontrol eder,
   görünürlüğü değil.
+
+- **Ölçümleme (Cloudflare Web Analytics)**: beacon onay-kapılı — yalnızca `me-consent-v1 === 'granted'` iken render edilir. Onay banner'ı consent `unknown` olduğunda HER ZAMAN render edilir ve GA4 measurement id'sine KASITLI OLARAK bağlı değildir (id boşken banner yine görünür). GA4 prod'da KAPALI.
 - `OPENROUTER_API_KEY` — yalnız `index:generate` ve CI. Sitenin render'ı buna bağlı
   değil. GitHub repo secret olarak ekli.
 
