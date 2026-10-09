@@ -259,7 +259,6 @@ async function callModel(facts, feedback) {
     },
     body: JSON.stringify({
       model: MODEL,
-      temperature: 0.4,
       max_tokens: 4000,
       messages: [
         { role: 'system', content: SYSTEM },
