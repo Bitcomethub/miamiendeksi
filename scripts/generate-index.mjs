@@ -42,8 +42,8 @@ const PERIOD_ARG = readPeriodOrExit(args);
 
 // Modeli brief SABİTLEDİ. Değiştirmeden önce bu satırı okuyan kişiye:
 // Gemini 3.x bu projede kullanılmaz (kurucunun açık talimatı).
-const MODEL = 'anthropic/claude-sonnet-5';
-const ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
+const MODEL = 'claude-sonnet-5-5';
+const ENDPOINT = 'https://api.anthropic.com/v1/chat/completions';
 
 // ── Biçimlendirme ────────────────────────────────────────────────────────
 // FACTS bloğu sayıları TÜRKÇE biçimde verir (binlik `.`, ondalık `,`).
@@ -244,10 +244,10 @@ const SCHEMA = {
 // ── Model çağrısı ────────────────────────────────────────────────────────
 
 async function callModel(facts, feedback) {
-  const key = process.env.OPENROUTER_API_KEY;
+  const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     throw new Error(
-      'OPENROUTER_API_KEY tanımlı değil. Ağsız hat testi için: npm run index:dry',
+      'ANTHROPIC_API_KEY tanımlı değil. Ağsız hat testi için: npm run index:dry',
     );
   }
 
@@ -256,8 +256,6 @@ async function callModel(facts, feedback) {
     headers: {
       Authorization: `Bearer ${key}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://miamiendeksi.com',
-      'X-Title': 'Miami Endeksi',
     },
     body: JSON.stringify({
       model: MODEL,
@@ -276,7 +274,7 @@ async function callModel(facts, feedback) {
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`OpenRouter ${res.status}: ${body.slice(0, 400)}`);
+    throw new Error(`Anthropic ${res.status}: ${body.slice(0, 400)}`);
   }
 
   const json = await res.json();

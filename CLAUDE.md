@@ -197,3 +197,16 @@ Sahiplik açık: footer'da "Bir MiamiLi Media yayınıdır" künyesi. Gizli link
   elle yazılan URL'de `utm_source=miamiendeksi` er ya da geç düşer.
 - **İstisna:** kimlik/köken URL'leri (JSON-LD `url`/`sameAs`, `rel=author`) UTM ALMAZ.
   Tıklanmazlar; UTM'li varyant iki markayı eşleştiren varlık sinyalini böler.
+
+## Build/Deploy Cost Discipline (2026-09-14)
+Vercel invoice $134-182/mo root cause fixed account-wide 2026-09-14: team default build machine Turbo(30vCPU,$0.105/min)->Elastic on all 23 projects, Ignored Build Step->"Only build production" on every project. See global `~/.claude/CLAUDE.md` -> "Build & Deploy Discipline" for the full binding rule set.
+- Never run `vercel deploy`/`vercel --prod`/`eas build`/`eas submit` mid-edit-loop; batch changes, one deploy per completed milestone.
+- Never revert this project's Vercel Build Machine (must stay Elastic) or Ignored Build Step (must stay "Only build production") settings without explicit user approval.
+
+## Hosting (güncel)
+
+**Hosting: Railway** — bu proje 2026-09-28'de Vercel'den Railway'e taşındı.
+Vercel projeleri/alan adları kapatıldı ve Git bağlantıları kesildi.
+- Uygulama: Railway (bkz. "miamiendeksi" servisi)
+- Zamanlanmış işler: Railway cron servisi (scripts/railway-cron.mjs)
+- Yeni servis/deploy: Railway üzerinden; Vercel'e deploy etmeye çalışmayın.
