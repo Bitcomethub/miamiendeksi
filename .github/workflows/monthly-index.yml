@@ -100,7 +100,7 @@ jobs:
         id: commentary
         continue-on-error: true
         env:
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: npm run index:generate
 
       # Yeni yazı, YAZILDIKTAN SONRA bir kez daha aynı kapıdan geçirilir.
