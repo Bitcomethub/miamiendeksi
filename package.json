@@ -17,7 +17,8 @@
     "check:layout": "node --experimental-websocket scripts/check-layout.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:palette": "node scripts/check-palette.mjs",
-    "check:palette:render": "node --experimental-websocket scripts/check-palette.mjs --render"
+    "check:palette:render": "node --experimental-websocket scripts/check-palette.mjs --render",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "next": "16.3.0",

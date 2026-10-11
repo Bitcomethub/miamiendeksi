@@ -134,6 +134,18 @@ jobs:
           path: .needs-review/
           if-no-files-found: ignore
 
+      # IndexNow: bu ayın endeks sayfalarını Bing/Yandex'e bildirir. Sitemap
+      # 8 URL olduğu için tamamı gönderilir — `scripts/indexnow.mjs`'in
+      # varsayılanı zaten sitemap'ten okumaktır.
+      #
+      # `--wait-for-key`: Railway build'i bitmeden anahtar dosyası 404 olur ve
+      # IndexNow 403 döner; sabit bir `sleep` yerine dosyanın gerçekten yayına
+      # girmesini bekliyoruz.
+      # Hata deploy'u KIRMAZ: script `--strict` olmadan her zaman 0 döner.
+      - name: IndexNow bildirimi
+        continue-on-error: true
+        run: node scripts/indexnow.mjs --wait-for-key
+
       # En sona bırakıldı: veri commit'i ve derleme tamamlandıktan sonra
       # işin görünür şekilde kırmızı olması gerekiyor ki kimse "her ay
       # yeşildi" diye kapıyı unutmasın.
